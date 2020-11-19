@@ -242,6 +242,73 @@
 			</div>
 		</div>
 	</div>
+	<div class="section bg-gray full-height">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 l8">
+					<h4 class="text-comfortaa text-orange">PLAN PIONEROS</h4>
+					<p class="text-dark-blue">¡Únete a Dawipo antes del <span style="font-weight: 600">30 de Noviembre</span><br>y recibe <span style="font-weight: 600">increíbles beneficios!</span></p>
+				</div>
+				<div class="col s12 l4">
+					<h3 id="countdown" class="text-comfortaa text-dark-blue"></h3>
+					<script>
+						var countDownDate = new Date("Nov 29, 2020 23:59:59").getTime();
+						var x = setInterval(function() {
+							var now = new Date().getTime();
+							var distance = countDownDate - now;
+
+							var days = Math.floor(distance / (1000 * 60 * 60 * 24))
+							var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+							var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+							var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+							document.getElementById("countdown").innerHTML = days + "d" + hours + "h" + minutes + "m" + seconds + "s";
+
+							if (distance < 0) {
+								clearInterval(x);
+								document.getElementById("countdown").innerHTML = "EXPIRADO";
+							}
+						}, 1000);
+					</script>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col s12 l4" style="border-right: 1px solid gray;">
+					<div class="col s3" style="text-align:right;">
+						<h1 class="text-dark-blue text-comfortaa" style="margin: 0.3em 0 0 0">3</h1>
+					</div>
+					<div class="col s9">
+						<p class="text-dark-blue">meses <span class="text-comfortaa text-orange" style="font-weight: 600">gratis</span> de uso de la plataforma</p>
+					</div>
+				</div>
+				<div class="col s12 l4" style="border-right: 1px solid gray;">
+					<div class="col s3">
+						<img src="{% static 'images/icono-i.svg' %}" width="80" style="margin-top: 10px">
+					</div>
+					<div class="col s9">
+						<p class="text-dark-blue">Asesoría ilimitada en fase de implementación</p>
+					</div>
+				</div>
+				<div class="col s12 l4">
+					<div class="col s3" style="text-align:right;">
+						<h1 class="text-dark-blue text-comfortaa" style="margin: 0.3em 0 0 0">5</h1>
+					</div>
+					<div class="col s9">
+						<p class="text-dark-blue">horas de asesoría adicional con el OKAM de la cuenta</p>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col s12 l9" style="text-align: center;">
+					<p class="text-lato-cursiva text-dark-blue">
+						Somos un startup parte del programa Apps.co que también ha impulsado emprendimientos como Platzi, Rappi y Fluvip. Igual que ellos, estamos apoyando la transformación digital del país. ¡Únete y haz parte también, impulsando tu productividad con nosotros!
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 	<footer class="page-footer shuffle-under-transition">
 		<div class="container">
 			<div class="row">

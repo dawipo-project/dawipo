@@ -250,7 +250,10 @@
 					<p class="text-dark-blue">¡Únete a Dawipo antes del <span style="font-weight: 600">30 de Noviembre</span><br>y recibe <span style="font-weight: 600">increíbles beneficios!</span></p>
 				</div>
 				<div class="col s12 l4">
-					<h3 id="countdown" class="text-comfortaa text-dark-blue"></h3>
+					<div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="days"></div>
+					<div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="hours"></div>
+					<div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="minutes"></div>
+					<div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="seconds"></div>
 					<script>
 						var countDownDate = new Date("Nov 29, 2020 23:59:59").getTime();
 						var x = setInterval(function() {
@@ -262,7 +265,10 @@
 							var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 							var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-							document.getElementById("countdown").innerHTML = days + "d" + hours + "h" + minutes + "m" + seconds + "s";
+							document.getElementById("days").innerHTML = "<h4>" + days + "d</h4>";
+							document.getElementById("hours").innerHTML = "<h4>" + hours + "h</h4>";
+							document.getElementById("minutes").innerHTML = "<h4>" + minutes + "m</h4>";
+							document.getElementById("seconds").innerHTML = "<h4>" + seconds + "s</h4>";
 
 							if (distance < 0) {
 								clearInterval(x);
@@ -305,6 +311,9 @@
 					<p class="text-lato-cursiva text-dark-blue">
 						Somos un startup parte del programa Apps.co que también ha impulsado emprendimientos como Platzi, Rappi y Fluvip. Igual que ellos, estamos apoyando la transformación digital del país. ¡Únete y haz parte también, impulsando tu productividad con nosotros!
 					</p>
+				</div>
+				<div class="col s12 l3" style="padding-top: 2em">
+					<a href="#contactanos" class="btn-large bg-orange">¡Quiero ser pionero!</a>
 				</div>
 			</div>
 		</div>

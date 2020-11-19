@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - {% if category %}{{ category.name }}{% else %}Catálogo{% endif %}{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item {% if not category %}active{% endif %}">Orders</li>
+					<li class="breadcrumb-item active">New order</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Choose products from the catalog
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<ul class="nav ml-2 mb-2 nav-fill">
+		<li class="nav-item mr-2">
+			<a href="{% url 'cart:cart_detail' %}" class="btn btn-primary">
+				<i class="uil uil-shopping-cart-alt"></i>
+				See order contents
+			</a>
+		</li>
+		<li class="nav-item flex-fill" style="width: 14em">
+			<select class="form-control form-control-sm select2" data-toggle="select2" style="width: 14em" onchange="location = this.value;">
+				<option>Filter by category</option>
+				<optgroup label="Categories">
+					{% for category in categories %}
+					<option value="{% url 'orders:orders_product_list_by_category' category.slug%}">{{ category.name }}</option>
+					{% endfor %}
+				</optgroup>
+			</select>
+		</li>
+	</ul>
+</div>
+<div class="row">
+	{% for product in products %}
+	<div class="col-sm-12 col-md-6 col-lg-4">
+		<div class="card">
+			{% if product.image %}
+			<img src="{{ product.image.url }}" alt="{{ product.slug }}" class="card-img-top">
+			{% else %}
+			<img src="{% static 'images/no_image.png' %}" alt="{{ product.slug }}" class="card-img-top">
+			{% endif %}
+			<div class="card-body">
+				<h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
+				<hr>
+				<p class="card-text">
+					{{ product.description|truncatewords:20 }}
+				</p>
+				<h5><span class="text-success">Retail price:</span> US${{ product.retail_price }}</h5>
+				<h5><span class="text-success">Whole sale price:</span> US${{ product.whole_sale_price }}</h5>
+				<hr>
+				<form action="{% url 'cart:cart_add' product.id %}" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="id_quantity"></label>
+						<input data-toggle="touchspin" type="number" value="1" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">
+						<input type="hidden" name="override" value="False" id="id_override">
+					</div>
+					<button type="submit" class="btn btn-secondary">
+						<i class="uil-plus-circle"></i>
+						Add to order
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

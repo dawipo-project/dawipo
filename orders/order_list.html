@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Orders{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item active">Orders</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Orders
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<ul class="nav ml-2 mb-2">
+		<li class="nav-item mr-2">
+			<a href="{% url 'orders:order_product_list' %}" class="btn btn-primary btn-sm">
+				<i class="uil-plus-circle"></i>
+				Create new order
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-sm-12 col-lg-12">
+		<div class="table-responsive">
+			<table class="table table-hover table-borderless table-nowrap">
+				<thead>
+					<th scope="col">Order ID</th>
+					<th scope="col">Business name</th>
+					<th scope="col">Contact name</th>
+					<th scope="col">Created by</th>
+					<th scope="col">Total price</th>
+					<th scope="col">Due Date</th>
+					<th scope="col">Status</th>
+					<th scope="col"></th>
+				</thead>
+				<tbody>
+					{% for order in orders %}
+					<td class="text-danger">{{ order.id }}</td>
+					<td>{{ order.business_name }}</td>
+					<td>{{ order.first_name }} {{ order.last_name }}</td>
+					<td>{{ order.user.get_full_name }}</td>
+					<td>US${{ order.get_total_cost }}</td>
+					<td>NN/NN/NNNN</td>
+					<td>
+						<h4>
+						{% if order.status == "delivered" %}
+						<div class="badge badge-success">{{ order.status }}</div>
+						{% elif order.status == "canceled" %}
+						<div class="badge badge-danger">{{ order.status }}</div>
+						{% elif order.status == "pre-order" %}
+						<div class="badge badge-primary">{{ order.status }}</div>
+						{% elif order.status == "confirmed" %}
+						<div class="badge badge-secondary">{{ order.status }}</div>
+						{% else %}
+						<div class="badge badge-info">{{ order.status }}</div>
+						{% endif %}
+						</h4>
+					</td>
+					<td>
+						<a href="#" class="btn btn-secondary btn-sm">
+							<i class="uil-search-alt"></i>
+							Detail
+						</a>
+					</td>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

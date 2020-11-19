@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Generate invoice{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item">Orders</li>
+					<li class="breadcrumb-item active">New order</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Please fill the following form
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12 col-md-6 col-lg-5 offset-lg-1">
+		<form method="post">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="id_customer">Customer</label>
+				<select name="customer" id="id_customer" class="form-control select2" data-toggle="select2" required>
+					<option>Select</option>
+					<optgroup label="Customers">
+						{% for customer in customers %}
+						<option value="{{ customer.id }}">{{ customer.name }}</option>
+						{% endfor %}
+					</optgroup>
+				</select>
+				<small>Can't find your customer here? <a href="{% url 'customers:customer_registration' %}">Register them.</a></small>
+			</div>
+			<div class="form-group">
+				<label for="id_due_date">Due date</label>
+				<input type="text" class="form-control date" id="id_due_date" name="due_date" data-toggle="date-picker" data-single-date-picker="true">
+			</div>
+			<button type="submit" class="btn btn-secondary">Generate invoice</button>
+		</form>
+	</div>
+	<div class="col-sm-12 col-md-6 col-lg-5">
+		<div class="jumbotron">
+			<h3>Items in the order:</h3>
+			<hr>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Amount</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for item in cart %}
+				<tr>
+					<td>{{ item.product.name }}</td>
+					<td>{{ item.quantity }}</td>
+					<td class="text-secondary">US${{ item.total_price }}</td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td class="text-success">Total</td>
+					<td></td>
+					<td>US${{ cart.get_total_price }}</td>
+				</tr>
+				</tbody>
+			</table>
+			<a href="{% url 'cart:cart_detail' %}" class="btn btn-block btn-warning">Edit your order</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

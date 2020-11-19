@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Orden en curso{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item">Orders</li>
+					<li class="breadcrumb-item active">Current order</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Order contents
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<ul class="nav ml-2 mb-2">
+		<li class="nav-item mr-2">
+			<a href="{% url 'orders:order_create' %}" class="btn btn-primary btn-sm">
+				<i class="uil uil-file-check-alt"></i>
+				Generate invoice
+			</a>
+		</li>
+		<li class="nav-item mr-2">
+			<a href="{% url 'orders:orders_product_list' %}" class="btn btn-secondary btn-sm">
+				<i class="uil-plus-circle"></i>
+				Continue adding products
+			</a>
+		</li>
+		<li class="nav-item mr-2">
+			<a href="{% url 'cart:cart_clear' %}" class="btn btn-danger btn-sm">
+				<i class="uil-trash-alt"></i>
+				Clear order
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-sm-12 col-lg-12">
+		<div class="table-responsive">
+			<table class="table table-hover table-borderless table-nowrap">
+				<thead>
+					<th scope="col">Product name</th>
+					<th scope="col">SKU</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Unit price</th>
+					<th scope="col">Total price</th>
+					<th scope="col"></th>
+				</thead>
+				<tbody>
+					{% for item in cart %}
+					{% with product=item.product %}
+					<tr>	
+						<td>{{ product.name }}</td>
+						<td>{{ product.sku }}</td>
+						<td class="pt-1">
+							<form action="{% url 'cart:cart_add' product.id %}" method="post" class="form-inline">
+								<input data-toggle="touchspin" type="number" value="{{ item.quantity }}" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">
+								{{ item.update_quantity_form.override }}
+								{% csrf_token %}
+								<button type="submit" class="btn btn-sm btn-primary ml-1">Update</button>
+							</form>
+						</td>
+						<td>US${{ item.price }}</td>
+						<td>US${{ item.total_price }}</td>
+						<td class="pt-2">
+							<form action="{% url 'cart:cart_remove' product.id %}" method="post">
+								{% csrf_token %}
+								<button type="submit" class="btn btn-sm btn-danger">
+									<i class="uil-trash-alt"></i> Remove
+								</button>
+							</form>
+						</td>
+					</tr>
+					{% endwith %}
+					{% endfor %}
+					<tr>
+						<td class="text-secondary">Total</td>
+						<td colspan="3"></td>
+						<td class="text-secondary">US${{ cart.get_total_price }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

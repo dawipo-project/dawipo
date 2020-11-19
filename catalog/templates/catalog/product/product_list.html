@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Catálogo{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item active">Catalog</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Products - {% if category %}{{ category.name }}{% else %}All categories{% endif %}
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<ul class="nav ml-2 mb-2">
+		<li class="nav-item mr-2">
+			<a href="{% url 'catalog:add_product' %}" class="btn btn-primary btn-sm">
+				<i class="uil-plus-circle"></i>
+				Add new product
+			</a>
+		</li>
+		<li class="nav-item mr-2">
+			<a href="{% url 'catalog:add_category' %}" class="btn btn-warning btn-sm">
+				<i class="uil-plus-circle"></i>
+				Add new category
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="{% if category %}{{ category.get_absolute_url }}{% else %}{% url 'catalog:product_list' %}{% endif %}" class="btn btn-secondary btn-sm">
+				<i class="uil-table"></i>
+				View as catalog
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-sm-12 col-lg-12">
+		<div class="table-responsive">
+			<table class="table table-hover table-borderless table-nowrap">
+				<thead>
+					<th scope="col">Product name</th>
+					<th scope="col">SKU</th>
+					<th scope="col">Category</th>
+					<th scope="col">Measures</th>
+					<th scope="col">Retail price</th>
+					<th scope="col">Whole sale price</th>
+					<th scope="col"></th>
+				</thead>
+				<tbody>
+					{% for product in products %}
+					<tr>	
+						<td>{{ product.name }}</td>
+						<td>{{ product.sku }}</td>
+						<td>{{ product.category.name }}</td>
+						<td>{{ product.measures }}</td>
+						<td>US${{ product.retail_price }}</td>
+						<td>US${{ product.whole_sale_price }}</td>
+						<td class="text-primary"><a href="{{ product.get_absolute_url }}"><i class="uil-search"></i> Detail</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

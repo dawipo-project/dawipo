@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Order No. {{ order.id }}{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item">Orders</li>
+					<li class="breadcrumb-item active">Order No. {{ order.id }}</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Order detail - Order #{{ order.id }}
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col">
+					<h3>Order information</h3>
+					<hr>
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<tr>
+								<th class="text-secondary">Business name:</th>
+								<td>{{ order.customer.name }}</td>
+							</tr>
+							<tr>
+								<th class="text-secondary">Business address:</th>
+								<td>{{ order.customer.address }}</td>
+							</tr>
+							<tr>
+								<th class="text-secondary">Business zipcode:</th>
+								<td>{{ order.customer.zipcode }}</td>
+							</tr>
+							<tr>
+								<th class="text-secondary">Contact name:</th>
+								<td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
+							</tr>
+							<tr>
+								<th class="text-secondary">Email:</th>
+								<td>{{ order.customer.email }}</td>
+							</tr>
+							<tr>
+								<th class="text-secondary">City:</th>
+								<td>{{ order.customer.city }}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="col">
+					<h3>Items in the order:</h3>
+					<hr>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Amount</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in items %}
+							<tr>
+								<td>{{ item.product.name }}</td>
+								<td>{{ item.quantity }}</td>
+								<td class="text-secondary">US${{ item.get_cost }}</td>
+							</tr>
+							{% endfor %}
+							<tr>
+								<td class="text-success">Total</td>
+								<td></td>
+								<td>US${{ order.get_total_cost }}</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<a href="{% url 'orders:order_edit' order.id %}" class="btn btn-block btn-warning">Edit this order</a>	
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

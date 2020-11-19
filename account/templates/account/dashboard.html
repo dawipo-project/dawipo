@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Home{% endblock %}
+{% block content %}
+<!-- Título -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item active">Home</li>
+                </ol>
+            </div>
+            <h4 class="page-title text-comfortaa">Hello, {{ request.user.first_name }}!</h4>
+        </div>
+    </div>
+</div>
+<!-- Gráficos de arriba -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="dropdown float-right">
+                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                        <i class="mdi mdi-dots-vertical"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item">Reporte de ventas</a>
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item">Exportar reporte</a>
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item">Ganancias</a>
+                    </div>
+                </div>
+                <h4 class="header-title mb-3 text-comfortaa">Confirmed orders on the last year</h4>
+
+                <div class="chart-content-bg">
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1 mt-1">Current year</p>
+                            <h2 class="font-weight-normal">
+                                <small class="mdi mdi-checkbox-blank-circle text-primary align-middle mr-1"></small>
+                                <span>${{ total_value }}</span>
+                            </h2>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted mb-1 mt-1">Last year</p>
+                            <h2 class="font-weight-normal">
+                                <small class="mdi mdi-checkbox-blank-circle text-warning align-middle mr-1"></small>
+                                <span>${{ past_year_value }}</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="dash-item-overlay d-none d-md-block">
+                    <h5>Ganancias de hoy: $2,562.30</h5>
+                    <p class="text-muted font-13 mb-3 mt-2">Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
+                    Etiam rhoncus...</p>
+                    <a href="javascript: void(0);" class="btn btn-outline-primary">Ver estados de cuenta
+                        <i class="mdi mdi-arrow-right ml-2"></i>
+                    </a>
+                </div> -->
+                <div id="revenue-chart" class="apex-charts mt-3" 
+                data-colors="#003f5a,#fe6625"></div>
+                <script>
+                    var e = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"],
+                    t = $("#revenue-chart").data("colors");
+                    t && (e = t.split(","));
+                    var r = {
+                        chart: { 
+                            height: 364, 
+                            type: "line", 
+                            dropShadow: { 
+                                enabled: !0, 
+                                opacity: 0.2, 
+                                blur: 7, 
+                                left: -7, 
+                                top: 7 
+                            } 
+                        },
+                        dataLabels: { 
+                            enabled: !1 
+                        },
+                        stroke: { 
+                            curve: "smooth", 
+                            width: 4 
+                        },
+                        series: [
+                        { 
+                            name: "Current Year", 
+                            data: {{ year_orders|safe }}
+                        },
+                        { 
+                            name: "Last Year", 
+                            data: {{ last_year_orders|safe }}
+                        },
+                        ],
+                        colors: e,
+                        zoom: { 
+                            enabled: !1 
+                        },
+                        legend: { 
+                            show: !1 
+                        },
+                        xaxis: { 
+                            type: "string", 
+                            categories: {{ months_list|safe }}, 
+                            tooltip: { 
+                                enabled: !1 
+                            }, 
+                            axisBorder: { 
+                                show: !1 
+                            } 
+                        },
+                        yaxis: {
+                            labels: {
+                                formatter: function (e) {
+                                    return e + " orders";
+                                },
+                                offsetX: -15,
+                            },
+                        },
+                    };
+                    new ApexCharts(document.querySelector("#revenue-chart"), r).render();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-pills justify-content-end my-3">
+    <li class="nav-item">
+        <form class="form-inline">
+            <input type="text" class="form-control date" id="fecha_entrega" data-toggle="date-picker" data-cancel-class="btn-danger" style="width: 13.5em;">
+            <button class="btn btn-outline-secondary ml-1">
+                <span> Filter </span>
+            </button>
+        </form>
+    </li>
+</ul>
+<!-- Segunda fila -->
+<div class="row">
+    <div class="col-12">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-right">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title mb-1 text-comfortaa">
+                        Orders per Customer
+                    </h4>
+                    <div class="apex-charts" id="pedidos-por-cliente"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-right">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title text-comfortaa">Top-selling products</h4>
+
+                    <div id="average-sales" class="apex-charts mb-4 mt-4"
+                    data-colors="#003f5a,#fb9334,#007a7a,#fe6625"></div>
+
+
+                    <div class="chart-widget-list">
+                        <p>
+                            <i class="mdi mdi-square" style="color: #003f5a;"></i> Ref 1
+                            <span class="float-right">$300.56</span>
+                        </p>
+                        <p>
+                            <i class="mdi mdi-square" style="color: #fb9334;"></i> Ref 2
+                            <span class="float-right">$135.18</span>
+                        </p>
+                        <p>
+                            <i class="mdi mdi-square text-primary"></i> Ref 3
+                            <span class="float-right">$48.96</span>
+                        </p>
+                        <p class="mb-0">
+                            <i class="mdi mdi-square" style="color: #fe6625;"></i> Ref 4
+                            <span class="float-right">$154.02</span>
+                        </p>
+                    </div>
+                </div> <!-- end card-body-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <a href="" class="btn btn-sm btn-link float-right mb-3">Export PDF
+                        <i class="mdi mdi-download ml-1"></i>
+                    </a>
+                    <h4 class="header-title mt-2 text-comfortaa">Closest orders to delivery</h4>
+
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap table-hover mb-0">
+                            <tbody>
+                                {% for order in closest_orders %}
+                                <tr>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.id }}</h5>
+                                        <span class="text-muted font-13">Order ID</span>
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
+                                        <span class="text-muted font-13">Customer</span>
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost }}</h5>
+                                        <span class="text-muted font-13">Total price</span>
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>
+                                        <span class="text-muted font-13">Due date</span>
+                                    </td>
+                                    <td>
+                                        <h4 class="my-1 font-weight-normal">
+                                            {% if order.status == 'delivered' %}
+                                            <div class="badge badge-success">{{ order.get_status_display }}</div>
+                                            {% elif order.status == 'canceled' %}
+                                            <div class="badge badge-danger">{{ order.get_status_display }}</div>
+                                            {% elif order.status == 'pre-order' %}
+                                            <div class="badge badge-primary">{{ order.get_status_display }}</div>
+                                            {% elif order.status == 'confirmed' %}
+                                            <div class="badge badge-secondary">{{ order.get_status_display }}</div>
+                                            {% else %}
+                                            <div class="badge badge-info">{{ order.get_status_display }}</div>
+                                            {% endif %}
+                                        </h4>
+                                        <span class="text-muted font-13">Status</span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div> <!-- end table-responsive-->
+                </div> <!-- end card-body-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3 mb-3">
+    <div class="col-12">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-right">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title text-comfortaa">Orders per status</h4>
+                    <div class="apex-charts mt-4" id="pedidos_estado"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-right">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Reporte de Ventas</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Exportar Reporte</a>
+                        </div>
+                    </div>
+                    <h4 class="header-title text-comfortaa">Indicators</h4>
+                    <div class="col-12 align-items-center py-3">
+                        <h3 class="text-center"><span class="text-success text-comfortaa">Confirmed units: </span>345</h3>
+                        <h3 class="text-center"><span class="text-danger text-comfortaa">Dispatched units: </span>248</h3>
+                    </div>
+                    <hr>
+                    <div class="col-12 py-3 px-5">
+                        <h3 class="text-center"><span class="text-secondary text-comfortaa">Average time between status changes:</span><br>4 days</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+{% endblock %}

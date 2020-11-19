@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Add product{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item"><a href="{% url 'catalog:product_list' %}">Catalog</a></li>
+					<li class="breadcrumb-item active">Add new category</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Add new category
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<form method="post">
+			{% csrf_token %}
+			<div class="col-sm-12 col-lg-8 offset-lg-2">
+				<div class="form-group">
+					<label for="id_name">Name</label>
+					<input type="text" name="name" id="id_name" class="form-control">
+					<hr>
+					<button type="submit" class="btn btn-primary"><i class="uil-save"></i> Save changes</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

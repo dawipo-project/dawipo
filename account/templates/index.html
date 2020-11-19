@@ -171,78 +171,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="header horizontal-half-transition scrollspy" id="contactanos">
-		<div class="background">
-			<img src="{% static 'images/background-top-alt.jpg' %}" alt="">
-		</div>
-		<div class="phone-preview-sizer">
-			<div class="phone-preview"></div>
-			<div class="image-container default" style="background-image:url({% static 'images/iphone12.png' %})"></div>
-		</div>
-		<div class="horizontal-half-wrapper right-side active">
-			<div class="header-background bg-gray"></div>
-			<div class="header-wrapper row valign-wrapper" style="padding-top: 5em">
-				<div class="col s12 m10 offset-m1 valign">
-					<h4 class="text-comfortaa text-orange">¡Llena el formulario y te contactaremos!</h4>
-					<form class="col s12" method="post">
-						{% csrf_token %}
-						<div class="row">
-							<div class="input-field col s12">
-								<input type="text" name="first_name" id="id_first_name" class="validate">
-								<label for="first_name">Nombres</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<input type="text" name="last_name" id="id_last_name" class="validate">
-								<label for="last_name">Apellidos</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s7">
-								<input type="email" name="email" id="id_email" class="validate">
-								<label for="email">Correo electrónico</label>
-								<span class="helper-text" data-error="Ingresa un correo electrónico válido.">No compartiremos tus datos con nadie.</span>
-							</div>
-							<div class="input-field col s5">
-								<input type="tel" name="phone_number" id="id_phone_number" class="validate">
-								<label for="phone_number">Teléfono</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s7">
-								<input type="text" name="organization" id="id_organization" class="validate">
-								<label for="organization">Organización</label>
-							</div>
-							<div class="input-field col s5">
-								<input type="text" name="position" id="id_position" class="validate">
-								<label for="position">Posición</label>
-							</div>
-						</div>
-						<div class="row">
-							<label>
-								<input type="checkbox" class="filled-in validate" name="acceptance" id="id_acceptance" required="true" />
-								<span>Acepto la <a class="modal-trigger" href="#modalDatos">política de tratamiento de datos personales</a></span>
-							</label>
-						</div>
-						<div class="modal" id="modalDatos">
-							<div class="modal-content">
-								<h4>Política de tratamiento de datos personales</h4>
-								<p>Al diligenciar este formulario usted nos permite el uso de su información según el marco establecido por la <a href="https://www.defensoria.gov.co/public/Normograma%202013_html/Normas/Ley_1581_2012.pdf" target="_blank">ley 1581 de 2012</a> y nos autoriza a utilizar su información para contactarlo con el propósito de establecer un primer acercamiento comercial</p>
-							</div>
-							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
-							</div>
-						</div>
-						<button class="btn bg-bright-blue" type="submit" name="action">¡Quiero saber más!
-							<i class="material-icons right">send</i>
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="section bg-gray full-height">
+	<div class="section bg-gray shuffle-under-transition full-height">
 		<div class="container">
 			<div class="row">
 				<div class="col s12 l8">
@@ -314,6 +243,77 @@
 				</div>
 				<div class="col s12 l3" style="padding-top: 2em; text-align: center;">
 					<a href="#contactanos" class="btn-large bg-orange">¡Quiero ser pionero!</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header horizontal-half-transition scrollspy" id="contactanos">
+		<div class="background">
+			<img src="{% static 'images/background-top-alt.jpg' %}" alt="">
+		</div>
+		<div class="phone-preview-sizer">
+			<div class="phone-preview"></div>
+			<div class="image-container default" style="background-image:url({% static 'images/iphone12.png' %})"></div>
+		</div>
+		<div class="horizontal-half-wrapper right-side active">
+			<div class="header-background bg-gray"></div>
+			<div class="header-wrapper row valign-wrapper" style="padding-top: 5em">
+				<div class="col s12 m10 offset-m1 valign">
+					<h4 class="text-comfortaa text-orange">¡Llena el formulario y te contactaremos!</h4>
+					<form class="col s12" method="post">
+						{% csrf_token %}
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" name="first_name" id="id_first_name" class="validate">
+								<label for="first_name">Nombres</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" name="last_name" id="id_last_name" class="validate">
+								<label for="last_name">Apellidos</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s7">
+								<input type="email" name="email" id="id_email" class="validate">
+								<label for="email">Correo electrónico</label>
+								<span class="helper-text" data-error="Ingresa un correo electrónico válido.">No compartiremos tus datos con nadie.</span>
+							</div>
+							<div class="input-field col s5">
+								<input type="tel" name="phone_number" id="id_phone_number" class="validate">
+								<label for="phone_number">Teléfono</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s7">
+								<input type="text" name="organization" id="id_organization" class="validate">
+								<label for="organization">Organización</label>
+							</div>
+							<div class="input-field col s5">
+								<input type="text" name="position" id="id_position" class="validate">
+								<label for="position">Posición</label>
+							</div>
+						</div>
+						<div class="row">
+							<label>
+								<input type="checkbox" class="filled-in validate" name="acceptance" id="id_acceptance" required="true" />
+								<span>Acepto la <a class="modal-trigger" href="#modalDatos">política de tratamiento de datos personales</a></span>
+							</label>
+						</div>
+						<div class="modal" id="modalDatos">
+							<div class="modal-content">
+								<h4>Política de tratamiento de datos personales</h4>
+								<p>Al diligenciar este formulario usted nos permite el uso de su información según el marco establecido por la <a href="https://www.defensoria.gov.co/public/Normograma%202013_html/Normas/Ley_1581_2012.pdf" target="_blank">ley 1581 de 2012</a> y nos autoriza a utilizar su información para contactarlo con el propósito de establecer un primer acercamiento comercial</p>
+							</div>
+							<div class="modal-footer">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+							</div>
+						</div>
+						<button class="btn bg-bright-blue" type="submit" name="action">¡Quiero saber más!
+							<i class="material-icons right">send</i>
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>

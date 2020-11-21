@@ -7,7 +7,6 @@ def landing_view(request):
 		form = ContactForm(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
-			import pdb; pdb.set_trace()
 			contact = form.save()
 			return render(request, 'index.html')
 	form = ContactForm()

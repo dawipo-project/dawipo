@@ -123,7 +123,6 @@ def dashboard(request):
     customers = Customer.objects.filter(company=request.user.profile.company)[:10]
     for customer in customers:
         customers_list.append(customer.name)
-    import pdb; pdb.set_trace()
     # Gráfica de productos más vendidos
 
     # Tabla de órdenes más cercanas

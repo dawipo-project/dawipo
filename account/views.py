@@ -71,8 +71,9 @@ def dashboard(request):
         total_order_changes = total_order_changes | order_changes
         current_day = previous_day
     for item in total_order_changes:
-        order = Order.objects.get(id=item.order_id)
-        total_value += order.get_total_cost()
+        order = Order.objects.get(id=item.order_id, company=request.user.profile.company)
+        if order:
+            total_value += order.get_total_cost()
     past_year_value = 0
     total_order_changes = OrderChange.objects.none()
     for i in range(365):
@@ -85,8 +86,9 @@ def dashboard(request):
         total_order_changes = total_order_changes | order_changes
         current_day = previous_day
     for item in total_order_changes:
-        order = Order.objects.get(id=item.order_id)
-        past_year_value += order.get_total_cost()
+        order = Order.objects.get(id=item.order_id, company=request.user.profile.company)
+        if order:
+            past_year_value += order.get_total_cost()
     months_list = get_months(today.month)
     year_orders = OrderChange.objects.order_by(
         'order_id').filter(
@@ -130,7 +132,7 @@ def dashboard(request):
             name += '...'
         customers_list.append(name)
     # Gráfica de productos más vendidos
-    orders = Order.objects.filter(company=request.user.profile.company).filter(status='confirmed')
+    orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
     orders_items = Order.objects.none()
     for order in orders:
         orders_items = orders_items | order.items.all()

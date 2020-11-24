@@ -120,7 +120,7 @@ def dashboard(request):
     for status_tuple in Order.STATUS_CHOICES:
         status_orders[status_tuple[1]] = status_orders.pop(status_tuple[0])
     # Tabla de órdenes más cercanas
-    closest_orders = Order.objects.order_by('due_date')[:5]
+    closest_orders = Order.objects.filter(company=request.user.profile.company).order_by('due_date')[:5]
     return render(request, 'account/dashboard.html', {'section': dashboard, 
         'customers': customers, 
         'categories': categories,

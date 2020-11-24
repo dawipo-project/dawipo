@@ -71,9 +71,11 @@ def dashboard(request):
         total_order_changes = total_order_changes | order_changes
         current_day = previous_day
     for item in total_order_changes:
-        order = Order.objects.get(id=item.order_id, company=request.user.profile.company)
-        if order:
+        try:
+            order = Order.objects.get(id=item.order_id, company=request.user.profile.company)
             total_value += order.get_total_cost()
+        except Order.DoesNotExist:
+            pass
     past_year_value = 0
     total_order_changes = OrderChange.objects.none()
     for i in range(365):
@@ -86,9 +88,11 @@ def dashboard(request):
         total_order_changes = total_order_changes | order_changes
         current_day = previous_day
     for item in total_order_changes:
-        order = Order.objects.get(id=item.order_id, company=request.user.profile.company)
-        if order:
+        try:
+            order = Order.objects.get(id=item.order_id, company=request.user.profile.company)
             past_year_value += order.get_total_cost()
+        except Order.DoesNotExist:
+            pass
     months_list = get_months(today.month)
     year_orders = OrderChange.objects.order_by(
         'order_id').filter(

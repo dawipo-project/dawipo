@@ -119,6 +119,13 @@ def dashboard(request):
         status_orders[k] = value
     for status_tuple in Order.STATUS_CHOICES:
         status_orders[status_tuple[1]] = status_orders.pop(status_tuple[0])
+    customers_list = list()
+    customers = Customer.objects.filter(company=request.user.profile.company)[:10]
+    for customer in customers:
+        customers_list.append(customer.name)
+    import pdb; pdb.set_trace()
+    # Gráfica de productos más vendidos
+
     # Tabla de órdenes más cercanas
     closest_orders = Order.objects.filter(company=request.user.profile.company).order_by('due_date')[:5]
     return render(request, 'account/dashboard.html', {'section': dashboard, 
@@ -130,7 +137,8 @@ def dashboard(request):
         'year_orders': year_orders,
         'months_list': months_list,
         'closest_orders': closest_orders,
-        'status_orders': status_orders
+        'status_orders': status_orders,
+        'customers_list': customers_list
         })
 
 def create_cust_dict(customers):

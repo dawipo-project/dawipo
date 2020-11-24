@@ -4,48 +4,48 @@
 <head>
 	<!-- Google Tag Manager -->
 	<script>
-		(function(w,d,s,l,i){
-			w[l]=w[l]||[];
-			w[l].push(
-				{
-					'gtm.start': new Date().getTime(),
-					event:'gtm.js'
-				}
-			);
-			var f=d.getElementsByTagName(s)[0], 
-			j=d.createElement(s),
-			dl=l!='dataLayer'?'&l='+l:'';
-			j.async=true;
-			j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-			f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-5DPB6VZ');
+	(function(w,d,s,l,i){
+		w[l]=w[l]||[];
+		w[l].push(
+		{
+			'gtm.start': new Date().getTime(),
+			event:'gtm.js'
+		}
+		);
+		var f=d.getElementsByTagName(s)[0], 
+		j=d.createElement(s),
+		dl=l!='dataLayer'?'&l='+l:'';
+		j.async=true;
+		j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+		f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5DPB6VZ');
 	</script>
-<!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dawipo - Data With Power</title>
-<link rel="stylesheet" href="{% static 'css/dawipo-index.css' %}">
-<link rel="shortcut icon" href="{%static 'images/favicon.png' %}">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- End Google Tag Manager -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dawipo - Data With Power</title>
+	<link rel="stylesheet" href="{% static 'css/dawipo-index.css' %}">
+	<link rel="shortcut icon" href="{%static 'images/favicon.png' %}">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<!-- Google Tag Manager -->
 	<script>
-		(function(w,d,s,l,i){
-			w[l]=w[l]||[];
-			w[l].push(
-				{
-					'gtm.start': new Date().getTime(),
-					event:'gtm.js'
-				}
-			);
-			var f=d.getElementsByTagName(s)[0],
-			j=d.createElement(s),
-			dl=l!='dataLayer'?'&l='+l:'';
-			j.async=true;
-			j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-			f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-5DPB6VZ');
+	(function(w,d,s,l,i){
+		w[l]=w[l]||[];
+		w[l].push(
+		{
+			'gtm.start': new Date().getTime(),
+			event:'gtm.js'
+		}
+		);
+		var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),
+		dl=l!='dataLayer'?'&l='+l:'';
+		j.async=true;
+		j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+		f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5DPB6VZ');
 	</script>
 	<!-- End Google Tag Manager -->
 	<div class="navbar-fixed">
@@ -247,51 +247,45 @@
 			</div>
 		</div>
 	</div>
-	<div class="header horizontal-half-transition scrollspy" id="contactanos">
-		<div class="background">
-			<img src="{% static 'images/background-top-alt.jpg' %}" alt="">
-		</div>
-		<div class="phone-preview-sizer">
-			<div class="phone-preview"></div>
-			<div class="image-container default" style="background-image:url({% static 'images/iphone12.png' %})"></div>
-		</div>
-		<div class="horizontal-half-wrapper right-side active">
-			<div class="header-background bg-gray"></div>
-			<div class="header-wrapper row valign-wrapper" style="padding-top: 5em">
-				<div class="col s12 m10 offset-m1 valign">
-					<h4 class="text-comfortaa text-orange">¡Llena el formulario y te contactaremos!</h4>
+	<div class="section white valign-wrapper scrollspy full-height" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 m6 valign-wrapper">
+					<div class="staggered-transition-wrapper">
+						<div class="feature fade-right-in-out">
+							<h4 class="text-comfortaa text-orange">¡Llena el formulario y te contactaremos!</h4>
 					<form class="col s12" method="post">
 						{% csrf_token %}
 						<div class="row">
 							<div class="input-field col s12">
-								<input type="text" name="first_name" id="id_first_name" class="validate">
+								<input type="text" name="first_name" id="id_first_name" class="validate" placeholder="Nombres">
 								<label for="first_name">Nombres</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<input type="text" name="last_name" id="id_last_name" class="validate">
+								<input type="text" name="last_name" id="id_last_name" class="validate" placeholder="Apellidos">
 								<label for="last_name">Apellidos</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s7">
-								<input type="email" name="email" id="id_email" class="validate">
+								<input type="email" name="email" id="id_email" class="validate" placeholder="example@example.com">
 								<label for="email">Correo electrónico</label>
 								<span class="helper-text" data-error="Ingresa un correo electrónico válido.">No compartiremos tus datos con nadie.</span>
 							</div>
 							<div class="input-field col s5">
-								<input type="tel" name="phone_number" id="id_phone_number" class="validate">
+								<input type="tel" name="phone_number" id="id_phone_number" class="validate" placeholder="Teléfono">
 								<label for="phone_number">Teléfono</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s7">
-								<input type="text" name="organization" id="id_organization" class="validate">
+								<input type="text" name="organization" id="id_organization" class="validate" placeholder="Organización">
 								<label for="organization">Organización</label>
 							</div>
 							<div class="input-field col s5">
-								<input type="text" name="position" id="id_position" class="validate">
+								<input type="text" name="position" id="id_position" class="validate" placeholder="Posición">
 								<label for="position">Posición</label>
 							</div>
 						</div>
@@ -314,6 +308,14 @@
 							<i class="material-icons right">send</i>
 						</button>
 					</form>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 offset-m2 valign-wrapper">
+					<div class="phone-preview-sizer">
+						<div class="phone-preview"></div>
+						<div class="image-container default" style="background-image:url({% static 'images/iphone12.png' %})"></div>
+					</div>
 				</div>
 			</div>
 		</div>

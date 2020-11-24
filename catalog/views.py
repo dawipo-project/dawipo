@@ -28,11 +28,16 @@ def product_detail(request, id, slug):
 def edit(request, id, slug):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
+	products = Product.objects.filter(category__in=categories)
 	product = get_object_or_404(Product, id=id, slug=slug)
 	if request.method == 'POST':
 		product_form = ProductEditForm(instance=product, data=request.POST, files=request.FILES)
 		if product_form.is_valid():
 			product_form.save()
+			return render(request, 'catalog/product/list.html', {'categories': categories, 'customers': customers, 'products': products})
+		product_form = ProductEditForm()
+		return render(request, 'catalog/product/edit.html', {'product_form': product_form, 'product': product,
+			'categories': categories, 'customers': customers})
 	else:
 		product_form = ProductEditForm(instance=product)
 	return render(request, 'catalog/product/edit.html', {'product_form': product_form, 'product': product,
@@ -46,6 +51,9 @@ class ProductCreate(CreateView):
 	def form_valid(self, form):
 		form.instance.category = get_object_or_404(Category, form.instance.category)
 		return super(ProductCreate, self).form_valid(form)
+
+	# def get_success_url(self):
+	# 	return reverse_lazy('product_detail', kwargs={'id': self.object.pk, 'slug': self.object.slug})
 
 	def get_success_url(self):
 		return reverse_lazy('catalog:product_list')

@@ -43,6 +43,13 @@
 							<input type="checkbox" class="custom-control-input" id="image-clear_id" name="image-clear">
 							<label class="custom-control-label" for="image-clear_id">Clear</label>
 						</div>
+						<script>
+						document.querySelector('.custom-file-input').addEventListener('change',function(e){
+							var fileName = document.getElementById("id_image").files[0].name;
+							var nextSibling = e.target.nextElementSibling
+							nextSibling.innerText = fileName
+						})
+					</script>
 					</div>
 				</div>
 				<div class="form-group">

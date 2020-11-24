@@ -122,7 +122,13 @@ def dashboard(request):
     customers_list = list()
     customers = Customer.objects.filter(company=request.user.profile.company)[:10]
     for customer in customers:
-        customers_list.append(customer.name)
+        name = customer.name
+        if ' ' in name:
+            name = name.split()
+        elif len(name) > 10 and ' ' not in name:
+            name = name[:7]
+            name += '...'
+        customers_list.append(name)
     # Gráfica de productos más vendidos
 
     # Tabla de órdenes más cercanas

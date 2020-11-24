@@ -22,68 +22,6 @@ var options1 = {
     },
 };
 new ApexCharts(document.querySelector("#campaign-sent-chart"), options1).render();
-colors = ["#fe6937", "#007a7b", "#043a5c", "#ff6047", "#e3891a", "#009162", "#00c7c7"];
-var options_pedidos = {
-    series: [
-        {
-            name: 'Cotizado',
-            data: [0, 0, 0]
-        },
-        {
-            name: 'Confirmado',
-            data: [8, 2, 0]
-        },
-        {
-            name: 'En producción',
-            data: [0, 0, 0]
-        },
-        {
-            name: 'Esperando anticipo',
-            data: [1, 0, 0]
-        },
-        {
-            name: 'Prog. Despacho',
-            data: [0, 0, 0]
-        }, 
-        {
-            name: 'Despachado',
-            data: [0, 0, 0]
-        },
-        {
-            name: 'Entregado',
-            data: [0, 0, 0]
-        }
-    ],
-    colors: colors,
-    chart: {
-        toolbar: {
-            show: false
-        },
-        type: 'bar',
-        stacked: true,
-        height: 450
-    },
-    plotOptions: {
-        bar: {
-            horizontal: true
-        }
-    },
-    stroke: {
-        width: 1,
-        colors: ['#e2e8eb']
-    },
-    dataLabels: {
-        enabled: false
-    },
-    xaxis: {
-        categories: ['Dawipo', 'Sergio', 'Some business']
-    },
-    legend: {
-        position: 'bottom',
-        horizontalAlign: 'center'
-    }
-};
-new ApexCharts(document.querySelector("#pedidos-por-cliente"), options_pedidos).render();
 colors = ["#fb9334"];
 var options_mes = {
     series: [{
@@ -332,18 +270,6 @@ options = {
             },
         };
         new ApexCharts(document.querySelector("#high-performing-product"), r).render();
-        e = ["#fe6937", "#007a7b", "#043a5c", "#ff6047", "#e3891a", "#009162", "#00c7c7"];
-        (t = o("#average-sales").data("colors")) && (e = t.split(","));
-        r = {
-            chart: { height: 280, type: "donut" },
-            legend: { show: !1 },
-            stroke: { colors: ["transparent"] },
-            series: [44, 55, 41, 17, 26, 86, 54, 75, 46, 64],
-            labels: ["Ref 1", "Ref 2", "Ref 3", "Ref 4", "Ref 5", "Ref 6", "Ref 7", "Ref 8", "Ref 9", "Ref 10"],
-            colors: e,
-            responsive: [{ breakpoint: 480, options: { chart: { width: 200 }, legend: { position: "bottom" } } }],
-        };
-        new ApexCharts(document.querySelector("#average-sales"), r).render();
     }),
         (e.prototype.initMaps = function () {
             0 < o("#world-map-markers").length &&

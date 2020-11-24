@@ -25,6 +25,8 @@ SECRET_KEY = 'd(8ef2%*m=i7mxck@v68@$(9rf-wo=yj)ulw3(_a2uj7+@v@u-'
 
 DEBUG = True
 
+ALLOWED_HOSTS = ['dawipo.com', 'localhost']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

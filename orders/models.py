@@ -5,18 +5,18 @@ from company.models import Company
 from django.contrib.auth.models import User
 
 # Create your models here.
-STATUS_CHOICES = (
-	('pre-order', 'Pre-order'),
-	('confirmed', 'Confirmed'),
-	('awaiting-advance-payment', 'Awaiting advance payment'),
-	('in-production', 'En Producción'),
-	('scheduled', 'Scheduled for dispatch'),
-	('dispatched', 'Dispatched'),
-	('delivered', 'Delivered'),
-	('canceled', 'Canceled'),
-)
 
 class Order(models.Model):
+	STATUS_CHOICES = (
+		('pre-order', 'Pre-order'),
+		('confirmed', 'Confirmed'),
+		('awaiting-advance-payment', 'Awaiting advance payment'),
+		('in-production', 'En Producción'),
+		('scheduled', 'Scheduled for dispatch'),
+		('dispatched', 'Dispatched'),
+		('delivered', 'Delivered'),
+		('canceled', 'Canceled'),
+	)
 	company = models.ForeignKey(Company, related_name='company_orders', on_delete=models.CASCADE)
 	user = models.ForeignKey(User, related_name='order_author', on_delete=models.CASCADE)
 	customer = models.ForeignKey(Customer, related_name='order_customer', on_delete=models.CASCADE)

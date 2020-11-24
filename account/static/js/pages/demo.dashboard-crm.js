@@ -22,68 +22,6 @@ var options1 = {
     },
 };
 new ApexCharts(document.querySelector("#campaign-sent-chart"), options1).render();
-colors = ["#fe6937", "#007a7b", "#043a5c", "#ff6047", "#e3891a", "#009162", "#00c7c7"];
-var options_pedidos = {
-    series: [
-        {
-            name: 'Cotizado',
-            data: [0, 0, 0]
-        },
-        {
-            name: 'Confirmado',
-            data: [8, 2, 0]
-        },
-        {
-            name: 'En producción',
-            data: [0, 0, 0]
-        },
-        {
-            name: 'Esperando anticipo',
-            data: [1, 0, 0]
-        },
-        {
-            name: 'Prog. Despacho',
-            data: [0, 0, 0]
-        }, 
-        {
-            name: 'Despachado',
-            data: [0, 0, 0]
-        },
-        {
-            name: 'Entregado',
-            data: [0, 0, 0]
-        }
-    ],
-    colors: colors,
-    chart: {
-        toolbar: {
-            show: false
-        },
-        type: 'bar',
-        stacked: true,
-        height: 450
-    },
-    plotOptions: {
-        bar: {
-            horizontal: true
-        }
-    },
-    stroke: {
-        width: 1,
-        colors: ['#e2e8eb']
-    },
-    dataLabels: {
-        enabled: false
-    },
-    xaxis: {
-        categories: ['Dawipo', 'Sergio', 'Some business']
-    },
-    legend: {
-        position: 'bottom',
-        horizontalAlign: 'center'
-    }
-};
-new ApexCharts(document.querySelector("#pedidos-por-cliente"), options_pedidos).render();
 colors = ["#fb9334"];
 var options_mes = {
     series: [{

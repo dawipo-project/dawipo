@@ -6,6 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Count, Q
 # Apps de Dawipo
 from .forms import LoginForm, UserEditForm, ProfileEditForm
 from .models import Profile
@@ -104,20 +105,21 @@ def dashboard(request):
     year_orders = list(year_orders_per_month.values())
     last_year_orders = list(last_year_orders_per_month.values())
     # Segundo gráfico
-    customers = Customer.objects.all()
-    customer_dict = create_cust_dict(customers)
-    orders = Order.objects.all()
-    cust_list = []
-    for order in orders:
-        customer_name = order.customer.name
-    for key in customer_dict:
-        for order in orders:
-            if key == order.customer.name:
-                for k in customer_dict[key]:
-                    if k == order.status:
-                        customer_dict[key][k] += 1
-    orders_per_cust_keys = list(customer_dict.keys())
-    orders_per_cust_dicts = list(customer_dict.values())
+    customers = Customer.objects.filter(company=request.user.profile.company)
+    status_orders = dict()
+    for status_tuple in Order.STATUS_CHOICES:
+        status_orders[status_tuple[0]] = list()
+    for k in status_orders.keys():
+        value = list()
+        for customer in customers:
+            filtered_query = Order.objects.filter(
+                customer=customer).filter(
+                status=k).count()
+            value.append(filtered_query)
+        status_orders[k] = value
+    for status_tuple in Order.STATUS_CHOICES:
+        status_orders[status_tuple[1]] = status_orders.pop(status_tuple[0])
+    # Tabla de órdenes más cercanas
     closest_orders = Order.objects.order_by('due_date')[:5]
     return render(request, 'account/dashboard.html', {'section': dashboard, 
         'customers': customers, 
@@ -127,7 +129,8 @@ def dashboard(request):
         'last_year_orders': last_year_orders,
         'year_orders': year_orders,
         'months_list': months_list,
-        'closest_orders': closest_orders
+        'closest_orders': closest_orders,
+        'status_orders': status_orders
         })
 
 def create_cust_dict(customers):

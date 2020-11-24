@@ -159,6 +159,48 @@
                         Orders per Customer
                     </h4>
                     <div class="apex-charts" id="pedidos-por-cliente"></div>
+                    <script>
+                        colors = ["#fe6937", "#007a7b", "#043a5c", "#ff6047", "#e3891a", "#009162", "#00c7c7"];
+                        var options_pedidos = {
+                            series: [
+                                {% for key, value in status_orders.items %}
+                                {
+                                    name: "{{ key }}",
+                                    data: {{ value|safe }}
+                                }{% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            ],
+                            colors: colors,
+                            chart: {
+                                toolbar: {
+                                    show: false
+                                },
+                                type: 'bar',
+                                stacked: true,
+                                height: 450
+                            },
+                            plotOptions: {
+                                bar: {
+                                    horizontal: true
+                                }
+                            },
+                            stroke: {
+                                width: 1,
+                                colors: ['#e2e8eb']
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            xaxis: {
+                                categories: ['Dawipo', 'Sergio', 'Some business']
+                            },
+                            legend: {
+                                position: 'bottom',
+                                horizontalAlign: 'center'
+                            }
+                        };
+                        new ApexCharts(document.querySelector("#pedidos-por-cliente"), options_pedidos).render();
+                    </script>
                 </div>
             </div>
             <div class="card">

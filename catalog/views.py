@@ -43,27 +43,6 @@ def edit(request, id, slug):
 	return render(request, 'catalog/product/edit.html', {'product_form': product_form, 'product': product,
 		'categories': categories, 'customers': customers})
 
-class ProductCreate(CreateView):
-	model = Product
-	fields = '__all__'
-	template_name = 'catalog/product/add_product.html'
-
-	def form_valid(self, form):
-		form.instance.category = get_object_or_404(Category, form.instance.category)
-		return super(ProductCreate, self).form_valid(form)
-
-	# def get_success_url(self):
-	# 	return reverse_lazy('product_detail', kwargs={'id': self.object.pk, 'slug': self.object.slug})
-
-	def get_success_url(self):
-		return reverse_lazy('catalog:product_list')
-
-	def get_context_data(self, **kwargs):
-		context = super(ProductCreate, self).get_context_data(**kwargs)
-		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)
-		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
-		return context
-
 class CategoryCreate(CreateView):
 	model = Category
 	fields = ['name']
@@ -85,6 +64,7 @@ class CategoryCreate(CreateView):
 def create_product(request):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
+	products = Product.objects.filter(category__in=categories)
 	if request.method == 'POST':
 		category_name = request.POST['category']
 		category = get_object_or_404(Category, name=category_name)
@@ -94,6 +74,11 @@ def create_product(request):
 			product = form.save(commit=False)
 			product.category = category
 			product.save()
+			return render(request, 'catalog/product/list.html', {
+				'categories': categories,
+				'customers': customers,
+				'products': products
+				})
 	else:
 		form = ProductCreateForm()
 	return render(request, 'catalog/product/add_product.html', {'product_form': form,

@@ -43,7 +43,7 @@
 		<h5>Available: <span class="text-danger">No</span></h5>
 		{% endif %}
 		<p>{{ product.description|linebreaks }}</p>
-		<a href="{% url 'catalog:product_edit' product.id product.slug %}" class="btn btn-primary mr-2">Edit item</a><a href="#" class="btn btn-danger">Delete item</a>
+		<a href="{% url 'catalog:product_edit' product.id product.slug %}" class="btn btn-primary mr-2">Edit item</a>
 	</div>
 </div>
 {% endblock %}

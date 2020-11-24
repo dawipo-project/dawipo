@@ -11,7 +11,7 @@ class Order(models.Model):
 		('pre-order', 'Pre-order'),
 		('confirmed', 'Confirmed'),
 		('awaiting-advance-payment', 'Awaiting advance payment'),
-		('in-production', 'En Producción'),
+		('in-production', 'In Production'),
 		('scheduled', 'Scheduled for dispatch'),
 		('dispatched', 'Dispatched'),
 		('delivered', 'Delivered'),

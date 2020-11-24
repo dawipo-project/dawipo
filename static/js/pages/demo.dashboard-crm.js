@@ -90,30 +90,6 @@ var options_clientes_mes = {
     }
 };
 new ApexCharts(document.querySelector("#clientes_mes"), options_clientes_mes).render();
-colors = ["#fe6937", "#007a7b", "#043a5c", "#ff6047", "#e3891a", "#009162", "#00c7c7"];
-var options_estados = {
-    series: [34, 43, 51, 47, 55, 48, 64],
-    labels: ['Cotizado', 'Confirmado', 'Esperando Anticipo', 'En producción', 'Prog. Despacho', 'Despachado', 'Entregado'],
-    chart: {
-        type: 'polarArea',
-        toolbar: {
-            show: false
-        }
-    },
-    colors: colors,
-    width: 1000,
-    stroke: {
-        colors: ['#fff']
-    },
-    fill: {
-        opacity: 0.8
-    },
-    legend: {
-        show: true
-    }
-};
-new ApexCharts(document.querySelector("#pedidos_estado"), options_estados).render();
-
 colors = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"];
 (dataColors = $("#new-leads-chart").data("colors")) && (colors = dataColors.split(","));
 var options2 = {

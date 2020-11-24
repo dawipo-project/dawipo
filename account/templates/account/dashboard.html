@@ -178,7 +178,8 @@
                                 type: 'bar',
                                 stacked: true,
                                 height: 450,
-                                width: 450
+                                width: 450,
+                                offsetX: 0
                             },
                             plotOptions: {
                                 bar: {
@@ -198,7 +199,75 @@
                             legend: {
                                 position: 'bottom',
                                 horizontalAlign: 'center'
-                            }
+                            },
+                            responsive: [{
+                                breakpoint: 1024,
+                                options: {
+                                    chart: {
+                                        width: 200,
+                                        height: 450
+                                    },
+                                    legend: {
+                                        show: false
+                                    },
+                                    plotOptions: {
+                                        bar: {
+                                            horizontal: false
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                breakpoint: 1420,
+                                options: {
+                                    chart: {
+                                        width: 350,
+                                        height: 450
+                                    },
+                                    legend: {
+                                        show: false
+                                    },
+                                    plotOptions: {
+                                        bar: {
+                                            horizontal: false
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                breakpoint: 1025,
+                                options: {
+                                    chart: {
+                                        width: 300,
+                                        height: 450
+                                    },
+                                    legend: {
+                                        show: false
+                                    },
+                                    plotOptions: {
+                                        bar: {
+                                            horizontal: false
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                breakpoint: 840,
+                                options: {
+                                    chart: {
+                                        width: 200,
+                                        height: 450
+                                    },
+                                    legend: {
+                                        show: false
+                                    },
+                                    plotOptions: {
+                                        bar: {
+                                            horizontal: false
+                                        }
+                                    }
+                                }
+                            }]
                         };
                         new ApexCharts(document.querySelector("#pedidos-por-cliente"), options_pedidos).render();
                     </script>
@@ -225,23 +294,51 @@
                     <script>
                         e = ["#fe6937", "#007a7b", "#e3891a", "#043a5c", "#009162"];
                         r = {
-                            chart: { height: 280, type: "donut" },
+                            chart: { height: 320, type: "donut" },
                             legend: { show: !1 },
-                            stroke: { colors: ["transparent"] },
+                            stroke: { colors: ["#ffffff"] },
                             series: {{ products_dict_values|safe }},
                             labels: {{ products_dict_keys|safe }},
                             colors: e,
-                            responsive: [{ breakpoint: 480, options: { chart: { width: 200 }, legend: { position: "bottom" } } }],
+                            responsive: [
+                            { 
+                                breakpoint: 480, 
+                                options: { 
+                                    chart: {
+                                        height: 200
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            customScale: 1
+                                        }
+                                    }
+                                } 
+                            },
+                            {
+                                breakpoint: 800,
+                                options: {
+                                    dataLabels: {
+                                        enabled: false
+                                    }
+                                }
+                            }
+                            ],
                         };
                         new ApexCharts(document.querySelector("#average-sales"), r).render();
                     </script>
                     <div class="chart-widget-list">
-                        {% for key, value in products_dict.items %}
-                        <p>
-                            {{ key }}
-                            <span class="float-right">${{ value }}</span>
-                        </p>
-                        {% endfor %}
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                {% for key, value in products_dict.items %}
+                                <tr>
+                                    <td>{{ key}}</td>
+                                    <td class="text-right">
+                                        ${{ value }}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
                     </div>
                 </div> <!-- end card-body-->
             </div>
@@ -323,6 +420,60 @@
                     </div>
                     <h4 class="header-title text-comfortaa">Orders per status</h4>
                     <div class="apex-charts mt-4" id="pedidos_estado"></div>
+                    <script>
+                        colors = ["#fe6937", "#007a7b", "#043a5c", "#ff6047", "#e3891a", "#009162", "#00c7c7"];
+                        var options_estados = {
+                            series: {{ status_orders_values|safe }},
+                            labels: {{ status_orders_labels|safe }},
+                            chart: {
+                                type: 'polarArea',
+                                toolbar: {
+                                    show: false
+                                },
+                                height: 480,
+                                width: 400,
+                                offsetX: 0
+                            },
+                            colors: colors,
+                            stroke: {
+                                colors: ['#fff']
+                            },
+                            fill: {
+                                opacity: 0.8
+                            },
+                            legend: {
+                                show: true,
+                                position: 'bottom'
+                            },
+                            responsive: [
+                                {
+                                    breakpoint: 800,
+                                    options: {
+                                        chart: {
+                                            height: 220,
+                                            width: 220
+                                        },
+                                        legend: {
+                                            show: false
+                                        }
+                                    }
+                                },
+                                {
+                                    breakpoint: 1113,
+                                    options: {
+                                        chart: {
+                                            height: 300,
+                                            width: 300
+                                        },
+                                        legend: {
+                                            show: false
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+                        new ApexCharts(document.querySelector("#pedidos_estado"), options_estados).render();
+                    </script>
                 </div>
             </div>
             <div class="card">

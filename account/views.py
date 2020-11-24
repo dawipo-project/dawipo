@@ -172,6 +172,16 @@ def dashboard(request):
     products_dict = {reordered_keys[i]: reordered_values[i] for i in range(len(reordered_keys))}
     # Tabla de órdenes más cercanas
     closest_orders = Order.objects.filter(company=request.user.profile.company).order_by('due_date')[:5]
+    # Ordenes por estado
+    status_orders_two = dict()
+    for status_tuple in Order.STATUS_CHOICES:
+        status_orders_two[status_tuple[0]] = 0
+    for k in status_orders_two.keys():
+        status_orders_two[k] += Order.objects.filter(status=k).count()
+    for status_tuple in Order.STATUS_CHOICES:
+        status_orders_two[status_tuple[1]] = status_orders_two.pop(status_tuple[0])
+    status_orders_labels = list(status_orders_two.keys())
+    status_orders_values = list(status_orders_two.values())
     return render(request, 'account/dashboard.html', {'section': dashboard, 
         'customers': customers, 
         'categories': categories,
@@ -185,7 +195,9 @@ def dashboard(request):
         'customers_list': customers_list,
         'products_dict_keys': products_dict_keys,
         'products_dict_values': products_dict_values,
-        'products_dict': products_dict
+        'products_dict': products_dict,
+        'status_orders_labels': status_orders_labels,
+        'status_orders_values': status_orders_values
         })
 
 def create_cust_dict(customers):

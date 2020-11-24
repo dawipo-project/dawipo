@@ -10,7 +10,7 @@ from django.db.models import Count, Q
 # Apps de Dawipo
 from .forms import LoginForm, UserEditForm, ProfileEditForm
 from .models import Profile
-from catalog.models import Category
+from catalog.models import Category, Product
 from orders.models import Order, OrderChange
 from customers.models import Customer
 
@@ -130,7 +130,41 @@ def dashboard(request):
             name += '...'
         customers_list.append(name)
     # Gráfica de productos más vendidos
-
+    orders = Order.objects.filter(company=request.user.profile.company).filter(status='confirmed')
+    orders_items = Order.objects.none()
+    for order in orders:
+        orders_items = orders_items | order.items.all()
+    products_dict = dict()
+    for item in orders_items:
+        name = item.product.name
+        products_dict[name] = 0
+    for item in orders_items:
+        quantity = item.quantity
+        products_dict[item.product.name] += quantity
+    products_dict = {k: v for k, v in sorted(products_dict.items(), key=lambda item: item[1])}
+    products_dict_keys = list(products_dict.keys())
+    products_dict_keys.reverse()
+    products_dict_keys = products_dict_keys[:5]
+    products_dict_values = list(products_dict.values())
+    products_dict_values.reverse()
+    products_dict_values = products_dict_values[:5]
+    products_dict = dict()
+    for item in orders_items:
+        name = item.product.name
+        products_dict[name] = 0
+    for item in orders_items:
+        quantity = item.quantity
+        products_dict[item.product.name] += quantity
+    products_dict = {k: v for k, v in sorted(products_dict.items(), key=lambda item: item[1])}
+    reordered_keys = list(products_dict.keys())
+    reordered_keys.reverse()
+    reordered_values = list(products_dict.values())
+    reordered_values.reverse()
+    for i in range(len(reordered_keys)):
+        product = Product.objects.get(name=reordered_keys[i])
+        reordered_values[i] = reordered_values[i] * product.retail_price
+    products_dict = {reordered_keys[i]: reordered_values[i] for i in range(len(reordered_keys))}
+    import pdb; pdb.set_trace()
     # Tabla de órdenes más cercanas
     closest_orders = Order.objects.filter(company=request.user.profile.company).order_by('due_date')[:5]
     return render(request, 'account/dashboard.html', {'section': dashboard, 
@@ -143,7 +177,10 @@ def dashboard(request):
         'months_list': months_list,
         'closest_orders': closest_orders,
         'status_orders': status_orders,
-        'customers_list': customers_list
+        'customers_list': customers_list,
+        'products_dict_keys': products_dict_keys,
+        'products_dict_values': products_dict_values,
+        'products_dict': products_dict
         })
 
 def create_cust_dict(customers):

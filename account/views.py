@@ -164,7 +164,6 @@ def dashboard(request):
         product = Product.objects.get(name=reordered_keys[i])
         reordered_values[i] = reordered_values[i] * product.retail_price
     products_dict = {reordered_keys[i]: reordered_values[i] for i in range(len(reordered_keys))}
-    import pdb; pdb.set_trace()
     # Tabla de órdenes más cercanas
     closest_orders = Order.objects.filter(company=request.user.profile.company).order_by('due_date')[:5]
     return render(request, 'account/dashboard.html', {'section': dashboard, 

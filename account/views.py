@@ -149,8 +149,9 @@ def dashboard(request):
         total_orders.append(total)
     sorted_indexes = list(np.argsort(total_orders))
     sorted_indexes.reverse()
-    for value in status_orders.values():
-        aux_list = value
+    values_list = list(status_orders.values())
+    for value in values_list:
+        aux_list = [item for item in value]
         for j in range(len(sorted_indexes)):
             value[j] = aux_list[sorted_indexes[j]]
         import pdb; pdb.set_trace()

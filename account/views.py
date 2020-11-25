@@ -139,8 +139,7 @@ def dashboard(request):
             name += '...'
         customers_list.append(name)
     aux_list = list(status_orders.values())
-    for item in aux_list:
-        item = tuple(item)
+    aux_list = (tuple(l) for l in aux_list)
     import pdb; pdb.set_trace()
     aux_list = tuple(aux_list)
     aux_dict = {customers_list[i]: aux_list[i] for i in range(len(customers_list))}

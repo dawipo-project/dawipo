@@ -182,6 +182,28 @@ def dashboard(request):
         status_orders_two[status_tuple[1]] = status_orders_two.pop(status_tuple[0])
     status_orders_labels = list(status_orders_two.keys())
     status_orders_values = list(status_orders_two.values())
+    # Indicadores
+    confirmed_units = 0
+    dispatched_units = 0
+    today = datetime.date.today()
+    month_ago = today - datetime.timedelta(days=30)
+    confirmed_orders = Order.objects.exclude(status='canceled').exclude(status='pre-order').filter(
+        created__gte=month_ago)
+    orders_items = Order.objects.none()
+    for order in confirmed_orders:
+        orders_items = orders_items | order.items.all()
+    products_dict = dict()
+    for item in orders_items:
+        confirmed_units += quantity
+    dispatched_orders = confirmed_orders.filter(status='dispatched')
+    dispatched_orders = dispatched_orders | confirmed_orders.filter(status='delivered')
+    orders_items = Order.objects.none()
+    for order in dispatched_orders:
+        orders_items = orders_items | order.items.all()
+    products_dict = dict()
+    for item in orders_items:
+        dispatched_units += quantity
+
     return render(request, 'account/dashboard.html', {'section': dashboard, 
         'customers': customers, 
         'categories': categories,
@@ -197,7 +219,9 @@ def dashboard(request):
         'products_dict_values': products_dict_values,
         'products_dict': products_dict,
         'status_orders_labels': status_orders_labels,
-        'status_orders_values': status_orders_values
+        'status_orders_values': status_orders_values,
+        'confirmed_units': confirmed_units,
+        'dispatched_units': dispatched_units
         })
 
 def create_cust_dict(customers):

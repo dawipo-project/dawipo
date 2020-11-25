@@ -258,34 +258,34 @@
 						{% csrf_token %}
 						<div class="row">
 							<div class="input-field col s12">
-								<input type="text" name="first_name" id="id_first_name" class="validate" placeholder="Nombres">
+								<input type="text" name="first_name" id="id_first_name" class="validate" placeholder="Nombres" required="true">
 								<label for="first_name">Nombres</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<input type="text" name="last_name" id="id_last_name" class="validate" placeholder="Apellidos">
+								<input type="text" name="last_name" id="id_last_name" class="validate" placeholder="Apellidos" required="true">
 								<label for="last_name">Apellidos</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s7">
-								<input type="email" name="email" id="id_email" class="validate" placeholder="example@example.com">
+								<input type="email" name="email" id="id_email" class="validate" placeholder="example@example.com" required="true">
 								<label for="email">Correo electrónico</label>
 								<span class="helper-text" data-error="Ingresa un correo electrónico válido.">No compartiremos tus datos con nadie.</span>
 							</div>
 							<div class="input-field col s5">
-								<input type="tel" name="phone_number" id="id_phone_number" class="validate" placeholder="Teléfono">
+								<input type="tel" name="phone_number" id="id_phone_number" class="validate" placeholder="Teléfono" required="true">
 								<label for="phone_number">Teléfono</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s7">
-								<input type="text" name="organization" id="id_organization" class="validate" placeholder="Organización">
+								<input type="text" name="organization" id="id_organization" class="validate" placeholder="Organización" required="true">
 								<label for="organization">Organización</label>
 							</div>
 							<div class="input-field col s5">
-								<input type="text" name="position" id="id_position" class="validate" placeholder="Posición">
+								<input type="text" name="position" id="id_position" class="validate" placeholder="Posición" required="true">
 								<label for="position">Posición</label>
 							</div>
 						</div>

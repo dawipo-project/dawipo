@@ -154,6 +154,8 @@ def dashboard(request):
         aux_list = [item for item in values]
         for j in range(len(sorted_indexes)):
             values[j] = aux_list[sorted_indexes[j]]
+            for k in range(len(aux_list)):
+                values[k] = aux_list[k]
         import pdb; pdb.set_trace()
         pp = 1
     # Gráfica de productos más vendidos

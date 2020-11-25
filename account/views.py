@@ -130,9 +130,9 @@ def dashboard(request):
     for customer in customers:
         name = customer.name
         if len(name) > 20:
-            name = name[:10]
+            name = name[:15]
             name += '...'
-        elif ' ' in name:
+        if ' ' in name:
             name = name.split()
         elif len(name) > 10 and ' ' not in name:
             name = name[:7]

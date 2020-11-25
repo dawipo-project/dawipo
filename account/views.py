@@ -142,6 +142,10 @@ def dashboard(request):
         customers_list.append(name)
     total_orders = list()
     aux_list = list(status_orders.values())
+    for i in range(len(aux_list[0])):
+        total = 0
+        for item in aux_list:
+            total += item[i]
     import pdb; pdb.set_trace()
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')

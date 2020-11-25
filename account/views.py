@@ -129,7 +129,10 @@ def dashboard(request):
     customers = Customer.objects.filter(company=request.user.profile.company)[:10]
     for customer in customers:
         name = customer.name
-        if ' ' in name:
+        if len(name) > 20:
+            name = name[:7]
+            name += '...'
+        elif ' ' in name:
             name = name.split()
         elif len(name) > 10 and ' ' not in name:
             name = name[:7]

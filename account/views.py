@@ -150,12 +150,13 @@ def dashboard(request):
     sorted_indexes = list(np.argsort(total_orders))
     sorted_indexes.reverse()
     values_list = list(status_orders.values())
+    new_list = list()
     for values in values_list:
         aux_list = [item for item in values]
         for j in range(len(sorted_indexes)):
             values[j] = aux_list[sorted_indexes[j]]
-        lst = values
-        import pdb; pdb.set_trace()
+        new_list.append(aux_list)
+    import pdb; pdb.set_trace()
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
     orders_items = Order.objects.none()

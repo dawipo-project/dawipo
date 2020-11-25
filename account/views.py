@@ -130,7 +130,7 @@ def dashboard(request):
     for customer in customers:
         name = customer.name
         if len(name) > 20:
-            name = name[:7]
+            name = name[:10]
             name += '...'
         elif ' ' in name:
             name = name.split()

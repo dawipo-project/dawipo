@@ -1,5 +1,7 @@
 # Python
 import datetime
+# NumPy
+import numpy as np
 # Django
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -138,6 +140,9 @@ def dashboard(request):
             name = name[:7]
             name += '...'
         customers_list.append(name)
+    total_orders = list()
+    aux_list = list(status_orders.values())
+    import pdb; pdb.set_trace()
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
     orders_items = Order.objects.none()

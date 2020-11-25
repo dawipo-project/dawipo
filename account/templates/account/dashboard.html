@@ -163,9 +163,6 @@
                         colors = ["#fe6937", "#007a7b", "#043a5c", "#ff6047", "#e3891a", "#009162", "#00c7c7"];
                         var options_pedidos = {
                             series: [
-                                dataSorting: {
-                                    enabled: true
-                                },
                             {% for key, value in status_orders.items %}
                             {
                                 name: "{{ key }}",

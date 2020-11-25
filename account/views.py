@@ -156,8 +156,6 @@ def dashboard(request):
             values[j] = aux_list[sorted_indexes[j]]
             for k in range(len(aux_list)):
                 values[k] = aux_list[k]
-        import pdb; pdb.set_trace()
-        pp = 1
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
     orders_items = Order.objects.none()

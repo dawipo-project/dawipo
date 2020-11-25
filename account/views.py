@@ -154,7 +154,7 @@ def dashboard(request):
         import pdb; pdb.set_trace()
         for i in range(len(sorted_indexes)):
             value[i] = aux_list[sorted_indexes[i]]
-        pdb.set_trace()
+            pdb.set_trace()
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
     orders_items = Order.objects.none()

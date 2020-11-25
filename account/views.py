@@ -139,16 +139,14 @@ def dashboard(request):
             name += '...'
         customers_list.append(name)
     aux_list = list(status_orders.values())
-    aux_list = (tuple(l) for l in aux_list)
+    aux_list = to_tuple(aux_list)
     import pdb; pdb.set_trace()
     aux_list = tuple(aux_list)
     aux_dict = {customers_list[i]: aux_list[i] for i in range(len(customers_list))}
     aux_dict = {key:value for (key, value) in sorted(aux_dict.items(), key=lambda x: x[1], reverse=True)}
     customers_list = list(aux_dict.keys())
     orders_list = list(aux_dict.values())
-    for item in orders_list:
-        item = tuple(item)
-    orders_list = tuple(orders_list)
+    orders_list = to_tuple(orders_list)
     status_orders = {customers_list[i]: orders_list[i] for i in range(len(customers_list))}
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
@@ -238,6 +236,9 @@ def dashboard(request):
         'confirmed_units': confirmed_units,
         'dispatched_units': dispatched_units
         })
+
+def to_tuple(lst):
+    return tuple(to_tuple(i) if isinstance(i, list) else i for i in lst)
 
 def create_cust_dict(customers):
     customer_dict = {}

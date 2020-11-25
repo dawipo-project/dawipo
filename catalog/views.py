@@ -67,7 +67,7 @@ def create_product(request):
 	products = Product.objects.filter(category__in=categories)
 	if request.method == 'POST':
 		category_name = request.POST['category']
-		category = get_object_or_404(Category, name=category_name)
+		category = Category.objects.get(name=category_name)
 		form = ProductCreateForm(data=request.POST, files=request.FILES)
 		if form.is_valid():
 			cd = form.cleaned_data

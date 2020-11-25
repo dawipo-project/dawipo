@@ -127,17 +127,17 @@ def dashboard(request):
         status_orders[status_tuple[1]] = status_orders.pop(status_tuple[0])
     customers_list = list()
     customers = Customer.objects.filter(company=request.user.profile.company)[:10]
-    # for customer in customers:
-    #     name = customer.name
-    #     if len(name) > 20:
-    #         name = name[:15]
-    #         name += '...'
-    #     if ' ' in name:
-    #         name = name.split()
-    #     elif len(name) > 10 and ' ' not in name:
-    #         name = name[:7]
-    #         name += '...'
-    #     customers_list.append(name)
+    for customer in customers:
+        name = customer.name
+        # if len(name) > 20:
+        #     name = name[:15]
+        #     name += '...'
+        # if ' ' in name:
+        #     name = name.split()
+        # elif len(name) > 10 and ' ' not in name:
+        #     name = name[:7]
+        #     name += '...'
+        customers_list.append(name)
     aux_list = list(status_orders.values())
     aux_list = to_tuple(aux_list)
     import pdb; pdb.set_trace()

@@ -112,6 +112,7 @@ def dashboard(request):
     last_year_orders_per_month = get_orders_per_month(last_year_orders, months_list)
     year_orders = list(year_orders_per_month.values())
     last_year_orders = list(last_year_orders_per_month.values())
+
     # Segundo gráfico
     customers = Customer.objects.filter(company=request.user.profile.company)
     status_orders = dict()
@@ -161,7 +162,9 @@ def dashboard(request):
     new_cust_list = list()
     for c in range(len(customers_list)):
         new_cust_list.append(customers_list[sorted_indexes[c]])
-    import pdb; pdb.set_trace()
+    status_list = [status_tuple[0] for status_tuple in Order.STATUS_CHOICES]
+    status_orders = dict(zip(status_list, new_list))
+
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
     orders_items = Order.objects.none()
@@ -241,7 +244,7 @@ def dashboard(request):
         'months_list': months_list,
         'closest_orders': closest_orders,
         'status_orders': status_orders,
-        'customers_list': customers_list,
+        'customers_list': new_cust_list,
         'products_dict_keys': products_dict_keys,
         'products_dict_values': products_dict_values,
         'products_dict': products_dict,

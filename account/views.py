@@ -164,13 +164,14 @@ def dashboard(request):
     products_dict = {k: v for k, v in sorted(products_dict.items(), key=lambda item: item[1])}
     reordered_keys = list(products_dict.keys())
     reordered_keys.reverse()
+    reordered_keys = reordered_keys[:5]
     reordered_values = list(products_dict.values())
     reordered_values.reverse()
+    reordered_values = reordered_values[:5]
     for i in range(len(reordered_keys)):
         product = Product.objects.get(name=reordered_keys[i])
         reordered_values[i] = reordered_values[i] * product.retail_price
     products_dict = {reordered_keys[i]: reordered_values[i] for i in range(len(reordered_keys))}
-    import pdb; pdb.set_trace()
     # Tabla de órdenes más cercanas
     closest_orders = Order.objects.filter(company=request.user.profile.company).order_by('due_date')[:5]
     # Ordenes por estado

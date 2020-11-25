@@ -139,6 +139,9 @@ def dashboard(request):
             name += '...'
         customers_list.append(name)
     aux_list = list(status_orders.values())
+    for item in aux_list:
+        item = tuple(item)
+    aux_list = tuple(aux_list)
     aux_dict = {customers_list[i]: aux_list[i] for i in range(len(customers_list))}
     aux_dict = {key:value for (key, value) in sorted(aux_dict.items(), key=lambda x: x[1], reverse=True)}
     customers_list = list(aux_dict.keys())

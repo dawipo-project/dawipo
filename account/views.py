@@ -192,7 +192,6 @@ def dashboard(request):
     orders_items = Order.objects.none()
     for order in confirmed_orders:
         orders_items = orders_items | order.items.all()
-    products_dict = dict()
     for item in orders_items:
         confirmed_units += quantity
     dispatched_orders = confirmed_orders.filter(status='dispatched')
@@ -200,7 +199,6 @@ def dashboard(request):
     orders_items = Order.objects.none()
     for order in dispatched_orders:
         orders_items = orders_items | order.items.all()
-    products_dict = dict()
     for item in orders_items:
         dispatched_units += quantity
 

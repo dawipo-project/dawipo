@@ -294,7 +294,7 @@
                     <script>
                         e = ["#fe6937", "#007a7b", "#e3891a", "#043a5c", "#009162"];
                         r = {
-                            chart: { height: 320, type: "donut" },
+                            chart: { height: 280, type: "donut" },
                             legend: { show: !1 },
                             stroke: { colors: ["#ffffff"] },
                             series: {{ products_dict_values|safe }},
@@ -331,7 +331,7 @@
                             <table class="table table-sm">
                                 {% for key, value in products_dict.items %}
                                 <tr>
-                                    <td>{{ key}}</td>
+                                    <td>{{ key }}</td>
                                     <td class="text-right">
                                         ${{ value }}
                                     </td>

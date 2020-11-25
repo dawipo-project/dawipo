@@ -21,7 +21,11 @@
 </div>
 <div class="row">
 	<div class="col-sm-12 col-lg-4">
+		{% if product.image %}
 		<img src="{{ product.image.url }}" alt="" class="img-fluid img-thumbnail">
+		{% else %}
+		<img src="{% static 'images/no_image.png' %}" alt="{{ product.slug }}">
+		{% endif %}
 	</div>
 	<div class="col-sm-12 col-lg-8">
 		<h2 class="text-comfortaa">{{ product.name }}</h2>

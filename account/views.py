@@ -138,6 +138,12 @@ def dashboard(request):
             name = name[:7]
             name += '...'
         customers_list.append(name)
+    aux_list = list(status_orders.values())
+    aux_dict = {customers_list[i]: aux_list[i] for i in range(len(customers_list))}
+    aux_dict = {key:value for (key, value) in sorted(aux_dict.items(), key=lambda x: x[1], reverse=True)}
+    customers_list = list(aux_dict.keys())
+    orders_list = list(aux_dict.values())
+    status_orders = {customers_list[i]: orders_list[i] for i in range(len(customers_list))}
     # Gráfica de productos más vendidos
     orders = Order.objects.filter(company=request.user.profile.company).exclude(status='pre-order').exclude(status='canceled')
     orders_items = Order.objects.none()

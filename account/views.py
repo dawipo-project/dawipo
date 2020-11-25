@@ -162,7 +162,7 @@ def dashboard(request):
     new_cust_list = list()
     for c in range(len(customers_list)):
         new_cust_list.append(customers_list[sorted_indexes[c]])
-    status_list = [status_tuple[0] for status_tuple in Order.STATUS_CHOICES]
+    status_list = [status_tuple[1] for status_tuple in Order.STATUS_CHOICES]
     status_orders = dict(zip(status_list, new_list))
 
     # Gráfica de productos más vendidos

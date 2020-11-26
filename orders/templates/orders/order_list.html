@@ -7,12 +7,12 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-					<li class="breadcrumb-item active">Orders</li>
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item active">Órdenes</li>
 				</ol>
 			</div>
 			<h4 class="page-title text-comfortaa">
-				Orders
+				Órdenes
 			</h4>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		<li class="nav-item mr-2">
 			<a href="{% url 'orders:orders_product_list' %}" class="btn btn-primary btn-sm">
 				<i class="uil-plus-circle"></i>
-				Create new order
+				Crear nueva orden
 			</a>
 		</li>
 	</ul>
@@ -32,13 +32,13 @@
 		<div class="table-responsive">
 			<table class="table table-hover table-borderless table-nowrap">
 				<thead>
-					<th scope="col">Order ID</th>
-					<th scope="col">Business name</th>
-					<th scope="col">Contact name</th>
-					<th scope="col">Created by</th>
-					<th scope="col">Total price</th>
-					<th scope="col">Due Date</th>
-					<th scope="col">Status</th>
+					<th scope="col">ID de orden</th>
+					<th scope="col">Nombre de empresa</th>
+					<th scope="col">Nombre de contacto</th>
+					<th scope="col">Creada por</th>
+					<th scope="col">Precio total</th>
+					<th scope="col">Fecha de entrega</th>
+					<th scope="col">Estado</th>
 					<th scope="col"></th>
 				</thead>
 				<tbody>
@@ -68,7 +68,7 @@
 						<td class="pt-2">
 							<a href="{% url 'orders:order_detail' order.id %}" class="btn btn-outline-secondary btn-sm">
 								<i class="uil-search-alt"></i>
-								Detail
+								Detalle
 							</a>
 						</td>
 					</tr>

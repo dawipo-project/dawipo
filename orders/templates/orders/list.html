@@ -7,13 +7,13 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-					<li class="breadcrumb-item {% if not category %}active{% endif %}">Orders</li>
-					<li class="breadcrumb-item active">New order</li>
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item {% if not category %}active{% endif %}">Órdenes</li>
+					<li class="breadcrumb-item active">Nueva orden</li>
 				</ol>
 			</div>
 			<h4 class="page-title text-comfortaa">
-				Choose products from the catalog
+				Escoge los productos que quieres agregar
 			</h4>
 		</div>
 	</div>
@@ -23,12 +23,12 @@
 		<li class="nav-item mr-2">
 			<a href="{% url 'cart:cart_detail' %}" class="btn btn-primary">
 				<i class="uil uil-shopping-cart-alt"></i>
-				See order contents
+				Ver contenido de la orden
 			</a>
 		</li>
 		<li class="nav-item flex-fill" style="width: 14em">
 			<select class="form-control form-control-sm select2" data-toggle="select2" style="width: 14em" onchange="location = this.value;">
-				<option>Filter by category</option>
+				<option>FFiltrar por categoría</option>
 				<optgroup label="Categories">
 					{% for category in categories %}
 					<option value="{% url 'orders:orders_product_list_by_category' category.slug%}">{{ category.name }}</option>
@@ -53,8 +53,8 @@
 				<p class="card-text">
 					{{ product.description|truncatewords:20 }}
 				</p>
-				<h5><span class="text-success">Retail price:</span> US${{ product.retail_price }}</h5>
-				<h5><span class="text-success">Whole sale price:</span> US${{ product.whole_sale_price }}</h5>
+				<h5><span class="text-success">Precio retail:</span> US${{ product.retail_price }}</h5>
+				<h5><span class="text-success">Precio neto de venta:</span> US${{ product.whole_sale_price }}</h5>
 				<hr>
 				<form action="{% url 'cart:cart_add' product.id %}" method="post">
 					{% csrf_token %}
@@ -65,7 +65,7 @@
 					</div>
 					<button type="submit" class="btn btn-secondary">
 						<i class="uil-plus-circle"></i>
-						Add to order
+						Agregar a la orden
 					</button>
 				</form>
 			</div>

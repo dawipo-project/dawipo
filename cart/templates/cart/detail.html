@@ -7,13 +7,13 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-					<li class="breadcrumb-item">Orders</li>
-					<li class="breadcrumb-item active">Current order</li>
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item">Órdenes</li>
+					<li class="breadcrumb-item active">Orden en curso</li>
 				</ol>
 			</div>
 			<h4 class="page-title text-comfortaa">
-				Order contents
+				Contenido de la orden
 			</h4>
 		</div>
 	</div>
@@ -23,19 +23,19 @@
 		<li class="nav-item mr-2">
 			<a href="{% url 'orders:order_create' %}" class="btn btn-primary btn-sm">
 				<i class="uil uil-file-check-alt"></i>
-				Generate invoice
+				Generae cotización
 			</a>
 		</li>
 		<li class="nav-item mr-2">
 			<a href="{% url 'orders:orders_product_list' %}" class="btn btn-secondary btn-sm">
 				<i class="uil-plus-circle"></i>
-				Continue adding products
+				Añadir productos
 			</a>
 		</li>
 		<li class="nav-item mr-2">
 			<a href="{% url 'cart:cart_clear' %}" class="btn btn-danger btn-sm">
 				<i class="uil-trash-alt"></i>
-				Clear order
+				Vaciar orden
 			</a>
 		</li>
 	</ul>
@@ -45,11 +45,11 @@
 		<div class="table-responsive">
 			<table class="table table-hover table-borderless table-nowrap">
 				<thead>
-					<th scope="col">Product name</th>
+					<th scope="col">Nombre del producto</th>
 					<th scope="col">SKU</th>
-					<th scope="col">Quantity</th>
-					<th scope="col">Unit price</th>
-					<th scope="col">Total price</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Precio unitario</th>
+					<th scope="col">Precio total</th>
 					<th scope="col"></th>
 				</thead>
 				<tbody>
@@ -63,7 +63,7 @@
 								<input data-toggle="touchspin" type="number" value="{{ item.quantity }}" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">
 								{{ item.update_quantity_form.override }}
 								{% csrf_token %}
-								<button type="submit" class="btn btn-sm btn-primary ml-1">Update</button>
+								<button type="submit" class="btn btn-sm btn-primary ml-1">Cambiar</button>
 							</form>
 						</td>
 						<td>US${{ item.price }}</td>
@@ -72,7 +72,7 @@
 							<form action="{% url 'cart:cart_remove' product.id %}" method="post">
 								{% csrf_token %}
 								<button type="submit" class="btn btn-sm btn-danger">
-									<i class="uil-trash-alt"></i> Remove
+									<i class="uil-trash-alt"></i> Eliminar
 								</button>
 							</form>
 						</td>

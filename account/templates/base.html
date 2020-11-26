@@ -34,22 +34,22 @@
             </a>
             <div class="h-100" id="left-side-menu-container" data-simplebar>
                 <ul class="metismenu side-nav">
-                    <li class="side-nav-title side-nav-item">Menu</li>
+                    <li class="side-nav-title side-nav-item">Menú</li>
                     <li class="side-nav-item">
                         <a href="{% url 'dashboard' %}" class="side-nav-link">
                             <i class="uil-home-alt"></i>
                             <!-- <span class="badge badge-success float-right">4</span> -->
-                            <span> Home </span>
+                            <span> Inicio </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="#" class="side-nav-link">
                             <i class="uil-shopping-basket"></i>
-                            <span> Catalog </span>
+                            <span> Catálogo </span>
                         </a>
                         <ul class="side-nav-second-level" aria-expanded="false">
                             <li>
-                                <a href="{% url 'catalog:product_list' %}">All categories</a>
+                                <a href="{% url 'catalog:product_list' %}">Todas las categorías</a>
                             </li>
                             {% if categories %}
                             {% for category in categories %}
@@ -63,14 +63,14 @@
                     <li class="side-nav-item">
                         <a href="#" class="side-nav-link">
                             <i class="uil-pen"></i>
-                            <span> Orders </span>
+                            <span> Órdenes </span>
                         </a>
                         <ul class="side-nav-second-level" aria-expanded="false">
                             <li>
-                                <a href="{% url 'orders:orders_product_list' %}">Create new order</a>
+                                <a href="{% url 'orders:orders_product_list' %}">Nueva orden</a>
                             </li>
                             <li>
-                                <a href="{% url 'orders:order_list' %}">All orders</a>
+                                <a href="{% url 'orders:order_list' %}">Todas las órdenes</a>
                             </li>
                         </ul>
                     </li>
@@ -97,14 +97,14 @@
                             <a href="{% url 'cart:cart_detail' %}">
                                 <h4>
                                     <div class="badge badge-danger mr-3" style="margin-top: 1.2em;">
-                                        You have a pending order with {{ total_items }} item{{ total_items|pluralize }}
+                                        Tienes una orden pendiente con {{ total_items }} item{{ total_items|pluralize }}
                                     </div>
                                 </h4>
                             </a>
                             {% else %}
                             <h4>
                                 <div class="badge badge-success mr-3" style="margin-top: 1.2em;">
-                                    You have no pending orders.
+                                    No tienes órdenes pendientes.
                                 </div>
                                 
                             </h4>
@@ -113,14 +113,14 @@
                         </li>
                         <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="{% static 'images/flags/us.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
+                                <img src="{% static 'images/flags/spain.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Español</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu">
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <img src="{% static 'images/flags/spain.jpg' %}" alt="user-image" class="mr-0 mr-sm-1" height="12"> 
-                                <span class="align-middle d-none d-sm-inline-block">Español</span>
+                                    <img src="{% static 'images/flags/us.jpg' %}" alt="user-image" class="mr-0 mr-sm-1" height="12"> 
+                                <span class="align-middle d-none d-sm-inline-block">English</span>
                                 </a>
                             </div>
                         </li>
@@ -136,9 +136,9 @@
                                     <h5 class="m-0">
                                         <span class="float-right">
                                             <a href="javascript: void(0);" class="text-dark">
-                                                <small>Clear All</small>
+                                                <small>Marcar como vistas</small>
                                             </a>
-                                        </span>Notification
+                                        </span>Notificaciones
                                     </h5>
                                 </div>
 
@@ -148,7 +148,7 @@
                                         <div class="notify-icon bg-primary">
                                             <i class="mdi mdi-comment-account-outline"></i>
                                         </div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin
+                                        <p class="notify-details">Caleb Flakelar comentó en Admin
                                             <small class="text-muted">1 min ago</small>
                                         </p>
                                     </a>
@@ -158,7 +158,7 @@
                                         <div class="notify-icon bg-info">
                                             <i class="mdi mdi-account-plus"></i>
                                         </div>
-                                        <p class="notify-details">New user registered.
+                                        <p class="notify-details">Nuevo usuario registrado.
                                             <small class="text-muted">5 hours ago</small>
                                         </p>
                                     </a>
@@ -169,7 +169,7 @@
                                             <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Cristina Pride</p>
                                         <p class="text-muted mb-0 user-msg">
-                                            <small>Hi, How are you? What about our next meeting</small>
+                                            <small>Hola, cómo estás? Hablemos en nuestra próxima reunión.</small>
                                         </p>
                                     </a>
 
@@ -178,7 +178,7 @@
                                         <div class="notify-icon bg-primary">
                                             <i class="mdi mdi-comment-account-outline"></i>
                                         </div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin
+                                        <p class="notify-details">Caleb Flakelar comentó en Admin
                                             <small class="text-muted">4 days ago</small>
                                         </p>
                                     </a>
@@ -189,7 +189,7 @@
                                             <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Karen Robinson</p>
                                         <p class="text-muted mb-0 user-msg">
-                                            <small>Wow ! this admin looks good and awesome design</small>
+                                            <small>Wow! El dashboard se ve increíble!</small>
                                         </p>
                                     </a>
 
@@ -198,7 +198,7 @@
                                         <div class="notify-icon bg-info">
                                             <i class="mdi mdi-heart"></i>
                                         </div>
-                                        <p class="notify-details">Carlos Crouch liked
+                                        <p class="notify-details">Carlos Crouch visitó
                                             <b>Admin</b>
                                             <small class="text-muted">13 days ago</small>
                                         </p>
@@ -207,7 +207,7 @@
 
                                 <!-- All-->
                                 <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                                    View All
+                                    Ver todo
                                 </a>
 
                             </div>
@@ -330,7 +330,6 @@
                             <div class="text-md-right footer-links d-none d-md-block">
                                 <a href="javascript: void(0);">Acerca de</a>
                                 <a href="javascript: void(0);">Soporte</a>
-                                <a href="javascript: void(0);">Contáctanos</a>
                             </div>
                         </div>
                     </div>

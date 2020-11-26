@@ -7,14 +7,14 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-					<li class="breadcrumb-item">Orders</li>
-					<li class="breadcrumb-item">Order No. {{ order.id }}</li>
-					<li class="breadcrumb-item active">Edit</li>
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item">Órdenes</li>
+					<li class="breadcrumb-item">Orden No. {{ order.id }}</li>
+					<li class="breadcrumb-item active">Editar</li>
 				</ol>
 			</div>
 			<h4 class="page-title text-comfortaa">
-				Edit Order #{{ order.id }}
+				Editar Orden No. {{ order.id }}
 			</h4>
 		</div>
 	</div>
@@ -24,24 +24,24 @@
 		<div class="jumbotron">
 			<div class="row">
 				<div class="col">
-					<h3>Order information</h3>
+					<h3>Información de la orden</h3>
 					<hr>
 					<div class="table-responsive">
 						<table class="table table-hover">
 							<tr>
-								<th class="text-secondary">Business name:</th>
+								<th class="text-secondary">Nombre de empresa:</th>
 								<td>{{ order.customer.name }}</td>
 							</tr>
 							<tr>
-								<th class="text-secondary">Business address:</th>
+								<th class="text-secondary">Dirección de empresa:</th>
 								<td>{{ order.customer.address }}</td>
 							</tr>
 							<tr>
-								<th class="text-secondary">Business zipcode:</th>
+								<th class="text-secondary">Código postal:</th>
 								<td>{{ order.customer.zipcode }}</td>
 							</tr>
 							<tr>
-								<th class="text-secondary">Contact name:</th>
+								<th class="text-secondary">Nombre de contacto:</th>
 								<td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
 							</tr>
 							<tr>
@@ -49,14 +49,14 @@
 								<td>{{ order.customer.email }}</td>
 							</tr>
 							<tr>
-								<th class="text-secondary">City:</th>
+								<th class="text-secondary">Ciudad:</th>
 								<td>{{ order.customer.city }}</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 				<div class="col">
-					<h3>Edit order</h3>
+					<h3>Editar orden</h3>
 					<hr>
 					<form method="post">
 						{% csrf_token %}
@@ -75,11 +75,11 @@
 							</div>
 							{% endfor %}
 							{% endif %}
-							<label>Due Date</label>
+							<label>Fecha de entrega</label>
 							<input type="text" class="form-control" id="id_due_date" name="due_date" value='{{ order.due_date | date:"m/d/Y" }}' data-toggle="date-picker" data-single-date-picker="true" data-min-date="{{ today|date:'m/d/Y'}}" data-auto-apply="true" data-locale='{"cancelLabel": "Clear", "daysOfWeek": ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"]}'>
 						</div>
 						<div class="form-group">
-							<label for="id_status">Status</label>
+							<label for="id_status">Estado de orden</label>
 							<select class="form-control select2" data-toggle="select2" id="id_status" name="status" >
 								<option value="pre-order" {% if order.status == "pre-order" %}selected{% endif %}>Pre-order</option>
 								<option value="confirmed" {% if order.status == "confirmed" %}selected{% endif %}>Confirmed</option>
@@ -93,7 +93,7 @@
 						</div>
 						<button class="btn btn-block btn-primary" type="submit">
 							<i class="uil-save"></i>
-							Save changes
+							Guardar cambios
 						</button>	
 					</form>
 				</div>

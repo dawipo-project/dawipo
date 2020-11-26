@@ -8,10 +8,10 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item active">Home</li>
+                    <li class="breadcrumb-item active">Inicio</li>
                 </ol>
             </div>
-            <h4 class="page-title text-comfortaa">Hello, {{ request.user.first_name }}!</h4>
+            <h4 class="page-title text-comfortaa">Hola, {{ request.user.first_name }}!</h4>
         </div>
     </div>
 </div>
@@ -33,19 +33,19 @@
                         <a href="javascript:void(0);" class="dropdown-item">Ganancias</a>
                     </div>
                 </div>
-                <h4 class="header-title mb-3 text-comfortaa">Confirmed orders on the last year</h4>
+                <h4 class="header-title mb-3 text-comfortaa">Órdenes confirmadas en el último año</h4>
 
                 <div class="chart-content-bg">
                     <div class="row text-center">
                         <div class="col-md-6">
-                            <p class="text-muted mb-1 mt-1">Current year</p>
+                            <p class="text-muted mb-1 mt-1">Año en curso</p>
                             <h2 class="font-weight-normal">
                                 <small class="mdi mdi-checkbox-blank-circle text-primary align-middle mr-1"></small>
                                 <span>${{ total_value }}</span>
                             </h2>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-muted mb-1 mt-1">Last year</p>
+                            <p class="text-muted mb-1 mt-1">Año anterior</p>
                             <h2 class="font-weight-normal">
                                 <small class="mdi mdi-checkbox-blank-circle text-warning align-middle mr-1"></small>
                                 <span>${{ past_year_value }}</span>
@@ -88,11 +88,11 @@
                         },
                         series: [
                         { 
-                            name: "Current Year", 
+                            name: "Año en curso", 
                             data: {{ year_orders|safe }}
                         },
                         { 
-                            name: "Last Year", 
+                            name: "Año anterior", 
                             data: {{ last_year_orders|safe }}
                         },
                         ],
@@ -128,7 +128,7 @@
         </div>
     </div>
 </div>
-<ul class="nav nav-pills justify-content-end my-3">
+<!-- <ul class="nav nav-pills justify-content-end my-3">
     <li class="nav-item">
         <form class="form-inline">
             <input type="text" class="form-control date" id="fecha_entrega" data-toggle="date-picker" data-cancel-class="btn-danger" style="width: 13.5em;">
@@ -137,7 +137,7 @@
             </button>
         </form>
     </li>
-</ul>
+</ul> -->
 <!-- Segunda fila -->
 <div class="row">
     <div class="col-12">
@@ -150,13 +150,13 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <a href="javascript:void(0);" class="dropdown-item">Reporte de ventas</a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <a href="javascript:void(0);" class="dropdown-item">Exportar reporte</a>
                         </div>
                     </div>
                     <h4 class="header-title mb-1 text-comfortaa">
-                        Orders per Customer
+                        Órdenes por cliente
                     </h4>
                     <div class="apex-charts" id="pedidos-por-cliente"></div>
                     <script>
@@ -281,12 +281,12 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <a href="javascript:void(0);" class="dropdown-item">Reporte de ventas</a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <a href="javascript:void(0);" class="dropdown-item">Exportar reporte</a>
                         </div>
                     </div>
-                    <h4 class="header-title text-comfortaa">Top-selling products</h4>
+                    <h4 class="header-title text-comfortaa">Productos más vendidos</h4>
 
                     <div id="average-sales" class="apex-charts mb-4 mt-4"
                     data-colors="#003f5a,#fb9334,#007a7a,#fe6625"></div>
@@ -350,10 +350,10 @@
         <div class="card-deck">
             <div class="card">
                 <div class="card-body">
-                    <a href="" class="btn btn-sm btn-link float-right mb-3">Export PDF
+                    <a href="" class="btn btn-sm btn-link float-right mb-3">Exportar PDF
                         <i class="mdi mdi-download ml-1"></i>
                     </a>
-                    <h4 class="header-title mt-2 text-comfortaa">Closest orders to delivery</h4>
+                    <h4 class="header-title mt-2 text-comfortaa">Órdenes próximas a entrega</h4>
 
                     <div class="table-responsive">
                         <table class="table table-centered table-nowrap table-hover mb-0">
@@ -362,19 +362,19 @@
                                 <tr>
                                     <td>
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.id }}</h5>
-                                        <span class="text-muted font-13">Order ID</span>
+                                        <span class="text-muted font-13">ID de Orden</span>
                                     </td>
                                     <td>
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
-                                        <span class="text-muted font-13">Customer</span>
+                                        <span class="text-muted font-13">Cliente</span>
                                     </td>
                                     <td>
                                         <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost }}</h5>
-                                        <span class="text-muted font-13">Total price</span>
+                                        <span class="text-muted font-13">Precio total</span>
                                     </td>
                                     <td>
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>
-                                        <span class="text-muted font-13">Due date</span>
+                                        <span class="text-muted font-13">Fecha de entrega</span>
                                     </td>
                                     <td>
                                         <h4 class="my-1 font-weight-normal">
@@ -390,7 +390,7 @@
                                             <div class="badge badge-info">{{ order.get_status_display }}</div>
                                             {% endif %}
                                         </h4>
-                                        <span class="text-muted font-13">Status</span>
+                                        <span class="text-muted font-13">Estado</span>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -413,12 +413,12 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <a href="javascript:void(0);" class="dropdown-item">Reporte de ventas</a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <a href="javascript:void(0);" class="dropdown-item">Exportar reporte</a>
                         </div>
                     </div>
-                    <h4 class="header-title text-comfortaa">Orders per status</h4>
+                    <h4 class="header-title text-comfortaa">Órdenes por estado</h4>
                     <div class="apex-charts mt-4" id="pedidos_estado"></div>
                     <script>
                         colors = ["#043a5c", "#993955", "#007a7b", "#fe6937", "#019162", "#e38919", "#7fb800", "#fdca40"];
@@ -499,15 +499,15 @@
                             <a href="javascript:void(0);" class="dropdown-item">Exportar Reporte</a>
                         </div>
                     </div>
-                    <h4 class="header-title text-comfortaa">Monthly Indicators</h4>
+                    <h4 class="header-title text-comfortaa">Indicadores del mes</h4>
                     <div class="col-12 align-items-center py-3">
-                        <h3 class="text-center"><span class="text-success text-comfortaa">Confirmed units: </span></h3>
+                        <h3 class="text-center"><span class="text-success text-comfortaa">Unidades confirmadas: </span></h3>
                         <br>
                         <h1 class="text-center display-3 text-comfortaa">{{ confirmed_units }}</h1>
                     </div>
                     <hr>
                     <div class="col-12 py-3 px-5">
-                        <h3 class="text-center"><span class="text-danger text-comfortaa">Dispatched units: </span>
+                        <h3 class="text-center"><span class="text-danger text-comfortaa">Unidades despachadas: </span>
                         </h3>
                         <br>
                         <h1 class="text-center display-3 text-comfortaa">{{ dispatched_units }}</h1>

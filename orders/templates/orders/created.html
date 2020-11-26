@@ -7,20 +7,20 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                    <li class="breadcrumb-item">Orders</li>
-                    <li class="breadcrumb-item">Create order</li>
-                    <li class="breadcrumb-item active">Order created</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
+                    <li class="breadcrumb-item">Órdenes</li>
+                    <li class="breadcrumb-item">Crear orden</li>
+                    <li class="breadcrumb-item active">Orden creada</li>
                 </ol>
             </div>
-            <h4 class="page-title text-comfortaa">Order created successfully!</h4>
+            <h4 class="page-title text-comfortaa">Orden creada satisfactoriamente!</h4>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12 col-xl-8 offset-xl-2 text-center">
-        <h2 class="text-comfortaa">The order has been created successfully</h2>
-        <p>Your order with ID No. <span class="text-danger">{{ order.id }}</span> has been emailed to {{ order.customer.email }} successfully!</p>
+        <h2 class="text-comfortaa">La orden ha sido creada satisfactoriamente</h2>
+        <p>Tu orden con el ID No. <span class="text-danger">{{ order.id }}</span> ha sido enviada a {{ order.customer.email }} con éxito!</p>
     </div>
     <div class="col-12 text-center">
         <div class="logout-icon m-auto">
@@ -39,7 +39,7 @@
     </div>
     <hr>
     <div class="col-lg-12 col-xl-8 offset-xl-2 text-center">
-        <p>Click <a href="{% url 'dashboard' %}">here</a> to continue.</p>
+        <p>Haz clic <a href="{% url 'dashboard' %}">aquí</a> para continuar.</p>
     </div>
 </div>
 {% endblock %}

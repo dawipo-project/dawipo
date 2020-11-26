@@ -7,8 +7,8 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-					<li class="breadcrumb-item">Catalog</li>
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item">Catálogo</li>
 					<li class="breadcrumb-item">{{ product.category.name }}</li>
 					<li class="breadcrumb-item active">{{ product.name }}</li>
 				</ol>
@@ -34,20 +34,20 @@
 			<a href="{{ product.category.get_absolute_url }}" class="text-primary">{{ product.category.name }}</a>
 		</h5>
 		<div class="col-sm-12 col-lg-6 float-left text-center">
-			<h4><span class="text-secondary">Retail price: </span>US${{ product.retail_price }}</h4>
-			<h4><span class="text-secondary">Whole sale price: </span>US${{ product.whole_sale_price }}</h4>
+			<h4><span class="text-secondary">Precio retail: </span>US${{ product.retail_price }}</h4>
+			<h4><span class="text-secondary">Precio neto de venta: </span>US${{ product.whole_sale_price }}</h4>
 		</div>
 		<div class="col-sm-12 col-lg-6 float-left text-center">
 			<h4><span class="text-secondary">SKU: </span>{{ product.sku }}</h4>
-			<h4><span class="text-secondary">Measures: </span>{{ product.measures }}</h4>
+			<h4><span class="text-secondary">Medidas: </span>{{ product.measures }}</h4>
 		</div>
 		{% if product.available %}
-		<h5>Available: <span class="text-success">Yes</span></h5>
+		<h5>Disponible: <span class="text-success">Sí</span></h5>
 		{% else %}
-		<h5>Available: <span class="text-danger">No</span></h5>
+		<h5>Disponible: <span class="text-danger">No</span></h5>
 		{% endif %}
 		<p>{{ product.description|linebreaks }}</p>
-		<a href="{% url 'catalog:product_edit' product.id product.slug %}" class="btn btn-primary mr-2">Edit item</a>
+		<a href="{% url 'catalog:product_edit' product.id product.slug %}" class="btn btn-primary mr-2">Editar item</a>
 	</div>
 </div>
 {% endblock %}

@@ -7,14 +7,14 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-					<li class="breadcrumb-item"><a href="{% url 'catalog:product_list' %}">Catalog</a></li>
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item"><a href="{% url 'catalog:product_list' %}">Catálogo</a></li>
 					<li class="breadcrumb-item">{{ product.name }}</li>
-					<li class="breadcrumb-item active">Edit</li>
+					<li class="breadcrumb-item active">Editar</li>
 				</ol>
 			</div>
 			<h4 class="page-title text-comfortaa">
-				Edit {{ product.name }}
+				Editar {{ product.name }}
 			</h4>
 		</div>
 	</div>
@@ -25,7 +25,7 @@
 			{% csrf_token %}
 			<div class="col-sm-12 col-lg-6 float-left">
 				<div class="form-group">
-					<label for="id_name">Product name</label>
+					<label for="id_name">Nombre de producto</label>
 					<input type="text" name="name" maxlength="200" value="{{ product.name }}" id="id_name" class="form-control">
 				</div>
 				<div class="form-group">
@@ -33,15 +33,15 @@
 					<input type="text" name="sku" value="{{ product.sku }}" maxlength="20" id="id_sku" class="form-control">
 				</div>
 				<div class="form-group">
-					<label>Product image</label>
+					<label>Imagen de producto</label>
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" id="id_image" accept="image/*" name="image">
 						<label class="custom-file-label" for="id_image" data-browse="Buscar...">Seleccionar imagen</label>
 						<br>
-						<small>Currently: <a href="{{ product.image.url }}">{{ product.image.url }}</a></small>
+						<small>Imagen actual: <a href="{{ product.image.url }}">{{ product.image.url }}</a></small>
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="image-clear_id" name="image-clear">
-							<label class="custom-control-label" for="image-clear_id">Clear</label>
+							<label class="custom-control-label" for="image-clear_id">Eliminar imagen</label>
 						</div>
 						<script>
 						document.querySelector('.custom-file-input').addEventListener('change',function(e){
@@ -57,31 +57,31 @@
 					<input type="color" name="color" id="id_color" class="form-control" value="{{ product.color }}">
 				</div>
 				<div class="form-group">
-					<label for="id_retail_price">Retail price</label>
+					<label for="id_retail_price">Precio retail</label>
 					<input type="text" name="retail_price" value="{{ product.retail_price }}" id="id_retail_price" class="form-control">
 				</div>
 				<div class="form-group">
-					<label for="id_whole_sale_price">Whole sale price</label>
+					<label for="id_whole_sale_price">Precio neto de venta</label>
 					<input type="text" name="whole_sale_price" value="{{ product.whole_sale_price }}" id="id_whole_sale_price" class="form-control">
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-6 float-left">
 				<div class="form-group">
-					<label for="id_description">Product description</label>
+					<label for="id_description">Descripción del producto</label>
 					<textarea name="description" id="id_description" cols="30" rows="10" class="form-control">{{ product.description }}</textarea>
 				</div>
 				<div class="form-group">
-					<label for="id_measures">Product measures</label>
+					<label for="id_measures">Medidas</label>
 					<textarea name="measures" id="id_measures" cols="30" rows="10" class="form-control">{{ product.measures }}</textarea>
 				</div>
 				<div class="form-group">
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="id_available" name="available" {% if product.available %}checked{% endif %}>
-						<label class="custom-control-label" for="id_available">Available</label>
+						<label class="custom-control-label" for="id_available">Disponibilidad</label>
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary"><i class="uil-save"></i> Save changes</button>
+			<button type="submit" class="btn btn-primary"><i class="uil-save"></i> Guardar cambios</button>
 		</form>
 	</div>
 </div>

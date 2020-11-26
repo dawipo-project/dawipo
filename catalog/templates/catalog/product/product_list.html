@@ -7,12 +7,15 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-					<li class="breadcrumb-item active">Catalog</li>
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item active">Catálogo</li>
+					{% if category %}
+					<li class="breadcrumb-item active">{{ category.name }}</li>
+					{% endif %}
 				</ol>
 			</div>
 			<h4 class="page-title text-comfortaa">
-				Products - {% if category %}{{ category.name }}{% else %}All categories{% endif %}
+				Productos - {% if category %}{{ category.name }}{% else %}All categories{% endif %}
 			</h4>
 		</div>
 	</div>
@@ -22,19 +25,19 @@
 		<li class="nav-item mr-2">
 			<a href="{% url 'catalog:add_product' %}" class="btn btn-primary btn-sm">
 				<i class="uil-plus-circle"></i>
-				Add new product
+				Agregar producto
 			</a>
 		</li>
 		<li class="nav-item mr-2">
 			<a href="{% url 'catalog:add_category' %}" class="btn btn-warning btn-sm">
 				<i class="uil-plus-circle"></i>
-				Add new category
+				Agregar categoría
 			</a>
 		</li>
 		<li class="nav-item">
 			<a href="{% if category %}{{ category.get_absolute_url }}{% else %}{% url 'catalog:product_list' %}{% endif %}" class="btn btn-secondary btn-sm">
 				<i class="uil-table"></i>
-				View as catalog
+				Ver como catálogo
 			</a>
 		</li>
 	</ul>
@@ -44,12 +47,12 @@
 		<div class="table-responsive">
 			<table class="table table-hover table-borderless table-nowrap">
 				<thead>
-					<th scope="col">Product name</th>
+					<th scope="col">Nombre de producto</th>
 					<th scope="col">SKU</th>
-					<th scope="col">Category</th>
-					<th scope="col">Measures</th>
-					<th scope="col">Retail price</th>
-					<th scope="col">Whole sale price</th>
+					<th scope="col">Categoría</th>
+					<th scope="col">Medidas</th>
+					<th scope="col">Precio retail</th>
+					<th scope="col">Precio neto de venta</th>
 					<th scope="col"></th>
 				</thead>
 				<tbody>
@@ -61,7 +64,7 @@
 						<td>{{ product.measures }}</td>
 						<td>US${{ product.retail_price }}</td>
 						<td>US${{ product.whole_sale_price }}</td>
-						<td class="text-primary"><a href="{{ product.get_absolute_url }}"><i class="uil-search"></i> Detail</a></td>
+						<td class="text-primary"><a href="{{ product.get_absolute_url }}"><i class="uil-search"></i> Detalle</a></td>
 					</tr>
 					{% endfor %}
 				</tbody>

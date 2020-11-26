@@ -9,6 +9,7 @@ from .models import OrderItem, Order, OrderChange
 from .forms import OrderCreateForm, OrderEditForm
 from .tasks import order_created, order_edited
 from cart.cart import Cart
+import datetime
 
 # Create your views here.
 def product_list(request, category_slug=None):
@@ -28,6 +29,7 @@ def product_list(request, category_slug=None):
 def order_create(request):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
+	today = datetime.today()
 	cart = Cart(request)
 	if request.method == 'POST':
 		form = OrderCreateForm(request.POST)
@@ -47,11 +49,12 @@ def order_create(request):
 	else:
 		form = OrderCreateForm()
 	return render(request, 'orders/create.html', {'cart': cart, 'form': form, 
-		'customers': customers, 'categories': categories})
+		'customers': customers, 'categories': categories, 'today': today})
 
 def order_edit(request, order_id):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
+	today = datetime.today()
 	order = get_object_or_404(Order, id=order_id)
 	order_items = OrderItem.objects.filter(order_id=order.id)
 	status = order.status
@@ -74,7 +77,7 @@ def order_edit(request, order_id):
 	else:
 		edit_form = OrderEditForm(instance=order)
 	return render(request, 'orders/edit.html', {'form': edit_form, 'categories': categories, 
-		'customers': customers, 'order': order, 'items': order_items})
+		'customers': customers, 'order': order, 'items': order_items, 'today': today})
 
 
 class OrderList(ListView):

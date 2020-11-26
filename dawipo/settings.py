@@ -147,10 +147,10 @@ AUTHENTICATION_BACKENDS = [
 CART_SESSION_ID = 'cart'
 
 # Email
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'dawipoproject@gmail.com'
-EMAIL_HOST_PASSWORD = 'd4wip02020'
+EMAIL_HOST = 'mail.dawipo.co'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'noreply@dawipo.co'
+EMAIL_HOST_PASSWORD = 'd4wipo202006'
 EMAIL_USE_TLS = True
 
 # Braintree

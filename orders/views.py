@@ -29,7 +29,7 @@ def product_list(request, category_slug=None):
 def order_create(request):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
-	today = datetime.today()
+	today = datetime.date.today()
 	cart = Cart(request)
 	if request.method == 'POST':
 		form = OrderCreateForm(request.POST)
@@ -54,7 +54,7 @@ def order_create(request):
 def order_edit(request, order_id):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
-	today = datetime.today()
+	today = datetime.date.today()
 	order = get_object_or_404(Order, id=order_id)
 	order_items = OrderItem.objects.filter(order_id=order.id)
 	status = order.status

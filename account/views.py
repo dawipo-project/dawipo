@@ -160,7 +160,6 @@ def dashboard(request):
             aux_list[j] = values[sorted_indexes[j]]
         new_list.append(aux_list)
     new_cust_list = list()
-    import pdb; pdb.set_trace()
     for c in range(len(customers_list)):
         new_cust_list.append(customers_list[sorted_indexes[c]])
     status_list = [status_tuple[1] for status_tuple in Order.STATUS_CHOICES]

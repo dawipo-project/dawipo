@@ -21,8 +21,8 @@
             <div class="card-body">
                 <img src="{{ request.user.profile.get_photo_url }}" alt="profile-image" class="rounded-circle avatar-lg img-thumbnail">
                 <h4 class="mb-0 mt-2 text-comfortaa">{{ request.user.first_name }} {{ request.user.last_name }}</h4>
-                <p class="text-muted font-14">{{ request.user.profile.position }}</p>
-                <button class="btn btn-warning btn-sm mb-2">Enviar mensaje</button>
+                <p class="text-muted font-14">{{ request.user.profile.company }}</p>
+                <p class="text-muted">{{ request.user.profile.position }}</p>
                 <div class="text-left mt-3">
                     <h4 class="font-13 text-uppercase">
                         Acerca de mí:
@@ -48,51 +48,11 @@
             <div class="card-body">
                 <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                     <li class="nav-item">
-                        <a href="#acerca_de" data-toggle="tab" class="nav-link rounded-0 active">Acerca de mí</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#editar" data-toggle="tab" class="nav-link rounded-0">Editar perfil</a>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="acerca_de">
-                        <h5 class="text-uppercase-text-comfortaa">
-                            Proyectos
-                        </h5>
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-nowrap table-hover mb-0">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Cliente</th>
-                                        <th>Nombre del proyecto</th>
-                                        <th>Fecha de inicio</th>
-                                        <th>Fecha de entrega</th>
-                                        <th>Estado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><img src="{% static 'images/users/avatar-2.jpg' %}" height="24" alt="table-user" class="mr-2 rounded-circle"> Lorem Ipsum</td>
-                                        <td>Diseño de app y desarrollo</td>
-                                        <td>01/01/2020</td>
-                                        <td>01/08/2020</td>
-                                        <td><span class="badge badge-info-lighten">En progreso</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><img src="{% static 'images/users/avatar-3.jpg' %}" height="24" alt="table-user" class="mr-2 rounded-circle"> Dolor Sit Amet</td>
-                                        <td>Landing Page</td>
-                                        <td>01/03/2020</td>
-                                        <td>01/07/2020</td>
-                                        <td><span class="badge badge-danger-lighten">Demorado</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="editar">
+                    <div class="tab-pane active" id="editar">
                         <form enctype="multipart/form-data" method="post">
                             {% csrf_token %}
                             <h5 class="mb-4 text-uppercase text-comfortaa">

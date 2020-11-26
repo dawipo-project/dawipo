@@ -114,7 +114,7 @@ def dashboard(request):
     last_year_orders = list(last_year_orders_per_month.values())
 
     # Segundo gráfico
-    customers = Customer.objects.filter(company=request.user.profile.company)
+    customers = Customer.objects.filter(company=request.user.profile.company)[:10]
     status_orders = dict()
     for status_tuple in Order.STATUS_CHOICES:
         status_orders[status_tuple[0]] = list()

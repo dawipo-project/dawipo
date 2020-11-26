@@ -1,0 +1,195 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dawipo - Data With Power</title>
+    <link rel="stylesheet" href="{% static 'css/dawipo-index.css' %}">
+    <link rel="shortcut icon" href="{%static 'images/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+	<!-- Navbar -->
+	<div class="navbar-fixed">
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">
+                    <img src="{% static 'images/logo-tagline.png' %}" alt="logo-dawipo" class="img-logo">
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="{% url 'contacts:landing_view ' %}" id="botonInicio" style="font-weight: 400;">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contacts:quienes_somos' %}" style="font-weight: 400;">¿Quiénes somos?</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}">
+                            <button class="btn-small bg-bright-blue">Login</button>
+                        </a>
+                    </li>
+                </ul>
+                <a href="#" data-target="slide-out" class="sidenav-trigger button-collapse right"><i class="material-icons white-text">menu</i></a>
+            </div>
+        </nav>
+    </div>
+	<ul class="sidenav" id="slide-out">
+        <li>
+            <a href="{% url 'contacts:landing_view' %}" class="waves-effect waves-teal">Inicio</a>
+        </li>
+        <li>
+            <a href="{% url 'contacts:quienes_somos' %}" class="waves-effect waves-teal">¿Quiénes somos?</a>
+        </li>
+        <li>
+            <a href="{% url 'login' %}" style="font-weight: 400;">Iniciar sesión</a>
+        </li>
+    </ul>
+
+	<div class="section header white">
+		<div class="background">
+			<img src="{% static 'images/background-top-alt.jpg' %}" alt="">
+		</div>
+		<div class="header-wrapper row valign-wrapper">
+			<div class="col s12 m6 offset-m3 valign">
+				<h1>¡Nuestro equipo!</h1>
+				<span class="tagline text-dark-blue">
+					Fundado en 2020, en Dawipo nos esforzamos por ser los mejores en lo que hacemos. Esto es posible gracias a nuestro increíble equipo.</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="section white full-height">
+		<div class="row valign">
+			<div class="col s12 m10 offset-m1 team">
+
+				<div class="row">
+					<div class="col s12 l3 center-on-small-only">
+						<h3 class="section-title">Líderes</h3>
+					</div>
+
+					<div class="col s12 l9">
+						<div class="row">
+
+							<div class="col s12 m6">
+								<div class="avatar-wrapper">
+									<span class="avatar">
+										<img src="{% static 'images/sergio-img.jpeg' %}" alt="">
+									</span>
+								</div>
+								<div class="avatar-name">
+									<span class="name">Sergio Elías Angulo</span>
+									<span class="title">Desarrollador de Negocio</span>
+								</div>
+							</div>
+
+							<div class="col s12 m6">
+								<div class="avatar-wrapper">
+									<span class="avatar">
+										<img src="{% static 'images/angelica-img.jpeg' %}" alt="">
+									</span>
+								</div>
+								<div class="avatar-name">
+									<span class="name">María Angélica Duque</span>
+									<span class="title">Gestor Comercial</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<div class="divider"></div>
+					</div>
+					<div class="col s12 l3 center-on-small-only">
+						<h3 class="section-title">Ingeniería</h3>
+					</div>
+
+					<div class="col s12 l9">
+						<div class="row">
+
+							<div class="col s12">
+								<div class="avatar-wrapper">
+									<span class="avatar">
+										<img src="{% static 'images/felipe-img.jpeg' %}" alt="">
+									</span>
+								</div>
+								<div class="avatar-name">
+									<span class="name">Felipe Hernández</span>
+									<span class="title">Desarrollador de producto</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col s12">
+						<div class="divider"></div>
+					</div>
+					<div class="col s12 l3 center-on-small-only">
+						<h3 class="section-title">Diseño</h3>
+					</div>
+
+					<div class="col s12 l9">
+						<div class="row">
+							<div class="col s12">
+								<div class="avatar-wrapper">
+									<span class="avatar">
+										<img src="{% static 'images/daniela-img.png' %}" alt="">
+									</span>
+								</div>
+								<div class="avatar-name">
+									<span class="name">Daniela Alejandra Gordillo</span>
+									<span class="title">Diseñador Gráfico</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="page-footer shuffle-under-transition">
+        <div class="container">
+            <div class="row">
+                <div class="col s6 m4">
+                    <img class="materialize-logo" src="{% static 'images/logo-tagline.png' %}" alt="" height="80">
+                    <p>Made with love by Dawipo®. 2020</p>
+                </div>
+                <div class="col s6 m4">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/company/dawipo">LinkedIn</a></li>
+                        <li><a href="https://www.facebook.com/Dawipo/">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+	<!-- Scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+
+    <!-- Librerías externas -->
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'js/animation.gsap.min.js' %}"></script>
+
+    <!-- Inicialización -->
+    <script src="{% static 'js/startup.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+</body>
+</html>

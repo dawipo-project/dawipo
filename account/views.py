@@ -204,7 +204,7 @@ def dashboard(request):
     products_dict = {reordered_keys[i]: reordered_values[i] for i in range(len(reordered_keys))}
     # Tabla de órdenes más cercanas
     closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(
-        status='canceled').exclude(status='pre-order').order_by('due_date')[:5]
+        status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')[:5]
     # Ordenes por estado
     status_orders_two = dict()
     for status_tuple in Order.STATUS_CHOICES:

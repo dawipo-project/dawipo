@@ -11,3 +11,6 @@ def landing_view(request):
 			return render(request, 'index.html')
 	form = ContactForm()
 	return render(request, 'index.html', {'form': form})
+
+def quienes_somos(request):
+	return render(request, 'team.html')

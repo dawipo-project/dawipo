@@ -1,639 +1,366 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="utf-8" />
-        <title>Landing Page | Hyper - Responsive Bootstrap 4 Admin Dashboard</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
-
-        <!-- App css -->
-        <link href="{% static '/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'css/app.min.css' %}" rel="stylesheet" type="text/css" id="light-style" />
-        <link href="{% static 'css/app-dark.min.css' %}" rel="stylesheet" type="text/css" id="dark-style" />
-
-    </head>
-
-    <body class="loading" data-layout-config='{"darkMode":false}'>
-
-        <!-- NAVBAR START -->
-        <nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
-            <div class="container">
-
-                <!-- logo -->
-                <a href="#!" class="navbar-brand mr-lg-5">
-                    <img src="assets/images/logo.png" alt="" class="logo-dark" height="18" />
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push(
+        {
+            'gtm.start': new Date().getTime(),
+            event:'gtm.js'
+        }
+        );
+        var f=d.getElementsByTagName(s)[0], 
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5DPB6VZ');
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawipo - Data With Power</title>
+    <link rel="stylesheet" href="{% static 'css/dawipo-index.css' %}">
+    <link rel="shortcut icon" href="{%static 'images/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push(
+        {
+            'gtm.start': new Date().getTime(),
+            event:'gtm.js'
+        }
+        );
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5DPB6VZ');
+    </script>
+    <!-- End Google Tag Manager -->
+    <div class="navbar-fixed">
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">
+                    <img src="{% static 'images/logo-tagline.png' %}" alt="logo-dawipo" class="img-logo">
                 </a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-
-                <!-- menus -->
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
-                    <!-- left menu -->
-                    <ul class="navbar-nav mr-auto align-items-center">
-                        <li class="nav-item mx-lg-1">
-                            <a class="nav-link active" href="">Home</a>
-                        </li>
-                        <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">Features</a>
-                        </li>
-                        <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">Pricing</a>
-                        </li>
-                        <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">FAQs</a>
-                        </li>
-                        <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">Clients</a>
-                        </li>
-                        <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">Contact</a>
-                        </li>
-                    </ul>
-
-                    <!-- right menu -->
-                    <ul class="navbar-nav ml-auto align-items-center">
-                        <li class="nav-item mr-0">
-                            <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/" target="_blank" class="nav-link d-lg-none">Purchase now</a>
-                            <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/" target="_blank" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
-                                <i class="mdi mdi-baskeat mr-2"></i> Purchase Now
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="#" id="botonInicio" style="font-weight: 400;">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#about" style="font-weight: 400;">¿Qué es Dawipo?</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'quienes_somos' %}" style="font-weight: 400;">¿Quiénes somos?</a>
+                    </li>
+                    <li>
+                        <a href="#beneficios" style="font-weight: 400;">Beneficios</a>
+                    </li>
+                    <li>
+                        <a href="#contactanos" style="font-weight: 400;">Contáctanos</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}">
+                            <button class="btn-small bg-bright-blue">Login</button>
+                        </a>
+                    </li>
+                </ul>
+                <a href="#" data-target="slide-out" class="sidenav-trigger button-collapse right"><i class="material-icons white-text">menu</i></a>
             </div>
         </nav>
-        <!-- NAVBAR END -->
-
-        <!-- START HERO -->
-        <section class="hero-section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-5">
-                        <div class="mt-md-4">
-                            <div>
-                                <span class="badge badge-danger badge-pill">New</span>
-                                <span class="text-white-50 ml-1">Welcome to new landing page</span>
-                            </div>
-                            <h2 class="text-white font-weight-normal mb-4 mt-3 hero-title">
-                                Responsive Web UI Kit & Dashboard Template
-                            </h2>
-
-                            <p class="mb-4 font-16 text-white-50">Hyper is a fully featured dashboard and admin template
-                                comes with tones of well designed UI elements, components, widgets and pages.</p>
-
-                            <a href="" target="_blank" class="btn btn-success">Preview <i
-                                    class="mdi mdi-arrow-right ml-1"></i></a>
+    </div>
+    <ul class="sidenav" id="slide-out">
+        <li>
+            <a href="#inicio" class="waves-effect waves-teal">Inicio</a>
+        </li>
+        <li>
+            <a href="#about" class="waves-effect waves-teal">¿Qué es Dawipo?</a>
+        </li>
+        <li>
+            <a href="#contactanos" class="waves-effect waves-teal">Contáctanos</a>
+        </li>
+        <li>
+            <a href="{% url 'login' %}" style="font-weight: 400;">Iniciar sesión</a>
+        </li>
+    </ul>
+    <div class="header shuffle-over-transition scrollspy" id="inicio">
+        <div class="background">
+            <img src="{% static 'images/background-top-alt.jpg' %}" alt="fondo">
+        </div>
+        <div class="header-wrapper row valign-wrapper">
+            <div class="col s12">
+                <h4 class="text-comfortaa">
+                    <span class="text-bright-blue">Software para la </span><span class="text-orange">Gestión <br> de Pedidos </span><span class="text-bright-blue">entre empresas</span>
+                </h4>
+                <span class="tagline text-lato-cursiva text-dark-blue" style="font-weight: 400;">Optimiza la administración de los pedidos de tus clientes</span>
+                <br>
+                <a href="#contactanos"><button class="btn bg-dark-blue" style="font-family: 'Lato', sans-serif; font-weight: 400;">Contáctanos</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="section white valign-wrapper scrollspy" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m4 valign-wrapper">
+                    <div class="staggered-transition-wrapper">
+                        <div class="feature fade-right-in-out">
+                            <h4 class="text-comfortaa text-bright-blue">¿Qué es Dawipo?</h4>
+                            <p class="text-dark-blue">Facilitamos la administración de pedidos a las pequeñas y medianas empresas a través de tableros de Control interactivos.</p>
+                            <p class="text-dark-blue">Nuestro software permite a los gerentes hacer seguimientos a cada fase con sus equipos e incluso, interactuar directamente con sus clientes al generar y editar cotizaciones sobre la plataforma.</p>
+                            <p class="text-dark-blue">Así, apoyamos a las pymes para ser más productivas e incrementar sus ventas.</p>
                         </div>
                     </div>
-                    <div class="col-md-5 offset-md-2">
-                        <div class="text-md-right mt-3 mt-md-0">
-                            <img src="assets/images/startup.svg" alt="" class="img-fluid" />
-                        </div>
+                </div>
+                <div class="col s12 m8 valign-wrapper">
+                    <div class="laptop-preview-sizer">
+                        <div class="laptop-preview"></div>
+                        <div class="image-container default" style="background-image:url({% static 'images/mockup-mac.png' %});"></div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- END HERO -->
-
-        <!-- START SERVICES -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row py-4">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-infinity"></i></h1>
-                            <h3>The admin is fully <span class="text-primary">responsive</span> and easy to <span
-                                    class="text-primary">customize</span></h3>
-                            <p class="text-muted mt-2">The clean and well commented code allows easy customization of the
-                                theme.It's designed for
-                                <br>describing your app, agency or business.</p>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    <div class="section bg-bright-blue valign-wrapper scrollspy full-height" id="beneficios">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l3 offset-l1">
+                    <h4 class="center-align">
+                        <img src="{% static 'images/entrevista-de-trabajo.svg' %}" alt="" width="63">
+                    </h4>
+                    <h5 class="center-align" style="font-size: 1.3em;">Asesoría Personalizada</h5>
+                    <p class="center-align caption" style="font-size: 1.3em;">Programa consultorías sobre el uso de la herramienta y análisis de la información.</p>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-desktop text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Responsive Layouts</h4>
-                            <p class="text-muted mt-2 mb-0">Et harum quidem rerum as expedita distinctio nam libero tempore
-                                cum soluta nobis est cumque quo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-vector-square text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Based on Bootstrap UI</h4>
-                            <p class="text-muted mt-2 mb-0">Temporibus autem quibusdam et aut officiis necessitatibus saepe
-                                eveniet ut sit et recusandae.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-presentation text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Creative Design</h4>
-                            <p class="text-muted mt-2 mb-0">Nam libero tempore, cum soluta a est eligendi minus id quod
-                                maxime placeate facere assumenda est.
-                            </p>
-                        </div>
-                    </div>
+                <div class="col s12 m6 l4">
+                    <h4 class="center-align">
+                        <img src="{% static 'images/campana.svg' %}" width="63" alt="">
+                    </h4>
+                    <h5 class="center-align" style="font-size: 1.3em;">Alertas Permanentes</h5>
+                    <p class="center-align caption" style="font-size: 1.3em;">Recibe notificaciones y alertas cuando se acercan fechas específicas.</p>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-apps text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Multiple Applications</h4>
-                            <p class="text-muted mt-2 mb-0">Et harum quidem rerum as expedita distinctio nam libero tempore
-                                cum soluta nobis est cumque quo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-shopping-cart-alt text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Ecommerce Pages</h4>
-                            <p class="text-muted mt-2 mb-0">Temporibus autem quibusdam et aut officiis necessitatibus saepe
-                                eveniet ut sit et recusandae.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-grids text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Multiple Layouts</h4>
-                            <p class="text-muted mt-2 mb-0">Nam libero tempore, cum soluta a est eligendi minus id quod
-                                maxime placeate facere assumenda est.
-                            </p>
-                        </div>
-                    </div>
+                <div class="col s12 m6 l3">
+                    <h4 class="center-align">
+                        <img src="{% static 'images/tablero.svg' %}" width="63"  alt="">
+                    </h4>
+                    <h5 class="center-align" style="font-size: 1.3em;">Dashboards Intuitivos</h5>
+                    <p class="center-align caption" style="font-size: 1.3em;">Obtén información de tus órdenes y entregas organizada en un vistazo.</p>
                 </div>
-
             </div>
-        </section>
-        <!-- END SERVICES -->
-
-        <!-- START FEATURES 1 -->
-        <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h3>Flexible <span class="text-primary">Layouts</span></h3>
-                            <p class="text-muted mt-2">There are three different layout options available to cater need for
-                                any <br /> modern web
-                                application.</p>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col s12 m6 l4 offset-l2">
+                    <h4 class="center-align">
+                        <img src="{% static 'images/filtrar.svg' %}" width="63"  alt="">
+                    </h4>
+                    <h5 class="center-align" style="font-size: 1.3em;">Múltiples Filtros</h5>
+                    <p class="center-align caption" style="font-size: 1.3em;">Aplica filtros de fechas, clientes o ítems y realiza análisis detallados.</p>
                 </div>
-
-                <div class="row mt-4">
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center">
-                            <img src="assets/images/layouts/layout-1.png" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Vertical Layout</h5>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-2.png" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Horizontal Layout</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-3.png" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Detached Layout</h5>
-                        </div>
-                    </div>
+                <div class="col s12 m6 l4">
+                    <h4 class="center-align">
+                        <img src="{% static 'images/catalogar.svg' %}" width="63"  alt="">
+                    </h4>
+                    <h5 class="center-align" style="font-size: 1.3em;">Catálogo digital</h5>
+                    <p class="center-align caption" style="font-size: 1.3em;">Carga tus productos en el sistema con fotografías y atributos personalizables.</p>
                 </div>
-
-                <div class="row mt-4">
-                    
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center">
-                            <img src="assets/images/layouts/layout-5.png" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Light Sidenav Layout</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-6.png" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Boxed Layout</h5>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-4.png" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Semi Dark Layout</h5>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </section>
-        <!-- END FEATURES 1 -->
-
-        <!-- START FEATURES 2 -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-heart-multiple-outline"></i></h1>
-                            <h3>Features you'll <span class="text-danger">love</span></h3>
-                            <p class="text-muted mt-2">Hyper comes with next generation ui design and have multiple benefits
-                            </p>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    <div class="section bg-gray shuffle-under-transition full-height">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 l8">
+                    <h4 class="text-comfortaa text-orange">PLAN PIONEROS</h4>
+                    <p class="text-dark-blue">¡Únete a Dawipo antes del <span style="font-weight: 600">30 de Noviembre</span><br>y recibe <span style="font-weight: 600">increíbles beneficios!</span></p>
                 </div>
-                <div class="row mt-2 py-5 align-items-center">
-                    <div class="col-lg-5">
-                        <img src="assets/images/features-1.svg" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-6 offset-lg-1">
-                        <h3 class="font-weight-normal">Inbuilt applications and pages</h3>
-                        <p class="text-muted mt-3">Hyper comes with a variety of ready-to-use applications and pages that help to speed up the development</p>
+                <div class="col s12 l4">
+                    <div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="days"></div>
+                    <div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="hours"></div>
+                    <div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="minutes"></div>
+                    <div class="col s3 bg-dark-blue white-text text-comfortaa" style="text-align: center; border-radius: 20px; border: 2px solid #e2e8eb" id="seconds"></div>
+                    <script>
+                        var countDownDate = new Date("Nov 29, 2020 23:59:59").getTime();
+                        var x = setInterval(function() {
+                            var now = new Date().getTime();
+                            var distance = countDownDate - now;
 
-                        <div class="mt-4">
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Projects & Tasks</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Ecommerce Application Pages</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Profile, pricing, invoice</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Login, signup, forget password</p>
-                        </div>
+                            var days = Math.floor(distance / (1000 * 60 * 60 * 24))
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                        <a href="" class="btn btn-primary btn-rounded mt-3">Read More <i class="mdi mdi-arrow-right ml-1"></i></a>
+                            document.getElementById("days").innerHTML = "<h4>" + days + "d</h4>";
+                            document.getElementById("hours").innerHTML = "<h4>" + hours + "h</h4>";
+                            document.getElementById("minutes").innerHTML = "<h4>" + minutes + "m</h4>";
+                            document.getElementById("seconds").innerHTML = "<h4>" + seconds + "s</h4>";
 
-                    </div>
+                            if (distance < 0) {
+                                clearInterval(x);
+                                document.getElementById("countdown").innerHTML = "EXPIRADO";
+                            }
+                        }, 1000);
+                    </script>
                 </div>
-
-                <div class="row pb-3 pt-5 align-items-center">
-                    <div class="col-lg-6">
-                        <h3 class="font-weight-normal">Simply beautiful design</h3>
-                        <p class="text-muted mt-3">The simplest and fastest way to build dashboard or admin panel. Hyper is built using the latest tech and tools and provide an easy way to customize anything, including an overall color schemes, layout, etc.</p>
-
-                        <div class="mt-4">
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Built with latest Bootstrap</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Extensive use of SCSS variables</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Well documented and structured code</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Detailed Documentation</p>
-                        </div>
-
-                        <a href="" class="btn btn-success btn-rounded mt-3">Read More <i class="mdi mdi-arrow-right ml-1"></i></a>
-
-                    </div>
-                    <div class="col-lg-5 offset-lg-1">
-                        <img src="assets/images/features-2.svg" class="img-fluid" alt="">
-                    </div>
-                </div>
-
             </div>
-        </section>
-        <!-- END FEATURES 2 -->
-
-        <!-- START PRICING -->
-        <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-tag-multiple"></i></h1>
-                            <h3>Choose Simple <span class="text-primary">Pricing</span></h3>
-                            <p class="text-muted mt-2">The clean and well commented code allows easy customization of the
-                                theme.It's designed for
-                                <br>describing your app, agency or business.</p>
-                        </div>
+            <hr>
+            <div class="row">
+                <div class="col s12 l4" style="border-right: 1px solid gray;">
+                    <div class="col s3" style="text-align:right;">
+                        <h1 class="text-dark-blue text-comfortaa" style="margin: 0.3em 0 0 0">3</h1>
+                    </div>
+                    <div class="col s9">
+                        <p class="text-dark-blue">meses <span class="text-comfortaa text-orange" style="font-weight: 600">gratis</span> de uso de la plataforma</p>
                     </div>
                 </div>
-
-                <div class="row mt-5 pt-3">
-                    <div class="col-md-4">
-                        <div class="card card-pricing">
-                            <div class="card-body text-center">
-                                <p class="card-pricing-plan-name font-weight-bold text-uppercase">Standard License </p>
-                                <i class="card-pricing-icon dripicons-user text-primary"></i>
-                                <h2 class="card-pricing-price">$49 <span>/ License</span></h2>
-                                <ul class="card-pricing-features">
-                                    <li>10 GB Storage</li>
-                                    <li>500 GB Bandwidth</li>
-                                    <li>No Domain</li>
-                                    <li>1 User</li>
-                                    <li>Email Support</li>
-                                    <li>24x7 Support</li>
-                                </ul>
-                                <button class="btn btn-primary mt-4 mb-2 btn-rounded">Choose Plan</button>
-                            </div>
-                        </div>
-                        <!-- end Pricing_card -->
+                <div class="col s12 l4" style="border-right: 1px solid gray;">
+                    <div class="col s3">
+                        <img src="{% static 'images/icono-i.svg' %}" width="80" style="margin-top: 10px">
                     </div>
-                    <!-- end col -->
-
-                    <div class="col-md-4">
-                        <div class="card card-pricing card-pricing-recommended">
-                            <div class="card-body text-center">
-                                <div class="card-pricing-plan-tag">Recommended</div>
-                                <p class="card-pricing-plan-name font-weight-bold text-uppercase">Multiple License</p>
-                                <i class="card-pricing-icon dripicons-briefcase text-primary"></i>
-                                <h2 class="card-pricing-price">$99 <span>/ License</span></h2>
-                                <ul class="card-pricing-features">
-                                    <li>50 GB Storage</li>
-                                    <li>900 GB Bandwidth</li>
-                                    <li>2 Domain</li>
-                                    <li>10 User</li>
-                                    <li>Email Support</li>
-                                    <li>24x7 Support</li>
-                                </ul>
-                                <button class="btn btn-primary mt-4 mb-2 btn-rounded">Choose Plan</button>
-                            </div>
-                        </div>
-                        <!-- end Pricing_card -->
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-md-4">
-                        <div class="card card-pricing">
-                            <div class="card-body text-center">
-                                <p class="card-pricing-plan-name font-weight-bold text-uppercase">Extended License</p>
-                                <i class="card-pricing-icon dripicons-store text-primary"></i>
-                                <h2 class="card-pricing-price">$599 <span>/ License</span></h2>
-                                <ul class="card-pricing-features">
-                                    <li>100 GB Storege</li>
-                                    <li>Unlimited Bandwidth</li>
-                                    <li>10 Domain</li>
-                                    <li>Unlimited User</li>
-                                    <li>Email Support</li>
-                                    <li>24x7 Support</li>
-                                </ul>
-                                <button class="btn btn-primary mt-4 mb-2 btn-rounded">Choose Plan</button>
-                            </div>
-                        </div>
-                        <!-- end Pricing_card -->
-                    </div>
-                    <!-- end col -->
-
-                </div>
-
-            </div>
-        </section>
-        <!-- END PRICING -->
-
-        <!-- START FAQ -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
-                            <h3>Frequently Asked <span class="text-primary">Questions</span></h3>
-                            <p class="text-muted mt-2">Here are some of the basic types of questions for our customers. For more 
-                                <br>information please contact us.</p>
-
-                            <button type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email us your question</button>
-                            <button type="button" class="btn btn-info btn-sm mt-2 ml-1"><i class="mdi mdi-twitter mr-1"></i> Send us a tweet</button>
-                        </div>
+                    <div class="col s9">
+                        <p class="text-dark-blue">Asesoría ilimitada en fase de implementación</p>
                     </div>
                 </div>
-
-                <div class="row mt-5">
-                    <div class="col-lg-5 offset-lg-1">
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Can I use this template for my client?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Yup, the marketplace license allows you to use this theme
-                                in any end products.
-                                For more information on licenses, please refere <a href="https://themes.getbootstrap.com/licenses/" target="_blank">here</a>.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">How do I get help with the theme?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Use our dedicated support email (support@coderthemes.com) to send your issues or feedback. We are here to help anytime.</p>
-                        </div>
-
+                <div class="col s12 l4">
+                    <div class="col s3" style="text-align:right;">
+                        <h1 class="text-dark-blue text-comfortaa" style="margin: 0.3em 0 0 0">5</h1>
                     </div>
-                    <!--/col-lg-5 -->
-
-                    <div class="col-lg-5">
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Can this theme work with Wordpress?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">No. This is a HTML template. It won't directly with
-                                wordpress, though you can convert this into wordpress compatible theme.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Will you regularly give updates of Hyper?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Yes, We will update the Hyper regularly. All the
-                                future updates would be available without any cost.</p>
-                        </div>
-
-                    </div>
-                    <!--/col-lg-5-->
-                </div>
-                <!-- end row -->
-
-            </div> <!-- end container-->
-        </section>
-        <!-- END FAQ -->
-
-        
-        <!-- START CONTACT -->
-        <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h3>Get In <span class="text-primary">Touch</span></h3>
-                            <p class="text-muted mt-2">Please fill out the following form and we will get back to you shortly. For more 
-                                <br>information please contact us.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center mt-3">
-                    <div class="col-md-4">
-                        <p class="text-muted"><span class="font-weight-bold">Customer Support:</span><br> <span class="d-block mt-1">+1 234 56 7894</span></p>
-                        <p class="text-muted mt-4"><span class="font-weight-bold">Email Address:</span><br> <span class="d-block mt-1">info@gmail.com</span></p>
-                        <p class="text-muted mt-4"><span class="font-weight-bold">Office Address:</span><br> <span class="d-block mt-1">4461 Cedar Street Moro, AR 72368</span></p>
-                        <p class="text-muted mt-4"><span class="font-weight-bold">Office Time:</span><br> <span class="d-block mt-1">9:00AM To 6:00PM</span></p>
-                    </div>
-
-                    <div class="col-md-8">
-                        <form>
-                            <div class="row mt-4">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="fullname">Your Name</label>
-                                        <input class="form-control form-control-light" type="text" id="fullname" placeholder="Name...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="emailaddress">Your Email</label>
-                                        <input class="form-control form-control-light" type="email" required="" id="emailaddress" placeholder="Enter you email...">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-1">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="subject">Your Subject</label>
-                                        <input class="form-control form-control-light" type="text" id="subject" placeholder="Enter subject...">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-1">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="comments">Message</label>
-                                        <textarea id="comments" rows="4" class="form-control form-control-light" placeholder="Type your message here..."></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-2">
-                                <div class="col-12 text-right">
-                                    <button class="btn btn-primary">Send a Message <i
-                                        class="mdi mdi-telegram ml-1"></i> </button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col s9">
+                        <p class="text-dark-blue">horas de asesoría adicional con el OKAM de la cuenta</p>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- END CONTACT -->
-
-        <!-- START FOOTER -->
-        <footer class="bg-dark py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <img src="{% static 'images/logo.png' %}" alt="" class="logo-dark" height="18" />
-                        <p class="text-white-50 mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum laboriosam vero magnam excepturi quo reiciendis autem rem repudiandae voluptatem nesciunt.</p>
-
-                        <ul class="social-list list-inline mt-3">
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
-                            </li>
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
-                            </li>
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                            </li>
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                    <div class="col-lg-2 mt-3 mt-lg-0">
-                        <h5 class="text-white">Company</h5>
-
-                        <ul class="list-unstyled pl-0 mb-0 mt-3">
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">About Us</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Documentation</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Blog</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Affiliate Program</a></li>
-                        </ul>
-
-                    </div>
-
-                    <div class="col-lg-2 mt-3 mt-lg-0">
-                        <h5 class="text-white">Apps</h5>
-
-                        <ul class="list-unstyled pl-0 mb-0 mt-3">
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Ecommerce Pages</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Email</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Social Feed</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Projects</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Tasks Management</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-2 mt-3 mt-lg-0">
-                        <h5 class="text-white">Discover</h5>
-
-                        <ul class="list-unstyled pl-0 mb-0 mt-3">
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Help Center</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Our Products</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Privacy</a></li>
-                        </ul>
-                    </div>
+            <hr>
+            <div class="row">
+                <div class="col s12 l9" style="text-align: center;">
+                    <p class="text-lato-cursiva text-dark-blue">
+                        Somos un startup parte del programa Apps.co que también ha impulsado emprendimientos como Platzi, Rappi y Fluvip. Igual que ellos, estamos apoyando la transformación digital del país. ¡Únete y haz parte también, impulsando tu productividad con nosotros!
+                    </p>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="mt-5">
-                            <p class="text-white-50 mt-4 text-center mb-0">© 2020 Dawipo. Diseño y código por <a href="http://fhernandez.com">FH.</a>                       Coderthemes</p>
+                <div class="col s12 l3" style="padding-top: 2em; text-align: center;">
+                    <a href="#contactanos" class="btn-large bg-orange">¡Quiero ser pionero!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section white valign-wrapper scrollspy full-height" id="contactanos">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 valign-wrapper">
+                    <div class="staggered-transition-wrapper">
+                        <div class="feature fade-right-in-out">
+                            <h4 class="text-comfortaa text-orange">¡Llena el formulario y te contactaremos!</h4>
+                    <form class="col s12" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="first_name" id="id_first_name" class="validate" placeholder="Nombres" required="true">
+                                <label for="first_name">Nombres</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="last_name" id="id_last_name" class="validate" placeholder="Apellidos" required="true">
+                                <label for="last_name">Apellidos</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s7">
+                                <input type="email" name="email" id="id_email" class="validate" placeholder="example@example.com" required="true">
+                                <label for="email">Correo electrónico</label>
+                                <span class="helper-text" data-error="Ingresa un correo electrónico válido.">No compartiremos tus datos con nadie.</span>
+                            </div>
+                            <div class="input-field col s5">
+                                <input type="tel" name="phone_number" id="id_phone_number" class="validate" placeholder="Teléfono" required="true">
+                                <label for="phone_number">Teléfono</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s7">
+                                <input type="text" name="organization" id="id_organization" class="validate" placeholder="Organización" required="true">
+                                <label for="organization">Organización</label>
+                            </div>
+                            <div class="input-field col s5">
+                                <input type="text" name="position" id="id_position" class="validate" placeholder="Posición" required="true">
+                                <label for="position">Posición</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>
+                                <input type="checkbox" class="filled-in validate" name="acceptance" id="id_acceptance" required="true" />
+                                <span>Acepto la <a class="modal-trigger" href="#modalDatos">política de tratamiento de datos personales</a></span>
+                            </label>
+                        </div>
+                        <div class="modal" id="modalDatos">
+                            <div class="modal-content">
+                                <h4>Política de tratamiento de datos personales</h4>
+                                <p>Al diligenciar este formulario usted nos permite el uso de su información según el marco establecido por la <a href="https://www.defensoria.gov.co/public/Normograma%202013_html/Normas/Ley_1581_2012.pdf" target="_blank">ley 1581 de 2012</a> y nos autoriza a utilizar su información para contactarlo con el propósito de establecer un primer acercamiento comercial</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+                            </div>
+                        </div>
+                        <button class="btn bg-bright-blue" type="submit" name="action" id="enviar_formulario">¡Quiero saber más!
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </form>
                         </div>
                     </div>
                 </div>
+                <div class="col s12 m4 offset-m2 valign-wrapper">
+                    <div class="phone-preview-sizer">
+                        <div class="phone-preview"></div>
+                        <div class="image-container default" style="background-image:url({% static 'images/iphone12.png' %})"></div>
+                    </div>
+                </div>
             </div>
-        </footer>
-        <!-- END FOOTER -->
+        </div>
+    </div>
+    <footer class="page-footer shuffle-under-transition">
+        <div class="container">
+            <div class="row">
+                <div class="col s6 m4">
+                    <img class="materialize-logo" src="{% static 'images/logo-tagline.png' %}" alt="" height="80">
+                    <p>Made with love by Dawipo®. 2020</p>
+                </div>
+                <div class="col s6 m4">
+                    <h5>About</h5>
+                    <ul>
+                        <li><a href="#!">Blog</a></li>
+                        <li><a href="#!">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="col s12 m4">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="#!">Twitter</a></li>
+                        <li><a href="#!">Facebook</a></li>
+                        <li><a href="#!">Github</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/materialize.min.js' %}"></script>
 
-        <!-- bundle -->
-        <script src="{% static 'js/vendor.min.js' %}"></script>
-        <script src="{% static 'js/app.min.js' %}"></script>
+    <!-- Librerías externas -->
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'js/animation.gsap.min.js' %}"></script>
 
-    </body>
-
+    <!-- Inicialización -->
+    <script src="{% static 'js/startup.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+</body>
 </html>

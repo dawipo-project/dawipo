@@ -23,7 +23,7 @@
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
-                        <a href="http://dawipo.com" id="botonInicio" style="font-weight: 400;">Inicio</a>
+                        <a href="{% url 'landing_view' %}" id="botonInicio" style="font-weight: 400;">Inicio</a>
                     </li>
                     <li>
                         <a href="#" style="font-weight: 400;">¿Quiénes somos?</a>
@@ -40,7 +40,7 @@
     </div>
 	<ul class="sidenav" id="slide-out">
         <li>
-            <a href="http://dawipo.com" class="waves-effect waves-teal">Inicio</a>
+            <a href="{% url 'landing_view' %}" class="waves-effect waves-teal">Inicio</a>
         </li>
         <li>
             <a href="#" class="waves-effect waves-teal">¿Quiénes somos?</a>

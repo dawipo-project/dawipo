@@ -38,7 +38,7 @@
 						<input type="file" class="custom-file-input" id="id_image" accept="image/*" name="image">
 						<label class="custom-file-label" for="id_image" data-browse="Buscar...">Seleccionar imagen</label>
 						<br>
-						<small>Imagen actual: <a href="{{ product.image.url }}">{{ product.image.url }}</a></small>
+						<small>Imagen actual: {% if product.image %}{{ product.image.url }}{% else %}Ninguna{% endif %}</small>
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="image-clear_id" name="image-clear">
 							<label class="custom-control-label" for="image-clear_id">Eliminar imagen</label>

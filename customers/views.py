@@ -14,8 +14,8 @@ class CustomerRegistrationView(CreateView):
 	'first_name', 'last_name', 'email']
 
 	@method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company

@@ -54,8 +54,8 @@ class CategoryCreate(CreateView):
 	template_name = 'catalog/category/add_category.html'
 
 	@method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company
@@ -100,8 +100,8 @@ class ProductList(ListView):
 	template_name = 'catalog/product/product_list.html'
 
 	@method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
 	def get_context_data(self, **kwargs):
 		context = super(ProductList, self).get_context_data(**kwargs)
@@ -118,8 +118,8 @@ class CategoryProductList(ListView):
 		return queryset
 
 	@method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
 	def get_context_data(self, **kwargs):
 		context = super(CategoryProductList, self).get_context_data(**kwargs)

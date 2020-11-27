@@ -88,8 +88,8 @@ class OrderList(ListView):
 	template_name = 'orders/order_list.html'
 
 	@method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
 	def get_queryset(self):
 		queryset = Order.objects.filter(company=self.request.user.profile.company)

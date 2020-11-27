@@ -6,8 +6,11 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from .forms import ProductEditForm, ProductCreateForm
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def product_list(request, category_slug=None):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
@@ -19,12 +22,14 @@ def product_list(request, category_slug=None):
 			'products': products, 'categories': categories, 'customers': customers})
 	return render(request, 'catalog/product/list.html', {'products': products, 'categories': categories, 'customers': customers})
 
+@login_required
 def product_detail(request, id, slug):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
 	product = get_object_or_404(Product, id=id, slug=slug)
 	return render(request, 'catalog/product/detail.html', {'product': product, 'categories': categories, 'customers': customers})
 
+@login_required
 def edit(request, id, slug):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
@@ -48,6 +53,10 @@ class CategoryCreate(CreateView):
 	fields = ['name']
 	template_name = 'catalog/category/add_category.html'
 
+	@method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company
 		return super(CategoryCreate, self).form_valid(form)
@@ -61,6 +70,7 @@ class CategoryCreate(CreateView):
 		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
 		return context
 
+@login_required
 def create_product(request):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
@@ -89,6 +99,10 @@ class ProductList(ListView):
 	context_object_name = 'products'
 	template_name = 'catalog/product/product_list.html'
 
+	@method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 	def get_context_data(self, **kwargs):
 		context = super(ProductList, self).get_context_data(**kwargs)
 		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)
@@ -102,6 +116,10 @@ class CategoryProductList(ListView):
 		self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
 		queryset = Product.objects.filter(category=self.category)
 		return queryset
+
+	@method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 	def get_context_data(self, **kwargs):
 		context = super(CategoryProductList, self).get_context_data(**kwargs)

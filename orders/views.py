@@ -8,6 +8,8 @@ from django.views.generic.edit import UpdateView
 from .models import OrderItem, Order, OrderChange
 from .forms import OrderCreateForm, OrderEditForm
 from .tasks import order_created, order_edited
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 import datetime
 
@@ -84,6 +86,10 @@ class OrderList(ListView):
 	model = Order
 	context_object_name = 'orders'
 	template_name = 'orders/order_list.html'
+
+	@method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 	def get_queryset(self):
 		queryset = Order.objects.filter(company=self.request.user.profile.company)

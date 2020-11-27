@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .models import Customer
 from catalog.models import Category
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class CustomerRegistrationView(CreateView):
@@ -10,6 +12,10 @@ class CustomerRegistrationView(CreateView):
 	template_name = 'customers/create.html'
 	fields = ['name', 'address', 'city', 'zipcode',
 	'first_name', 'last_name', 'email']
+
+	@method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company

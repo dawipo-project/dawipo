@@ -226,6 +226,7 @@ def dashboard(request):
     for order in confirmed_orders:
         orders_items = orders_items | order.items.all()
     for item in orders_items:
+        quantity = item.quantity
         confirmed_units += quantity
     dispatched_orders = confirmed_orders.filter(status='dispatched')
     dispatched_orders = dispatched_orders | confirmed_orders.filter(status='delivered')
@@ -233,6 +234,7 @@ def dashboard(request):
     for order in dispatched_orders:
         orders_items = orders_items | order.items.all()
     for item in orders_items:
+        quantity = item.quantity
         dispatched_units += quantity
 
     return render(request, 'account/dashboard.html', {'section': dashboard, 

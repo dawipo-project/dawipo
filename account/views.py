@@ -215,7 +215,7 @@ def dashboard(request):
     for status_tuple in Order.STATUS_CHOICES:
         status_orders_two[status_tuple[0]] = 0
     for k in status_orders_two.keys():
-        status_orders_two[k] += Order.objects.filter(status=k).filter(order__company=request.user.profile.company).count()
+        status_orders_two[k] += Order.objects.filter(status=k).filter(company=request.user.profile.company).count()
     for status_tuple in Order.STATUS_CHOICES:
         status_orders_two[status_tuple[1]] = status_orders_two.pop(status_tuple[0])
     status_orders_labels = list(status_orders_two.keys())
@@ -226,7 +226,7 @@ def dashboard(request):
     today = datetime.date.today()
     month_ago = today - datetime.timedelta(days=30)
     confirmed_orders = Order.objects.exclude(status='canceled').exclude(status='pre-order').filter(
-        created__gte=month_ago).filter(order__company=request.user.profile.company)
+        created__gte=month_ago).filter(company=request.user.profile.company)
     orders_items = Order.objects.none()
     for order in confirmed_orders:
         orders_items = orders_items | order.items.all()

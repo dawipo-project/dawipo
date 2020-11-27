@@ -59,7 +59,8 @@ def dashboard(request):
     order_changes_one = OrderChange.objects.order_by(
         'order_id').filter(
         final_status='confirmed').filter(
-        date__gte=year_ago)
+        date__gte=year_ago).filter(
+        order__company=request.user.profile.company)
     total_value = 0
     # Primer gráfico
     total_order_changes = OrderChange.objects.none()
@@ -69,7 +70,8 @@ def dashboard(request):
         order_changes = OrderChange.objects.order_by(
             'order_id').filter(
             final_status='confirmed').filter(
-            date__gte=previous_day).distinct('order_id')
+            date__gte=previous_day).distinct('order_id').filter(
+            order__company=request.user.profile.company)
         total_order_changes = total_order_changes | order_changes
         current_day = previous_day
     for item in total_order_changes:
@@ -86,7 +88,8 @@ def dashboard(request):
             'order_id').filter(
             final_status='confirmed').filter(
             date__gte=previous_day).exclude(
-            date__gte=current_day).distinct('order_id')
+            date__gte=current_day).distinct('order_id').filter(
+            order__company=request.user.profile.company)
         total_order_changes = total_order_changes | order_changes
         current_day = previous_day
     for item in total_order_changes:
@@ -100,7 +103,8 @@ def dashboard(request):
         'order_id').filter(
         date__gte=year_ago).filter(
         final_status='confirmed').distinct(
-        'order_id')
+        'order_id').filter(
+        order__company=request.user.profile.company)
     year_orders_per_month = get_orders_per_month(year_orders, months_list)
     two_years_ago = year_ago - datetime.timedelta(days=365)
     last_year_orders = OrderChange.objects.order_by(
@@ -108,7 +112,8 @@ def dashboard(request):
         final_status='confirmed').exclude(
         date__gte=year_ago).filter(
         date__gte=two_years_ago).distinct(
-        'order_id')
+        'order_id').filter(
+        order__company=request.user.profile.company)
     last_year_orders_per_month = get_orders_per_month(last_year_orders, months_list)
     year_orders = list(year_orders_per_month.values())
     last_year_orders = list(last_year_orders_per_month.values())

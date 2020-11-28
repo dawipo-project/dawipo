@@ -98,6 +98,7 @@ class ProductList(ListView):
 	model = Product
 	context_object_name = 'products'
 	template_name = 'catalog/product/product_list.html'
+	paginate_by = 10
 
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):
@@ -117,6 +118,8 @@ class ProductList(ListView):
 class CategoryProductList(ListView):
 	template_name = 'catalog/product/product_list.html'
 	context_object_name = 'products'
+	paginate_by = 10
+	
 	def get_queryset(self):
 		self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
 		queryset = Product.objects.filter(category=self.category)

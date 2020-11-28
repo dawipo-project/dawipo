@@ -84,6 +84,7 @@ def order_edit(request, order_id):
 
 class OrderList(ListView):
 	model = Order
+	paginate_by = 7
 	context_object_name = 'orders'
 	template_name = 'orders/order_list.html'
 

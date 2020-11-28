@@ -103,6 +103,11 @@ class ProductList(ListView):
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
 
+	def queryset(self):
+		categories = Category.objects.filter(company=self.request.user.profile.company)
+		queryset = Product.objects.filter(category__in=categories)
+		return queryset
+
 	def get_context_data(self, **kwargs):
 		context = super(ProductList, self).get_context_data(**kwargs)
 		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)

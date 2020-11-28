@@ -3,4 +3,4 @@ from .models import Company
 # Register your models here.
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ['name', 'country', 'city', 'logo']
+    list_display = ['id', 'name', 'country', 'city', 'logo']

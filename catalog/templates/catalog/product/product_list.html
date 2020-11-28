@@ -62,8 +62,8 @@
 						<td>{{ product.sku }}</td>
 						<td>{{ product.category.name }}</td>
 						<td>{{ product.measures }}</td>
-						<td>US${{ product.retail_price }}</td>
-						<td>US${{ product.whole_sale_price }}</td>
+						<td>{{ request.user.profile.company.currency }}${{ product.retail_price }}</td>
+						<td>{{ request.user.profile.company.currency }}${{ product.whole_sale_price }}</td>
 						<td class="text-primary"><a href="{{ product.get_absolute_url }}"><i class="uil-search"></i> Detalle</a></td>
 					</tr>
 					{% endfor %}

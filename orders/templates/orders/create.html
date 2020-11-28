@@ -58,13 +58,13 @@
 				<tr>
 					<td>{{ item.product.name }}</td>
 					<td>{{ item.quantity }}</td>
-					<td class="text-secondary">US${{ item.total_price }}</td>
+					<td class="text-secondary">{{ request.user.profile.company.currency }}${{ item.total_price }}</td>
 				</tr>
 				{% endfor %}
 				<tr>
 					<td class="text-success">Total</td>
 					<td></td>
-					<td>US${{ cart.get_total_price }}</td>
+					<td>{{ request.user.profile.company.currency }}${{ cart.get_total_price }}</td>
 				</tr>
 				</tbody>
 			</table>

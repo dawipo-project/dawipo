@@ -57,8 +57,8 @@
 				<p class="card-text">
 					{{ product.description|truncatewords:20 }}
 				</p>
-				<h5><span class="text-success">Precio retail:</span> US${{ product.retail_price }}</h5>
-				<h5><span class="text-success">Precio neto de venta:</span> US${{ product.whole_sale_price }}</h5>
+				<h5><span class="text-success">Precio retail:</span> {{ request.user.profile.company.currency }}${{ product.retail_price }}</h5>
+				<h5><span class="text-success">Precio neto de venta:</span> {{ request.user.profile.company.currency }}${{ product.whole_sale_price }}</h5>
 			</div>
 		</div>
 	</div>

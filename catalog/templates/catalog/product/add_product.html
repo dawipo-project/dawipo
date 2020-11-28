@@ -71,11 +71,11 @@
 					</script>
 				</div>
 				<div class="form-group">
-					<label for="id_retail_price">Precio retail</label>
+					<label for="id_retail_price">Precio retail ({{ request.user.profile.company.currency }})</label>
 					<input type="text" name="retail_price" id="id_retail_price" class="form-control">
 				</div>
 				<div class="form-group">
-					<label for="id_whole_sale_price">Precio neto de venta</label>
+					<label for="id_whole_sale_price">Precio neto de venta({{ request.user.profile.company.currency }})</label>
 					<input type="text" name="whole_sale_price" id="id_whole_sale_price" class="form-control">
 				</div>
 			</div>

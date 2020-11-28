@@ -4,7 +4,7 @@ from company.models import Company
 # Create your models here.
 class CustomerContact(models.Model):
 	contact = models.CharField(max_length=50)
-	company = models.ForeignKey(Company, related_name='company_customers', on_delete=models.CASCADE)
+	company = models.ForeignKey(Company, related_name='company_customer_contacts', on_delete=models.CASCADE)
 
 	class Meta:
 		ordering = ('contact',)

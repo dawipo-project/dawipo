@@ -4,6 +4,7 @@ from django.db import models
 class Company(models.Model):
     name = models.CharField(max_length=256)
     country = models.CharField(max_length=20)
+    currency = models.CharField(max_length=10, blank=True, null=True)
     city = models.CharField(max_length=40)
     active = models.BooleanField(default=True)
     logo = models.ImageField(upload_to='company/logos', blank=True)

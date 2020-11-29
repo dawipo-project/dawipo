@@ -48,15 +48,15 @@ class ProductAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}
 	actions = [export_to_csv]
 
-	change_list_template = 'orders/csv_link.html'
+	# change_list_template = 'orders/csv_link.html'
 
-	def import_csv(self, request):
-		if request.method == 'POST':
-			csv_file = request.FILES['csv_file']
-			reader = csv.reader(csv_file)
+	# def import_csv(self, request):
+	# 	if request.method == 'POST':
+	# 		csv_file = request.FILES['csv_file']
+	# 		reader = csv.reader(csv_file)
 
-			self.message_user(request, 'The file has been imported')
-			return redirect('..')
-		form = CsvImportForm()
-		context = {'form': form}
-		return render(request, 'admin/csv_form.html', context)
+	# 		self.message_user(request, 'The file has been imported')
+	# 		return redirect('..')
+	# 	form = CsvImportForm()
+	# 	context = {'form': form}
+	# 	return render(request, 'admin/csv_form.html', context)

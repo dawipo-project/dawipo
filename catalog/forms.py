@@ -6,15 +6,16 @@ from .models import Category, Product
 class ProductEditForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'sku', 'image', 'description', 'color',
-            'measures', 'retail_price', 'whole_sale_price',
-            'available')
+        fields = ('name', 'sku', 'image', 'description', 
+        	'observations', 'price_1', 'price_2', 'price_3',
+            'tax', 'available')
 
 class ProductCreateForm(forms.ModelForm):
 	class Meta:
 		model = Product
-		fields = ('name', 'sku', 'image', 'description', 'color', 
-			'measures', 'retail_price', 'whole_sale_price', 'available')
+		fields = ('name', 'sku', 'image', 'description', 
+        	'observations', 'price_1', 'price_2', 'price_3',
+            'tax', 'available')
 
 class CategoryForm(forms.ModelForm):
 	class Meta:

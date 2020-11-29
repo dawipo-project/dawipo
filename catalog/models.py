@@ -30,11 +30,12 @@ class Product(models.Model):
 	slug = models.SlugField(max_length=200, db_index=True)
 	sku = models.CharField(max_length=20, db_index=True, blank=True, null=True)
 	image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-	description = models.TextField(blank=True)
-	color = models.CharField(max_length=15, blank=True) # Observaciones
-	measures = models.TextField(blank=True) # Observaciones
-	retail_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # Separador de miles
-	whole_sale_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # Separador de miles
+	description = models.TextField(blank=True, null=True)
+	observations = models.TextField(blank=True, null=True)
+	price_1 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # Separador de miles
+	price_2 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # Separador de miles
+	price_3 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # Separador de miles
+	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, default=0)
 	available = models.BooleanField(default=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)

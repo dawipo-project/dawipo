@@ -31,7 +31,6 @@ class Product(models.Model):
 	sku = models.CharField(max_length=20, db_index=True, blank=True, null=True)
 	image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
 	description = models.TextField(blank=True)
-	observations = models.TextField(blank=True)
 	color = models.CharField(max_length=15, blank=True) # Observaciones
 	measures = models.TextField(blank=True) # Observaciones
 	retail_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # Separador de miles
@@ -49,9 +48,6 @@ class Product(models.Model):
 
 	def save(self):
 		self.slug = slugify(self.name)
-		super(Product, self).save(commit=False)
-		if self.sku:
-			self.sku = str(self.category.id) + str(self.id)
 		super(Product, self).save()
 
 	def __str__(self):

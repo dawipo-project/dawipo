@@ -4,21 +4,7 @@ import csv
 import datetime
 from django.http import HttpResponse
 
-# Register your models here.
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-	list_display = ['name', 'slug']
-	prepopulated_fields = {'slug': ('name',)}
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-	list_display = ['name', 'slug', 'sku', 'color', 'retail_price', 'whole_sale_price', 
-	'available', 'created', 'updated']
-	list_filter = ['available', 'color', 'created', 'updated']
-	list_editable = ['retail_price', 'whole_sale_price', 'available']
-	prepopulated_fields = {'slug': ('name',)}
-	actions = [export_to_csv]
-
+# Actions
 def export_to_csv(modeladmin, request, queryset):
 	opts = modeladmin.model._meta
 	content_disposition = 'attachment; filename={opts.verbose_name}.csv'
@@ -40,3 +26,18 @@ def export_to_csv(modeladmin, request, queryset):
 	return response
 
 export_to_csv.short_description = 'Export to CSV'
+
+# Register your models here.
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+	list_display = ['name', 'slug']
+	prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+	list_display = ['name', 'slug', 'sku', 'color', 'retail_price', 'whole_sale_price', 
+	'available', 'created', 'updated']
+	list_filter = ['available', 'color', 'created', 'updated']
+	list_editable = ['retail_price', 'whole_sale_price', 'available']
+	prepopulated_fields = {'slug': ('name',)}
+	actions = [export_to_csv]

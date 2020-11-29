@@ -17,6 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
 	list_filter = ['available', 'color', 'created', 'updated']
 	list_editable = ['retail_price', 'whole_sale_price', 'available']
 	prepopulated_fields = {'slug': ('name',)}
+	actions = [export_to_csv]
 
 def export_to_csv(modeladmin, request, queryset):
 	opts = modeladmin.model._meta

@@ -98,6 +98,7 @@ class ProductList(ListView):
 	model = Product
 	context_object_name = 'products'
 	template_name = 'catalog/product/product_list.html'
+	paginate_by = 10
 
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):

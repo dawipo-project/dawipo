@@ -95,10 +95,10 @@ def create_product(request):
 		'categories': categories, 'customers': customers})
 
 class ProductList(ListView):
+	paginate_by = 10
 	model = Product
 	context_object_name = 'products'
 	template_name = 'catalog/product/product_list.html'
-	paginate_by = 10
 
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):
@@ -106,8 +106,7 @@ class ProductList(ListView):
 
 	def queryset(self):
 		categories = Category.objects.filter(company=self.request.user.profile.company)
-		queryset = Product.objects.filter(category__in=categories)
-		return queryset
+		return Product.objects.filter(category__in=categories)
 
 	def get_context_data(self, **kwargs):
 		context = super(ProductList, self).get_context_data(**kwargs)
@@ -121,8 +120,7 @@ class CategoryProductList(ListView):
 	
 	def get_queryset(self):
 		self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-		queryset = Product.objects.filter(category=self.category)
-		return queryset
+		return Product.objects.filter(category=self.category)
 
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):

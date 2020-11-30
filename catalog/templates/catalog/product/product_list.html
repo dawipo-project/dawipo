@@ -51,7 +51,8 @@
 					<th scope="col">Nombre de producto</th>
 					<th scope="col">Categoría</th>
 					<th scope="col">Marca</th>
-					<th scope="col">Precio</th>
+					<th scope="col">Precio Retail</th>
+					<th scope="col">Precio Mayorista</th>
 					<th scope="col"></th>
 				</thead>
 				<tbody>
@@ -61,6 +62,7 @@
 						<td>{{ product.category.name }}</td>
 						<td>{% if product.brand %}{{ product.brand }}{% else %}No tiene{% endif %}</td>
 						<td>{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</td>
+						<td>{% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_2|intcomma }}{% else %}No tiene{% endif %}</td>
 						<td class="text-primary"><a href="{{ product.get_absolute_url }}"><i class="uil-search"></i> Detalle</a></td>
 					</tr>
 					{% endfor %}

@@ -56,7 +56,6 @@
 					{% with product=item.product %}
 					<tr>	
 						<td>{{ product.name|truncatechars:20 }}</td>
-						<td>{{ product.sku }}</td>
 						<td class="pt-1">
 							<form action="{% url 'cart:cart_add' product.id %}" method="post" class="form-inline">
 								<input data-toggle="touchspin" type="number" value="{{ item.quantity }}" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">

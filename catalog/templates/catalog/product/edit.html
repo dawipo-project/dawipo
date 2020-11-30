@@ -26,21 +26,27 @@
 			<div class="col-sm-12 col-lg-6 float-left">
 				<div class="form-group">
 					<label for="id_name">Nombre de producto</label>
-					<input type="text" name="name" maxlength="200" id="id_name" class="form-control">
+					<input type="text" name="name" maxlength="200" id="id_name" class="form-control" value="{{ product.name }}">
 				</div>
 				<div class="form-group">
 					<label for="id_sku">SKU</label>
-					<input type="text" name="sku" maxlength="20" id="id_sku" class="form-control">
+					<input type="text" name="sku" maxlength="20" id="id_sku" class="form-control" value="{{ product.sku }}">
 				</div>
 				<div class="form-group">
 					<label for="id_barcode">Código de barras</label>
-					<input type="text" name="barcode" maxlength="20" id="id_barcode" class="form-control">
+					<input type="text" name="barcode" maxlength="20" id="id_barcode" class="form-control" value="{{ product.barcode }}">
 				</div>
 				<div class="form-group">
 					<label>Imagen del producto</label>
 					<div class="custom-file">
 						<input type="file" class="custom-file-input" id="id_image" accept="image/*" name="image">
 						<label class="custom-file-label" for="id_image" data-browse="Buscar...">Seleccionar imagen</label>
+					</div>
+					<br>
+					<small>Foto actual: <a href="{{ product.image.url }}">{{ product.image.url }}</a></small>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="image-clear_id" name="image-clear">
+						<label class="custom-control-label" for="image-clear_id">Eliminar mi foto actual</label>
 					</div>
 					<script>
 						document.querySelector('.custom-file-input').addEventListener('change',function(e){
@@ -52,49 +58,49 @@
 				</div>
 				<div class="form-group">
 					<label for="id_price_1">Precio retail ({{ request.user.profile.company.currency }})</label>
-					<input type="text" name="price_1" id="id_price_1" class="form-control">
+					<input type="text" name="price_1" id="id_price_1" class="form-control" value="{{ product.price_1 }}">
 				</div>
 				<div class="form-group">
 					<label for="id_price_2">Precio mayorista ({{ request.user.profile.company.currency }})</label>
-					<input type="text" name="price_2" id="id_price_2" class="form-control">
+					<input type="text" name="price_2" id="id_price_2" class="form-control" value="{{ product.price_2 }}">
 				</div>
 				<div class="form-group">
 					<label for="id_price_3">Otro precio ({{ request.user.profile.company.currency }}) (Opcional)</label>
-					<input type="text" name="price_3" id="id_price_3" class="form-control">
+					<input type="text" name="price_3" id="id_price_3" class="form-control" value="{{ product.price_3 }}">
 				</div>
 				<div class="form-group">
 					<label for="id_tax">Impuesto (%)</label>
-					<input type="text" name="tax" id="id_tax" class="form-control">
+					<input type="text" name="tax" id="id_tax" class="form-control" value="{{ product.tax }}">
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-6 float-left">
 				<div class="form-group">
 					<label for="id_brand">Marca</label>
-					<input type="text" name="brand" maxlength="20" id="id_brand" class="form-control">
+					<input type="text" name="brand" maxlength="20" id="id_brand" class="form-control" value="{{ product.brand }}">
 				</div>
 				<div class="form-group">
 					<label for="id_provider">Proveedor</label>
-					<input type="text" name="provider" maxlength="20" id="id_provider" class="form-control">
+					<input type="text" name="provider" maxlength="20" id="id_provider" class="form-control" value="{{ product.provider }}">
 				</div>
 				<div class="form-group">
 					<label for="id_color">Color</label>
-					<input type="text" name="color" id="id_color" class="form-control">
+					<input type="text" name="color" id="id_color" class="form-control" value="{{ product.color }}">
 				</div>
 				<div class="form-group">
 					<label for="id_description">Descripción del producto</label>
-					<textarea name="description" id="id_description" cols="30" rows="7" class="form-control"></textarea>
+					<textarea name="description" id="id_description" cols="30" rows="7" class="form-control">{{ product.description }}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="id_observations">Observaciones</label>
-					<textarea name="observations" id="id_observations" cols="30" rows="7" class="form-control"></textarea>
+					<textarea name="observations" id="id_observations" cols="30" rows="7" class="form-control">{{ product.observations }}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="id_measures">Medidas</label>
-					<input type="text" name="measures" id="id_measures" cols="30" rows="7" class="form-control">
+					<input type="text" name="measures" id="id_measures" class="form-control" value="{{ product.measures }}">
 				</div>
 				<div class="form-group">
 					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="id_available" name="available">
+						<input type="checkbox" class="custom-control-input" id="id_available" name="available" {% if product.available %}checked{% endif %}>
 						<label class="custom-control-label" for="id_available">Disponibilidad</label>
 					</div>
 				</div>

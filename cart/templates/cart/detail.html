@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}DAWIPO - Orden en curso{% endblock %}
 {% block content %}
 <div class="row">
@@ -64,8 +65,8 @@
 								<button type="submit" class="btn btn-sm btn-primary ml-1">Cambiar</button>
 							</form>
 						</td>
-						<td>US${{ item.price }}</td>
-						<td>US${{ item.total_price }}</td>
+						<td>{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
+						<td>{{ request.user.profile.company.currency }}${{ item.total_price|intcomma }}</td>
 						<td class="pt-2">
 							<form action="{% url 'cart:cart_remove' product.id %}" method="post">
 								{% csrf_token %}

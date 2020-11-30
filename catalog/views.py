@@ -95,7 +95,7 @@ def create_product(request):
 		'categories': categories, 'customers': customers})
 
 class ProductList(ListView):
-	paginate_by = 10
+	# paginate_by = 10
 	model = Product
 	context_object_name = 'products'
 	template_name = 'catalog/product/product_list.html'

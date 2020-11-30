@@ -11,11 +11,10 @@ class Category(models.Model):
 
 	class Meta:
 		ordering = ('name',)
-		verbose_name = 'category'
 		verbose_name_plural = 'categories'
 
 	def __str__(self):
-		return self.name
+		return self.name + ' - ' + self.company.name
 
 	def get_absolute_url(self):
 		return reverse('catalog:product_list_by_category', args=[self.slug])
@@ -29,11 +28,11 @@ class Product(models.Model):
 	name = models.CharField(max_length=200, db_index=True)
 	slug = models.SlugField(max_length=200, db_index=True)
 	sku = models.CharField(max_length=20, db_index=True, blank=True, null=True)
-	barcode = models.IntegerField(null=True)
-	brand = models.CharField(max_length=50, null =True)
-	provider = models.CharField(max_length=50, null=True)
-	color = models.CharField(max_length=50, null=True)
-	measures = models.CharField(max_length=200, null=True)
+	barcode = models.IntegerField(null=True, blank=True)
+	brand = models.CharField(max_length=50, null =True, blank=True)
+	provider = models.CharField(max_length=50, null=True, blank=True)
+	color = models.CharField(max_length=50, null=True, blank=True)
+	measures = models.CharField(max_length=200, null=True, blank=True)
 	image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
 	description = models.TextField(blank=True, null=True)
 	observations = models.TextField(blank=True, null=True)

@@ -76,11 +76,11 @@
 				</div>
 				<div class="form-group">
 					<label for="id_price_2">Precio mayorista ({{ request.user.profile.company.currency }})</label>
-					<input type="text" name="price_2" id="id_price_2" class="form-control" value="{{ product.price_2 }}">
+					<input type="text" name="price_2" id="id_price_2" class="form-control" value="{% if product.price_2 %}{{ product.price_2 }}{% else %}0{% endif %}">
 				</div>
 				<div class="form-group">
 					<label for="id_price_3">Otro precio ({{ request.user.profile.company.currency }}) (Opcional)</label>
-					<input type="text" name="price_3" id="id_price_3" class="form-control" value="{{ product.price_3 }}">
+					<input type="text" name="price_3" id="id_price_3" class="form-control" value="{% if product.price_3 %}{{ product.price_3 }}{% else %}0{% endif %}">
 				</div>
 				<div class="form-group">
 					<label for="id_tax">Impuesto (%)</label>

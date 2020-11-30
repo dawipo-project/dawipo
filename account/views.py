@@ -205,7 +205,7 @@ def dashboard(request):
     reordered_values = reordered_values[:5]
     for i in range(len(reordered_keys)):
         product = Product.objects.get(name=reordered_keys[i])
-        reordered_values[i] = reordered_values[i] * product.retail_price
+        reordered_values[i] = reordered_values[i] * product.price_1
     products_dict = {reordered_keys[i]: reordered_values[i] for i in range(len(reordered_keys))}
     # Tabla de órdenes más cercanas
     closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(

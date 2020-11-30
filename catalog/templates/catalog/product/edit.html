@@ -43,7 +43,7 @@
 						<label class="custom-file-label" for="id_image" data-browse="Buscar...">Seleccionar imagen</label>
 					</div>
 					<br>
-					<small>Foto actual: {% if product.image %}<a href="{% if product.image %}{{ product.image.url }}{% endif %}">{{ product.image.url }}</a>{% else %}None{% endif %}</small>
+					<small>Foto actual: {% if product.image %}<a href="{% if product.image %}{{ product.image.url }}{% endif %}">{{ product.image.url }}</a>{% else %}Ninguna{% endif %}</small>
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="image-clear_id" name="image-clear">
 						<label class="custom-control-label" for="image-clear_id">Eliminar mi foto actual</label>

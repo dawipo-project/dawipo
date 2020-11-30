@@ -46,7 +46,6 @@
 			<table class="table table-hover table-borderless table-nowrap">
 				<thead>
 					<th scope="col">Nombre del producto</th>
-					<th scope="col">SKU</th>
 					<th scope="col">Cantidad</th>
 					<th scope="col">Precio unitario</th>
 					<th scope="col">Precio total</th>
@@ -56,7 +55,7 @@
 					{% for item in cart %}
 					{% with product=item.product %}
 					<tr>	
-						<td>{{ product.name }}</td>
+						<td>{{ product.name|truncatechars:20 }}</td>
 						<td>{{ product.sku }}</td>
 						<td class="pt-1">
 							<form action="{% url 'cart:cart_add' product.id %}" method="post" class="form-inline">

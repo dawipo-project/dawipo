@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}DAWIPO - Catálogo{% endblock %}
 {% block content %}
 <div class="row">
@@ -48,22 +49,17 @@
 			<table class="table table-hover table-borderless table-nowrap">
 				<thead>
 					<th scope="col">Nombre de producto</th>
-					<th scope="col">SKU</th>
 					<th scope="col">Categoría</th>
-					<th scope="col">Medidas</th>
-					<th scope="col">Precio retail</th>
-					<th scope="col">Precio neto de venta</th>
+					<th scope="col">Precio</th>
 					<th scope="col"></th>
 				</thead>
 				<tbody>
 					{% for product in products %}
 					<tr>	
 						<td>{{ product.name }}</td>
-						<td>{{ product.sku }}</td>
 						<td>{{ product.category.name }}</td>
-						<td>{{ product.measures }}</td>
-						<td>{{ request.user.profile.company.currency }}${{ product.retail_price }}</td>
-						<td>{{ request.user.profile.company.currency }}${{ product.whole_sale_price }}</td>
+						<td>{{ product.brand }}</td>
+						<td>{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</td>
 						<td class="text-primary"><a href="{{ product.get_absolute_url }}"><i class="uil-search"></i> Detalle</a></td>
 					</tr>
 					{% endfor %}

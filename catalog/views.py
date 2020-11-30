@@ -120,7 +120,8 @@ class CategoryProductList(ListView):
 	
 	def get_queryset(self):
 		self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-		return Product.objects.filter(category=self.category)
+		queryset = Product.objects.filter(category=self.category)
+		return queryset
 
 	@method_decorator(login_required)
 	def dispatch(self, *args, **kwargs):

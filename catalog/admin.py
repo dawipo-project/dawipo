@@ -35,9 +35,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-	list_display = ['name', 'slug', 'sku', 'color', 'retail_price', 'whole_sale_price', 
-	'available', 'created', 'updated']
+	list_display = ['name', 'slug', 'sku', 'color', 'price_1', 'price_2', 
+	'price_3', 'available', 'created', 'updated']
 	list_filter = ['available', 'color', 'created', 'updated']
-	list_editable = ['retail_price', 'whole_sale_price', 'available']
+	list_editable = ['price_1', 'price_2', 'price_3', 'available']
 	prepopulated_fields = {'slug': ('name',)}
 	actions = [export_to_csv]

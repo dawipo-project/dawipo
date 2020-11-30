@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}DAWIPO - {{ product.name }}{% endblock %}
 {% block content %}
 <div class="row">
@@ -30,19 +31,17 @@
 			<a href="{{ product.category.get_absolute_url }}" class="text-primary">{{ product.category.name }}</a>
 		</h5>
 		<div class="col-sm-12 col-lg-6 float-left text-center">
-			<h4><span class="text-secondary">Precio retail: </span>{{ request.user.profile.company.currency }}${{ product.retail_price }}</h4>
-			<h4><span class="text-secondary">Precio neto de venta: </span>{{ request.user.profile.company.currency }}${{ product.whole_sale_price }}</h4>
-		</div>
-		<div class="col-sm-12 col-lg-6 float-left text-center">
-			<h4><span class="text-secondary">SKU: </span>{{ product.sku }}</h4>
-			<h4><span class="text-secondary">Medidas: </span>{{ product.measures }}</h4>
+			<h4><span class="text-secondary">Precio: </span>{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h4>
 		</div>
 		{% if product.available %}
 		<h5>Disponible: <span class="text-success">Sí</span></h5>
 		{% else %}
 		<h5>Disponible: <span class="text-danger">No</span></h5>
 		{% endif %}
+		<h4 class="text-primary">Descripción:</h4>
 		<p>{{ product.description|linebreaks }}</p>
+		<h4 class="text-primary">Observaciones:</h4>
+		{{ product.observations|linebreaks }}
 		<a href="{% url 'catalog:product_edit' product.id product.slug %}" class="btn btn-primary mr-2">Editar item</a>
 	</div>
 </div>

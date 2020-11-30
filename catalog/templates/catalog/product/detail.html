@@ -30,7 +30,7 @@
 		<h5>
 			<a href="{{ product.category.get_absolute_url }}" class="text-primary">{{ product.category.name }}</a>
 		</h5>
-		<div class="col-sm-12 col-lg-6 float-left text-center">
+		<div class="col-sm-12 float-left text-center">
 			<h4><span class="text-secondary">Precio: </span>{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h4>
 		</div>
 		{% if product.available %}

@@ -58,7 +58,9 @@
 				<p class="card-text">
 					{{ product.description|truncatewords:20 }}
 				</p>
-				<h5><span class="text-success">Precio:</span> {{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h5>
+				<h5><span class="text-success">Precio retail:</span> {{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h5>
+				<h5><span class="text-success">Precio mayorista:</span> {% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}{% else %}No tiene{% endif %}</h5>
+				
 			</div>
 		</div>
 	</div>

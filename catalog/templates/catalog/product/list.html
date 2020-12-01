@@ -60,7 +60,9 @@
 				</p>
 				<h5><span class="text-success">Precio retail:</span> {{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h5>
 				<h5><span class="text-success">Precio mayorista:</span> {% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}{% else %}No tiene{% endif %}</h5>
-				
+				<h5><span class="text-success">Marca:</span> {% if product.brand %}{{ product.brand }}{% else %}No tiene{% endif %}</h5>
+				<h5><span class="text-success">Color:</span> {% if product.color %}{{ product.color }}{% else %}No tiene{% endif %}</h5>
+				<h5><span class="text-success">Medidas:</span> {% if product.measures %}{{ product.measures }}{% else %}No tiene{% endif %}</h5>
 			</div>
 		</div>
 	</div>

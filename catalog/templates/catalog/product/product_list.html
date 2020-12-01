@@ -61,8 +61,8 @@
 						<td>{{ product.name }}</td>
 						<td>{{ product.category.name }}</td>
 						<td>{% if product.brand %}{{ product.brand }}{% else %}No tiene{% endif %}</td>
-						<td>{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</td>
-						<td>{% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_2|intcomma }}{% else %}No tiene{% endif %}</td>
+						<td class="text-right">{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</td>
+						<td class="text-right">{% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_2|intcomma }}{% else %}No tiene{% endif %}</td>
 						<td class="text-primary"><a href="{{ product.get_absolute_url }}"><i class="uil-search"></i> Detalle</a></td>
 					</tr>
 					{% endfor %}

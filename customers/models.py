@@ -53,6 +53,7 @@ class Customer(models.Model):
 	city =  models.CharField(max_length=30)
 	zone = models.CharField(max_length=50, null=True, blank=True)
 	phone_number = models.CharField(max_length=30, null=True, blank=True)
+	cellphone = models.CharField(max_length=30, null=True, blank=True)
 	zipcode = models.CharField(max_length=10, null=True, blank=True)
 	first_name = models.CharField(max_length=20, null=True, blank=True)
 	last_name = models.CharField(max_length=20, null=True, blank=True)

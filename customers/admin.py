@@ -4,8 +4,7 @@ from.models import Customer, CustomerContact, DocumentType, Regime, PersonType
 # Register your models here.
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-	list_display = ['name', 'city', 'first_name', 'last_name', 'email',
-	'document', 'regime', 'person_type', 'cust_contact']
+	list_display = ['name', 'city', 'first_name', 'last_name', 'email', 'cust_contact']
 	list_filter = ['name', 'city']
 
 @admin.register(CustomerContact)

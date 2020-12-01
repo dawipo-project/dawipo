@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
-from .models import Customer
+from .models import Customer, DocumentType, Regime, PersonType, CustomerContact
 from catalog.models import Category
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -24,6 +24,10 @@ class CustomerRegistrationView(CreateView, LoginRequiredMixin):
 
 	def get_context_data(self, **kwargs):
 		context = super(CustomerRegistrationView, self).get_context_data(**kwargs)
+		context['document_types'] = DocumentType.objects.all()
+		context['regimes'] = Regime.objects.all()
+		context['person_types'] = PersonType.objects.all()
+		context['contacts'] = CustomerContact.objects.filter(company=self.request.user.profile.company)
 		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)
 		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
 		return context

@@ -6,28 +6,28 @@ class DocumentType(models.Model):
 	name = models.CharField(max_length=50)
 
 	class Meta:
-		ordering = ('name')
+		ordering = ('name',)
 
 	def __str__(self):
-		return f'Document type {self.contact}'
+		return f'{self.name}'
 
 class Regime(models.Model):
 	name = models.CharField(max_length=50)
 
 	class Meta:
-		ordering = ('name')
+		ordering = ('name',)
 
 	def __str__(self):
-		return f'Regime {self.name}'
+		return f'Régimen {self.name}'
 
 class PersonType(models.Model):
 	name = models.CharField(max_length=50)
 
 	class Meta:
-		ordering = ('name')
+		ordering = ('name',)
 
 	def __str__(self):
-		return f'{self.name} person'
+		return f'Persona {self.name}'
 
 class CustomerContact(models.Model):
 	contact = models.CharField(max_length=50)
@@ -37,7 +37,7 @@ class CustomerContact(models.Model):
 		ordering = ('contact',)
 
 	def __str__(self):
-		return f'Contacted by {self.contact}'
+		return f'{self.contact}'
 
 class Customer(models.Model):
 	company = models.ForeignKey(Company, related_name='company_customers', on_delete=models.CASCADE)

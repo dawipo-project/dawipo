@@ -51,31 +51,33 @@ class CustomerList(ListView, LoginRequiredMixin):
 
 def import_csv(request):
 	categories = Category.objects.filter(company=request.user.profile.company)
-	file = request.FILES
-	reader = csv.reader(file)
-	next(reader, None)
-	for row in reader:
-		try:
-			_, created = Customer.objects.get_or_create(
-				company=request.user.profile.company,
-				name=row[0],
-				document_type=row[1],
-				document=row[2],
-				regime=row[3],
-				person_type=row[4],
-				address=row[5],
-				city=row[6],
-				zone=row[7],
-				zipcode=row[8],
-				phone_number=row[9],
-				cellphone=row[10],
-				first_name=row[11],
-				last_name=row[12],
-				email=row[13],
-				internal_code=row[14],
-				active=True,
-				cust_contact=row[15]
-			)
-		except:
-			pass
-	return render(request, 'customers/imported.html', {'categories': categories})
+	if request.method == 'POST':
+		file = request.FILES
+		reader = csv.reader(file)
+		next(reader, None)
+		for row in reader:
+			try:
+				_, created = Customer.objects.get_or_create(
+					company=request.user.profile.company,
+					name=row[0],
+					document_type=row[1],
+					document=row[2],
+					regime=row[3],
+					person_type=row[4],
+					address=row[5],
+					city=row[6],
+					zone=row[7],
+					zipcode=row[8],
+					phone_number=row[9],
+					cellphone=row[10],
+					first_name=row[11],
+					last_name=row[12],
+					email=row[13],
+					internal_code=row[14],
+					active=True,
+					cust_contact=row[15]
+				)
+			except:
+				pass
+		return render(request, 'customers/imported.html', {'categories': categories})
+	return reverse_lazy('customers_list')

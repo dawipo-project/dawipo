@@ -95,6 +95,7 @@ def create_product(request):
 		'categories': categories, 'customers': customers})
 
 class ProductList(ListView):
+	paginate_by = 10
 	model = Product
 	context_object_name = 'products'
 	template_name = 'catalog/product/product_list.html'
@@ -103,7 +104,7 @@ class ProductList(ListView):
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
 
-	def queryset(self):
+	def get_queryset(self):
 		categories = Category.objects.filter(company=self.request.user.profile.company)
 		queryset = Product.objects.filter(category__in=categories)
 		return queryset
@@ -115,6 +116,7 @@ class ProductList(ListView):
 		return context
 
 class CategoryProductList(ListView):
+	paginate_by = 10
 	template_name = 'catalog/product/product_list.html'
 	context_object_name = 'products'
 	

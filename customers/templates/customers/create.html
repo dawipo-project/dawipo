@@ -42,28 +42,6 @@
 				<input type="text" name="document" id="id_document" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="id_regime">Régimen</label>
-				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_regime" name="regime">
-					<option>Selecciona un régimen...</option>
-					<optgroup label="Tipos de régimen">
-						{% for regime in regimes %}
-						<option value="{{ regime.id }}">{{ regime.name }}</option>
-						{% endfor %}
-					</optgroup>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="id_person_type">Tipo de Persona</label>
-				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_person_type" name="person_type">
-					<option>Selecciona un régimen...</option>
-					<optgroup label="Tipos de persona">
-						{% for person in person_types %}
-						<option value="{{ person.id }}">{{ person.name }}</option>
-						{% endfor %}
-					</optgroup>
-				</select>
-			</div>
-			<div class="form-group">
 				<label for="id_address">Dirección del cliente</label>
 				<input type="text" name="address" id="id_address" class="form-control" maxlength="200">
 			</div>
@@ -81,6 +59,28 @@
 			</div>
 		</div>
 		<div class="col-sm-12 col-lg-5 float-left">
+			<div class="form-group">
+				<label for="id_regime">Régimen</label>
+				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_regime" name="regime">
+					<option>Selecciona una opción...</option>
+					<optgroup label="Tipos de régimen">
+						{% for regime in regimes %}
+						<option value="{{ regime.id }}">Régimen {{ regime.name }}</option>
+						{% endfor %}
+					</optgroup>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="id_person_type">Tipo de Persona</label>
+				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_person_type" name="person_type">
+					<option>Selecciona una opción...</option>
+					<optgroup label="Tipos de persona">
+						{% for person in person_types %}
+						<option value="{{ person.id }}">Persona {{ person.name }}</option>
+						{% endfor %}
+					</optgroup>
+				</select>
+			</div>
 			<div class="form-group">
 				<label for="id_cust_contact">Origen del contacto</label>
 				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_cust_contact" name="cust_contact">

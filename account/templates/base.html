@@ -62,20 +62,6 @@
                     </li>
                     <li class="side-nav-item">
                         <a href="#" class="side-nav-link">
-                            <i class="uil-pen"></i>
-                            <span> Órdenes </span>
-                        </a>
-                        <ul class="side-nav-second-level" aria-expanded="false">
-                            <li>
-                                <a href="{% url 'orders:orders_product_list' %}">Nueva orden</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'orders:order_list' %}">Todas las órdenes</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="#" class="side-nav-link">
                             <i class="uil-user-circle"></i>
                             <span> Clientes</span>
                         </a>
@@ -85,6 +71,20 @@
                             </li>
                             <li>
                                 <a href="{% url 'customers:customer_list' %}">Todos los clientes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="#" class="side-nav-link">
+                            <i class="uil-pen"></i>
+                            <span> Órdenes </span>
+                        </a>
+                        <ul class="side-nav-second-level" aria-expanded="false">
+                            <li>
+                                <a href="{% url 'orders:orders_product_list' %}">Nueva orden</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'orders:order_list' %}">Todas las órdenes</a>
                             </li>
                         </ul>
                     </li>

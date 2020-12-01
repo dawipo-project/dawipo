@@ -30,7 +30,7 @@ export_to_csv.short_description = 'Export to CSV'
 # Register your models here.
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-	list_display = ['name', 'slug']
+	list_display = ['name', 'slug', 'company']
 	prepopulated_fields = {'slug': ('name',)}
 
 @admin.register(Product)

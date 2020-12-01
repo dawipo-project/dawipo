@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Clientes{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item active">Clientes</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Clientes
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<ul class="nav ml-2 mb-2">
+		<li class="nav-item mr-2">
+			<a href="{% url 'customers:customer_registration' %}" class="btn btn-primary btn-sm">
+				<i class="uil-plus-circle"></i>
+				Registrar cliente nuevo
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-sm-12 col-lg-12">
+		<div class="table-responsive">
+			<table class="table table-hover table-borderless table-nowrap">
+				<thead>
+					<th scope="col">ID de orden</th>
+					<th scope="col">Nombre de empresa</th>
+					<th scope="col">Nombre de contacto</th>
+					<th scope="col">Creada por</th>
+					<th scope="col">Precio total</th>
+					<th scope="col">Fecha de entrega</th>
+					<th scope="col">Estado</th>
+					<th scope="col"></th>
+				</thead>
+				<tbody>
+					{% for order in page_obj %}
+					<tr>
+						<td class="text-danger">{{ order.id }}</td>
+						<td>{{ order.customer.name }}</td>
+						<td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
+						<td>{{ order.user.get_full_name }}</td>
+						<td class="text-secondary">{{ request.user.profile.company.currency }}${{ order.get_total_cost }}</td>
+						<td>{{ order.due_date }}</td>
+						<td>
+							<h4 class="m-0">
+								{% if order.status == 'delivered' %}
+								<div class="badge badge-success">{{ order.get_status_display }}</div>
+								{% elif order.status == 'canceled' %}
+								<div class="badge badge-danger">{{ order.get_status_display }}</div>
+								{% elif order.status == 'pre-order' %}
+								<div class="badge badge-primary">{{ order.get_status_display }}</div>
+								{% elif order.status == 'confirmed' %}
+								<div class="badge badge-secondary">{{ order.get_status_display }}</div>
+								{% else %}
+								<div class="badge badge-info">{{ order.get_status_display }}</div>
+								{% endif %}
+							</h4>
+						</td>
+						<td class="pt-2">
+							<a href="{% url 'orders:order_detail' order.id %}" class="btn btn-outline-secondary btn-sm">
+								<i class="uil-search-alt"></i>
+								Detalle
+							</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<nav aria-label="Page navigation">
+			<ul class="pagination">
+				{% if page_obj.has_previous %}
+				<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+				{% endif %}
+				<li class="page-item active">
+					<a href="#" class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a>
+				</li>
+				{% if page_obj.has_next %}
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+	</div>
+</div>
+{% endblock %}

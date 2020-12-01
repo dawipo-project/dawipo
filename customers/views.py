@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 from .models import Customer
 from catalog.models import Category
 from django.utils.decorators import method_decorator
@@ -23,6 +24,22 @@ class CustomerRegistrationView(CreateView, LoginRequiredMixin):
 
 	def get_context_data(self, **kwargs):
 		context = super(CustomerRegistrationView, self).get_context_data(**kwargs)
+		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)
+		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
+		return context
+
+class CustomerList(ListView, LoginRequiredMixin):
+	model = Customer
+	paginate_by = 10
+	context_object_name = 'orders'
+	template_name = 'customers/list.html'
+
+	def get_queryset(self):
+		queryset = Customer.objects.filter(company=self.request.user.profile.company)
+		return queryset
+
+	def get_context_data(self, **kwargs):
+		context = super(CustomerList, self).get_context_data(**kwargs)
 		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)
 		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
 		return context

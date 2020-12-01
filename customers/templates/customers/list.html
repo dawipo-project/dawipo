@@ -46,11 +46,11 @@
 					<tr>
 						<td class="text-danger">{{ customer.id }}</td>
 						<td>{{ customer.name }}</td>
-						<td>{{ customer.document }}</td>
+						<td>{% if customer.document %}{{ customer.document }}{% else %}No tiene{% endif %}</td>
 						<td>{{ customer.city }}</td>
-						<td>{{ customer.zone }}$</td>
+						<td>{% if customer.zone %}{{ customer.zone }}{% else %}No tiene{% endif %}</td>
 						<td>{{ customer.email }}</td>
-						<td class="text-danger">{{ customer.internal_code }}</td>
+						<td class="text-danger">{% if customer.internal_code %}{{ customer.internal_code }}{% else %}No tiene{% endif %}</td>
 						<td class="pt-2">
 							<a href="#" class="btn btn-outline-secondary btn-sm">
 								<i class="uil-search-alt"></i>

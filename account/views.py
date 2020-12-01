@@ -281,7 +281,7 @@ def get_orders_per_month(order_changes, month_list):
     return orders_dict
 
 def get_months(month):
-    actual_month = month - 10
+    actual_month = month - 2
     months_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     months_list = (months_list[-actual_month:] + months_list[:-actual_month])

@@ -5,7 +5,7 @@ from.models import Customer, CustomerContact, DocumentType, Regime, PersonType
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
 	list_display = ['name', 'city', 'first_name', 'last_name', 'email',
-	'document', 'regime', 'person_type', 'contact']
+	'document', 'regime', 'person_type', 'cust_contact']
 	list_filter = ['name', 'city']
 
 @admin.register(CustomerContact)

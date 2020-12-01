@@ -8,6 +8,7 @@ from .forms import ProductEditForm, ProductCreateForm
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 @login_required
@@ -48,14 +49,10 @@ def edit(request, id, slug):
 	return render(request, 'catalog/product/edit.html', {'product_form': product_form, 'product': product,
 		'categories': categories, 'customers': customers})
 
-class CategoryCreate(CreateView):
+class CategoryCreate(CreateView, LoginRequiredMixin):
 	model = Category
 	fields = ['name']
 	template_name = 'catalog/category/add_category.html'
-
-	@method_decorator(login_required)
-	def dispatch(self, *args, **kwargs):
-		return super().dispatch(*args, **kwargs)
 
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company
@@ -94,15 +91,11 @@ def create_product(request):
 	return render(request, 'catalog/product/add_product.html', {'product_form': form,
 		'categories': categories, 'customers': customers})
 
-class ProductList(ListView):
+class ProductList(ListView, LoginRequiredMixin):
 	paginate_by = 10
 	model = Product
 	context_object_name = 'products'
 	template_name = 'catalog/product/product_list.html'
-
-	@method_decorator(login_required)
-	def dispatch(self, *args, **kwargs):
-		return super().dispatch(*args, **kwargs)
 
 	def get_queryset(self):
 		categories = Category.objects.filter(company=self.request.user.profile.company)
@@ -115,7 +108,7 @@ class ProductList(ListView):
 		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
 		return context
 
-class CategoryProductList(ListView):
+class CategoryProductList(ListView, LoginRequiredMixin):
 	paginate_by = 10
 	template_name = 'catalog/product/product_list.html'
 	context_object_name = 'products'
@@ -124,10 +117,6 @@ class CategoryProductList(ListView):
 		self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
 		queryset = Product.objects.filter(category=self.category)
 		return queryset
-
-	@method_decorator(login_required)
-	def dispatch(self, *args, **kwargs):
-		return super().dispatch(*args, **kwargs)
 
 	def get_context_data(self, **kwargs):
 		context = super(CategoryProductList, self).get_context_data(**kwargs)

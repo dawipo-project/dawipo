@@ -80,7 +80,7 @@ class Order(models.Model):
 
 	def get_total_tax(self):
 		if self.tax:
-			return sum(item.get_tax() for item in self.items.all())
+			return sum(((item.get_cost() / 100) * (100 - item.get_tax())) for item in self.items.all())
 		else:
 			return 0
 

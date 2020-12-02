@@ -5,6 +5,20 @@ from company.models import Company
 from django.contrib.auth.models import User
 
 # Create your models here.
+class OrderStatus(models.Model):
+	name = models.CharField(max_length=50, db_index=True)
+	es_name = models.CharField(max_length=50, null=True, blank=True)
+	slug = models.SlugField(max_length=50, db_index=True)
+
+	class Meta:
+		ordering = ('name',)
+
+	def __str__(self):
+		return f'Order status {self.name}'
+
+	def save(self):
+		self.slug = slugify(self.name)
+		super(OrderStatus, self).save()
 
 class Order(models.Model):
 	STATUS_CHOICES = (
@@ -46,10 +60,7 @@ class Order(models.Model):
 	tax = models.BooleanField()
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	status = models.CharField(max_length=25,
-		choices=STATUS_CHOICES,
-		default='pre-order'
-	)
+	status = models.ForeignKey(OrderStatus, related_name='order_status', on_delete=models.CASCADE, null=True, blank=True)
 
 	class Meta:
 		ordering = ('-created',)
@@ -57,8 +68,20 @@ class Order(models.Model):
 	def __str__(self):
 		return f'Order No. {self.id}'
 
+	def get_cost(self):
+		if self.tax:
+			return sum(item.get_cost() for item in self.items.all())
+		else:
+			return (sum(item.get_cost() for item in self.items.all())) - (sum(item.get_tax() for item in self.items.all()))
+
+	def get_total_tax(self):
+		if self.tax:
+			return sum(item.get_tax() for item in self.items.all())
+		else:
+			return 0
+
 	def get_total_cost(self):
-		return sum(item.get_cost() for item in self.items.all())
+
 
 class OrderChange(models.Model):
 	order = models.ForeignKey(Order, related_name='order_order_changes', on_delete=models.CASCADE)
@@ -77,6 +100,7 @@ class OrderItem(models.Model):
 	order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
 	product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
 	price = models.DecimalField(max_digits=20, decimal_places=2)
+	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, default=0)
 	quantity = models.PositiveIntegerField(default=1)
 
 	def __str__(self):
@@ -84,3 +108,6 @@ class OrderItem(models.Model):
 
 	def get_cost(self):
 		return self.price * self.quantity
+
+	def get_tax(self):
+		return self.tax * self.quantity

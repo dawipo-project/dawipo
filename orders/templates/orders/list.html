@@ -49,8 +49,8 @@
 				<p class="card-text">
 					{{ product.description|truncatewords:20 }}
 				</p>
-				<h5><span class="text-success">Precio retail:</span> {{ request.user.profile.company.currency }}${{ product.retail_price }}</h5>
-				<h5><span class="text-success">Precio neto de venta:</span> {{ request.user.profile.company.currency }}${{ product.whole_sale_price }}</h5>
+				<h5><span class="text-success">Precio retail:</span> {{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h5>
+				<h5><span class="text-success">Precio mayorista:</span> {% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}{% else %}No tiene{% endif %}</h5>
 				<hr>
 				<form action="{% url 'cart:cart_add' product.id %}" method="post">
 					{% csrf_token %}

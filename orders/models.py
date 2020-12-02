@@ -114,4 +114,4 @@ class OrderItem(models.Model):
 		return self.price * self.quantity
 
 	def get_tax(self):
-		return self.tax * self.quantity
+		return (self.price * (self.tax / 100)) * self.quantity

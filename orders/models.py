@@ -2,9 +2,22 @@ from django.db import models
 from catalog.models import Product
 from customers.models import Customer
 from company.models import Company
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+STATUS_CHOICES = (
+		('pre-order', 'Pre-orden'),
+		('confirmed', 'Confirmada'),
+		('awaiting-advance-payment', 'Esperando anticipo'),
+		('in-production', 'En Producción'),
+		('scheduled', 'Programada para despacho'),
+		('dispatched', 'Despachada'),
+		('delivered', 'Entregada'),
+		('canceled', 'Cancelada'),
+)
+
 class OrderStatus(models.Model):
 	name = models.CharField(max_length=50, db_index=True)
 	es_name = models.CharField(max_length=50, null=True, blank=True)
@@ -21,16 +34,6 @@ class OrderStatus(models.Model):
 		super(OrderStatus, self).save()
 
 class Order(models.Model):
-	STATUS_CHOICES = (
-		('pre-order', 'Pre-orden'),
-		('confirmed', 'Confirmada'),
-		('awaiting-advance-payment', 'Esperando anticipo'),
-		('in-production', 'En Producción'),
-		('scheduled', 'Programada para despacho'),
-		('dispatched', 'Despachada'),
-		('delivered', 'Entregada'),
-		('canceled', 'Cancelada'),
-	)
 	INCOTERM_CHOICES = (
 		('EXW', 'EXW'),
 		('FCA', 'FCA'),

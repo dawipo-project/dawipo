@@ -7,17 +7,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-STATUS_CHOICES = (
-		('pre-order', 'Pre-orden'),
-		('confirmed', 'Confirmada'),
-		('awaiting-advance-payment', 'Esperando anticipo'),
-		('in-production', 'En Producción'),
-		('scheduled', 'Programada para despacho'),
-		('dispatched', 'Despachada'),
-		('delivered', 'Entregada'),
-		('canceled', 'Cancelada'),
-)
-
 class OrderStatus(models.Model):
 	name = models.CharField(max_length=50, db_index=True)
 	es_name = models.CharField(max_length=50, null=True, blank=True)
@@ -36,6 +25,16 @@ class OrderStatus(models.Model):
 		super(OrderStatus, self).save()
 
 class Order(models.Model):
+	STATUS_CHOICES = (
+		('pre-order', 'Pre-orden'),
+		('confirmed', 'Confirmada'),
+		('awaiting-advance-payment', 'Esperando anticipo'),
+		('in-production', 'En Producción'),
+		('scheduled', 'Programada para despacho'),
+		('dispatched', 'Despachada'),
+		('delivered', 'Entregada'),
+		('canceled', 'Cancelada'),
+	)
 	INCOTERM_CHOICES = (
 		('EXW', 'EXW'),
 		('FCA', 'FCA'),
@@ -65,7 +64,7 @@ class Order(models.Model):
 	tax = models.BooleanField()
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	status = models.ForeignKey(OrderStatus, related_name='order_status', on_delete=models.CASCADE, null=True, blank=True)
+	status = models.CharField(max_length=25, choices=STATUS_CHOICES, default='pre-order')
 
 	class Meta:
 		ordering = ('-created',)

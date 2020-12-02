@@ -81,7 +81,7 @@
 					<tr>
 						<td class="text-secondary">Total</td>
 						<td colspan="2"></td>
-						<td class="text-secondary">US${{ cart.get_total_price|intcomma }}</td>
+						<td class="text-secondary">{{ request.user.profile.company.currency }}${{ cart.get_total_price|intcomma }}</td>
 					</tr>
 				</tbody>
 			</table>

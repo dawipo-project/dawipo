@@ -43,6 +43,7 @@ class Order(models.Model):
 	delivery_site = models.CharField(max_length=50, null=True, blank=True)
 	transport = models.CharField(max_length=9, choices=TRANSPORT_CHOICES, blank=True, null=True)
 	country_of_origin = models.CharField(max_length=20, null=True, blank=True)
+	tax = models.BooleanField()
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	status = models.CharField(max_length=25,

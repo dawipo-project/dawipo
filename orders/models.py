@@ -25,6 +25,8 @@ class OrderStatus(models.Model):
 
 	class Meta:
 		ordering = ('name',)
+		verbose_name = 'order status'
+		verbose_name_plural = 'order statuses'
 
 	def __str__(self):
 		return f'Order status {self.name}'

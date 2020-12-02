@@ -10,6 +10,7 @@ from .forms import OrderCreateForm, OrderEditForm
 from .tasks import order_created, order_edited
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from cart.cart import Cart
 import datetime
@@ -45,9 +46,10 @@ def order_create(request):
 				OrderItem.objects.create(order=order,
 					product=item['product'],
 					price=item['price'],
+					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
-			order_created.delay(order.id, request.user.email)
+			# order_created.delay(order.id, request.user.email)
 			return render(request, 'orders/created.html', {'order': order})
 	else:
 		form = OrderCreateForm()
@@ -104,4 +106,13 @@ def order_detail(request, order_id):
 	categories = Category.objects.filter(company=request.user.profile.company)
 	order = Order.objects.get(id=order_id)
 	items = OrderItem.objects.filter(order_id=order_id)
-	return render(request, 'orders/detail.html', {'order': order, 'items': items, 'categories': categories, 'customers': customers})
+	return render(request, 'orders/detail.html', {
+		'order': order, 
+		'items': items, 
+		'categories': categories, 
+		'customers': customers})
+
+@staff_member_required
+def admin_order_detail(request, order_id):
+	order = get_object_or_404(Order, id=order_id)
+	return render(request, 'admin/orders/detail.html', {'order': order})

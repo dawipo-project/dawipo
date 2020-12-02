@@ -57,7 +57,7 @@
 					{% csrf_token %}
 					<div class="form-group">
 						<label for="id_quantity"></label>
-						<input data-toggle="touchspin" type="number" value="1" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">
+						<input data-toggle="touchspin" type="number" value="1" data-bts-max="100000" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">
 						<input type="hidden" name="override" value="False" id="id_override">
 					</div>
 					<button type="submit" class="btn btn-secondary">

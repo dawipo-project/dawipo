@@ -54,6 +54,7 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
+			import pdb; pdb.set_trace()
 			items = OrderItem.objects.filter(order_id=order.id)
 			response = HttpResponse(content_type='application/pdf')
 			response['Content-Disposition'] = f'filename=order_{order.id}.pdf'

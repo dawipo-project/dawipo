@@ -17,10 +17,32 @@ class Order(models.Model):
 		('delivered', 'Delivered'),
 		('canceled', 'Canceled'),
 	)
+	INCOTERM_CHOICES = (
+		('EXW', 'EXW'),
+		('FCA', 'FCA'),
+		('CPT', 'CPT'),
+		('CIP', 'CIP'),
+		('DAP', 'DAP'),
+		('DPU', 'DPU'),
+		('DDP', 'DDP'),
+		('FAS', 'FAS'),
+		('FOB', 'FOB'),
+		('CFR', 'CFR'),
+		('CIF', 'CIF'),
+	)
+	TRANSPORT_CHOICES = (
+		('air', 'Aire'),
+		('road', 'Carretera'),
+		('ocean', 'Mar'),
+	)
 	company = models.ForeignKey(Company, related_name='company_orders', on_delete=models.CASCADE)
 	user = models.ForeignKey(User, related_name='order_author', on_delete=models.CASCADE)
 	customer = models.ForeignKey(Customer, related_name='order_customer', on_delete=models.CASCADE)
 	due_date = models.DateField()
+	incoterm = models.CharField(max_length=3, choices=INCOTERM_CHOICES, blank=True, null=True)
+	delivery_site = models.CharField(max_length=50, null=True, blank=True)
+	transport = models.CharField(max_length=9, choices=TRANSPORT_CHOICES, blank=True, null=True)
+	country_of_origin = models.CharField(max_length=20, null=True, blank=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	status = models.CharField(max_length=25,

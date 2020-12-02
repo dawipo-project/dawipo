@@ -21,7 +21,7 @@ class CustomerRegistrationView(CreateView, LoginRequiredMixin):
 		return super(CustomerRegistrationView, self).form_valid(form)
 
 	def get_success_url(self):
-		return reverse_lazy('orders:order_create')
+		return reverse_lazy('customers:customers_list')
 
 	def get_context_data(self, **kwargs):
 		context = super(CustomerRegistrationView, self).get_context_data(**kwargs)

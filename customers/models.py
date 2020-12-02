@@ -57,7 +57,7 @@ class Customer(models.Model):
 	cellphone = models.CharField(max_length=30, null=True, blank=True)
 	first_name = models.CharField(max_length=20, null=True, blank=True)
 	last_name = models.CharField(max_length=20, null=True, blank=True)
-	email = models.EmailField()
+	email = models.EmailField(null=True, blank=True)
 	internal_code = models.CharField(max_length=30, null=True, blank=True)
 	active = models.BooleanField(default=True)
 	cust_contact = models.ForeignKey(CustomerContact, on_delete=models.CASCADE, blank=True, null=True)

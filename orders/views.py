@@ -54,9 +54,10 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
+			items = OrderItem.objects.filter(order_id=order.id)
 			response = HttpResponse(content_type='application/pdf')
 			response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
-			html = render_to_string('orders/pdf.html', {'order': order, 'today': today})
+			html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items})
 			stylesheets = [
 				weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
 				weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')

@@ -20,3 +20,4 @@ class OrderChangeAdmin(admin.ModelAdmin):
 @admin.register(OrderStatus)
 class OrderStatusAdmin(admin.ModelAdmin):
 	list_display = ['name', 'es_name']
+	prepopulated_fields = {'slug': ('name',)}

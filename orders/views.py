@@ -1,19 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from catalog.models import Product, Category
-from customers.models import Customer
-from cart.forms import CartAddProductForm
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
-from .models import OrderItem, Order, OrderChange
-from .forms import OrderCreateForm, OrderEditForm
-from .tasks import order_created, order_edited
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from catalog.models import Product, Category
+from customers.models import Customer
+from cart.forms import CartAddProductForm
+from .tasks import order_created, order_edited
+from .forms import OrderCreateForm, OrderEditForm
+from .models import OrderItem, Order, OrderChange
 from cart.cart import Cart
 import datetime
+import weasyprint
+from io import BytesIO
 
 # Create your views here.
 def product_list(request, category_slug=None):
@@ -49,8 +54,16 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
+			response = HttpResponse(content_type='application/pdf')
+			response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
+			html = render_to_string('orders/pdf.html', {'order': order})
+			stylesheets = [
+				weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
+				weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
+			]
+			weasyprint.HTML(string=html).write_pdf(response, stylesheets=stylesheets)
 			# order_created.delay(order.id, request.user.email)
-			return render(request, 'orders/created.html', {'order': order})
+			return response
 	else:
 		form = OrderCreateForm()
 	return render(request, 'orders/create.html', {'cart': cart, 'form': form, 

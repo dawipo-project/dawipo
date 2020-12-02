@@ -52,16 +52,16 @@
 						<td>{{ order.due_date }}</td>
 						<td>
 							<h4 class="m-0">
-								{% if order.status.name == 'delivered' %}
-								<div class="badge badge-success">{{ order.status.name }}</div>
-								{% elif order.status.name == 'canceled' %}
-								<div class="badge badge-danger">{{ order.status.name }}</div>
-								{% elif order.status.name == 'pre-order' %}
-								<div class="badge badge-primary">{{ order.status.name }}</div>
-								{% elif order.status.name == 'confirmed' %}
-								<div class="badge badge-secondary">{{ order.status.name }}</div>
+								{% if order.status == 'delivered' %}
+								<div class="badge badge-success">{{ order.get_status_display }}</div>
+								{% elif order.status == 'canceled' %}
+								<div class="badge badge-danger">{{ order.get_status_display }}</div>
+								{% elif order.status == 'pre-order' %}
+								<div class="badge badge-primary">{{ order.get_status_display }}</div>
+								{% elif order.status == 'confirmed' %}
+								<div class="badge badge-secondary">{{ order.get_status_display }}</div>
 								{% else %}
-								<div class="badge badge-info">{{ order.status.name }}</div>
+								<div class="badge badge-info">{{ order.get_status_display }}</div>
 								{% endif %}
 							</h4>
 						</td>

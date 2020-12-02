@@ -8,14 +8,14 @@ from django.contrib.auth.models import User
 
 class Order(models.Model):
 	STATUS_CHOICES = (
-		('pre-order', 'Pre-order'),
-		('confirmed', 'Confirmed'),
-		('awaiting-advance-payment', 'Awaiting advance payment'),
-		('in-production', 'In Production'),
-		('scheduled', 'Scheduled for dispatch'),
-		('dispatched', 'Dispatched'),
-		('delivered', 'Delivered'),
-		('canceled', 'Canceled'),
+		('pre-order', 'Pre-orden'),
+		('confirmed', 'Confirmada'),
+		('awaiting-advance-payment', 'Esperando anticipo'),
+		('in-production', 'En Producción'),
+		('scheduled', 'Programada para despacho'),
+		('dispatched', 'Despachada'),
+		('delivered', 'Entregada'),
+		('canceled', 'Cancelada'),
 	)
 	INCOTERM_CHOICES = (
 		('EXW', 'EXW'),

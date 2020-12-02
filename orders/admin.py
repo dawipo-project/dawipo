@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderItem, OrderChange
+from .models import Order, OrderItem, OrderChange, OrderStatus
 
 # Register your models here.
 class OrderItemInline(admin.TabularInline):
@@ -16,3 +16,7 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(OrderChange)
 class OrderChangeAdmin(admin.ModelAdmin):
 	list_display = ['id', 'order', 'change', 'date']
+
+@admin.register(OrderStatus)
+class OrderStatusAdmin(admin.ModelAdmin):
+	list_display = ['name', 'es_name']

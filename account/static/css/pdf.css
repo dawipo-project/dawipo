@@ -15,6 +15,10 @@ body {
 	background-color: #fafbfe;
 	padding: 5px;
 }
+@page {
+    size: Letter;
+    margin: 0in 0.44in 0.2in 0.44in;
+}
 hr {
 	-webkit-box-sizing: content-box;
 	box-sizing: content-box;

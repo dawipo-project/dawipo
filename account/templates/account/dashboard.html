@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}DAWIPO - Home{% endblock %}
 {% block content %}
 <!-- Título -->
@@ -38,14 +39,14 @@
                             <p class="text-muted mb-1 mt-1">Año en curso</p>
                             <h2 class="font-weight-normal">
                                 <small class="mdi mdi-checkbox-blank-circle text-primary align-middle mr-1"></small>
-                                <span>${{ total_value|floatformat:"2" }}</span>
+                                <span>${{ total_value|intcomma }}</span>
                             </h2>
                         </div>
                         <div class="col-md-6">
                             <p class="text-muted mb-1 mt-1">Año anterior</p>
                             <h2 class="font-weight-normal">
                                 <small class="mdi mdi-checkbox-blank-circle text-warning align-middle mr-1"></small>
-                                <span>${{ past_year_value|floatformat:"2" }}</span>
+                                <span>${{ past_year_value|intcomma }}</span>
                             </h2>
                         </div>
                     </div>
@@ -326,7 +327,7 @@
                                 <tr>
                                     <td>{{ key }}</td>
                                     <td class="text-right">
-                                        ${{ value|floatformat:"2" }}
+                                        ${{ value|intcomma }}
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -352,19 +353,19 @@
                         <table class="table table-centered table-nowrap table-hover mb-0">
                             <tbody>
                                 <tr>
-                                    <th>
+                                    <th class="text-center">
                                         <h5 class="text-muted font-14 my-1">ID de Orden</h5>
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         <h5 class="text-muted font-14 my-1">Cliente</h5>
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         <h5 class="text-muted font-14 my-1">Precio total</h5>
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         <h5 class="text-muted font-14 my-1">Fecha de entrega</h5>
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         <h5 class="text-muted font-14 my-1">Estado</h5>
                                     </th>
                                 </tr>
@@ -376,8 +377,8 @@
                                     <td>
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
                                     </td>
-                                    <td>
-                                        <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost|floatformat:"2" }}</h5>
+                                    <td class="text-right">
+                                        <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost|intcomma }}</h5>
                                     </td>
                                     <td>
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>

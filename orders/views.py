@@ -40,7 +40,6 @@ def product_list(request, category_slug=None):
 def order_create(request):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
-	today = datetime.date.today()
 	cart = Cart(request)
 	if request.method == 'POST':
 		form = OrderCreateForm(request.POST)
@@ -56,21 +55,27 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
-			items = OrderItem.objects.filter(order_id=order.id)
-			response = HttpResponse(content_type='application/pdf')
-			response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
-			html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items})
-			stylesheets = [
-				weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
-				weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
-			]
-			weasyprint.HTML(string=html).write_pdf(response, stylesheets=stylesheets)
 			# order_created.delay(order.id, request.user.email)
-			return response
+			return render(request, 'orders/created.html', {'categories': categories, 'order': order})
 	else:
 		form = OrderCreateForm()
 	return render(request, 'orders/create.html', {'cart': cart, 'form': form, 
-		'customers': customers, 'categories': categories, 'today': today})
+		'customers': customers, 'categories': categories})
+
+@login_required
+def download_order_pdf(request, order_id):
+	today = datetime.date.today()
+	order = get_object_or_404(Order, id=order_id)
+	items = OrderItem.objects.filter(order_id=order_id)
+	response = HttpResponse(content_type='application/pdf')
+	response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
+	html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items})
+	stylesheets = [
+		weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
+		weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
+	]
+	weasyprint.HTML(string=html).write_pdf(response, stylesheets=stylesheets)
+	return response
 
 @login_required
 def order_edit(request, order_id):

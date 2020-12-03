@@ -21,6 +21,7 @@ import weasyprint
 from io import BytesIO
 
 # Create your views here.
+@login_required
 def product_list(request, category_slug=None):
 	categories = Category.objects.filter(company=request.user.profile.company)
 	# Esta vista filtra los productos para que no se pueda
@@ -35,6 +36,7 @@ def product_list(request, category_slug=None):
 		'products': products,
 		'cart_product_form': cart_form})
 
+@login_required
 def order_create(request):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
@@ -70,6 +72,7 @@ def order_create(request):
 	return render(request, 'orders/create.html', {'cart': cart, 'form': form, 
 		'customers': customers, 'categories': categories, 'today': today})
 
+@login_required
 def order_edit(request, order_id):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
@@ -98,6 +101,20 @@ def order_edit(request, order_id):
 	return render(request, 'orders/edit.html', {'form': edit_form, 'categories': categories, 
 		'customers': customers, 'order': order, 'items': order_items, 'today': today})
 
+# @login_required
+# def db_export_pdf(request):
+# 	closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(
+#         status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')
+# 	response = HttpResponse(content_type='application/pdf')
+# 	response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
+# 	html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items})
+# 	stylesheets = [
+# 		weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
+# 		weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
+# 	]
+# 	weasyprint.HTML(string=html).write_pdf(response, stylesheets=stylesheets)
+# 	# order_created.delay(order.id, request.user.email)
+# 	return response
 
 class OrderList(ListView, LoginRequiredMixin):
 	model = Order
@@ -115,6 +132,7 @@ class OrderList(ListView, LoginRequiredMixin):
 		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
 		return context
 
+@login_required
 def order_detail(request, order_id):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)

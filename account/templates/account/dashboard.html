@@ -371,19 +371,19 @@
                                 </tr>
                                 {% for order in closest_orders %}
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.id }}</h5>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
                                     </td>
                                     <td class="text-right">
                                         <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost|intcomma }}</h5>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <h4 class="my-1 font-weight-normal">
                                             {% if order.status == 'delivered' %}
                                             <div class="badge badge-success">{{ order.get_status_display }}</div>

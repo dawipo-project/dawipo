@@ -45,7 +45,7 @@
 					{% for customer in page_obj %}
 					<tr>
 						<td class="text-danger">{{ customer.id }}</td>
-						<td>{{ customer.name }}</td>
+						<td>{{ customer.name|truncatechars:"20" }}</td>
 						<td>{% if customer.document %}{{ customer.document }}{% else %}No tiene{% endif %}</td>
 						<td>{{ customer.city }}</td>
 						<td>{% if customer.zone %}{{ customer.zone }}{% else %}No tiene{% endif %}</td>

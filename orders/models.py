@@ -74,18 +74,18 @@ class Order(models.Model):
 
 	def get_cost(self):
 		if self.tax:
-			return (sum(item.get_cost() for item in self.items.all())) - (sum(item.get_tax() for item in self.items.all()))
+			return round((sum(item.get_cost() for item in self.items.all())) - (sum(item.get_tax() for item in self.items.all())), 2)
 		else:
-			return sum(item.get_cost() for item in self.items.all())
+			return round(sum(item.get_cost() for item in self.items.all()), 2)
 
 	def get_total_tax(self):
 		if self.tax:
-			return sum((item.get_cost() / 100) * item.tax for item in self.items.all())
+			return round(sum((item.get_cost() / 100) * item.tax for item in self.items.all()), 2)
 		else:
 			return 0
 
 	def get_total_cost(self):
-		return self.get_cost() + self.get_total_tax()
+		return round(self.get_cost() + self.get_total_tax(), 2)
 
 class OrderChange(models.Model):
 	order = models.ForeignKey(Order, related_name='order_order_changes', on_delete=models.CASCADE)
@@ -111,7 +111,7 @@ class OrderItem(models.Model):
 		return str(self.id)
 
 	def get_cost(self):
-		return self.price * self.quantity
+		return round(self.price * self.quantity, 2)
 
 	def get_tax(self):
-		return (self.price * (self.tax / 100)) * self.quantity
+		return round((self.price * (self.tax / 100)) * self.quantity, 2)

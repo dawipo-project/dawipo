@@ -41,7 +41,7 @@
 </div>
 <div class="row">
 	{% for product in products %}
-	<div class="col-sm-12 col-md-6 col-lg-4">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 		<div class="card">
 			<img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" alt="{{ product.slug }}" class="card-img-top">
 			<div class="card-body">

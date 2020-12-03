@@ -4026,6 +4026,14 @@ input[type="button"].btn-block {
   height: 14vw;
    }
 
+@media (min-width: 1420px) {
+  .card-img,
+  .card-img-top,
+  .card-img-bottom {
+    height: 20vw;
+  }
+}
+
 .card-img,
 .card-img-top {
   border-top-left-radius: calc(0.25rem - 1px);

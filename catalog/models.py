@@ -40,6 +40,7 @@ class Product(models.Model):
 	price_2 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0) # Separador de miles
 	price_3 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0) # Separador de miles
 	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, default=0)
+	fabrication_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0)
 	available = models.BooleanField(default=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)

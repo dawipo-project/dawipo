@@ -33,7 +33,7 @@ class Product(models.Model):
 	provider = models.CharField(max_length=50, null=True, blank=True)
 	color = models.CharField(max_length=50, null=True, blank=True)
 	measures = models.CharField(max_length=200, null=True, blank=True)
-	image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+	image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
 	observations = models.TextField(blank=True, null=True)
 	price_1 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0) # Separador de miles

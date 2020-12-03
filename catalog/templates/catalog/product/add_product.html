@@ -15,6 +15,7 @@
 			<h4 class="page-title text-comfortaa">
 				Agregar producto
 			</h4>
+			<p>Los campos obligatorios están marcados con un asterisco (<span class="text-danger">*</span>)</p>
 		</div>
 	</div>
 </div>
@@ -34,12 +35,12 @@
 		</div>
 		{% endfor %}
 		{% endif %}
-		<form method="post" enctype="multipart/form-data">
+		<form method="post" enctype="multipart/form-data" novalidate class="needs-validation">
 			{% csrf_token %}
 			<div class="col-sm-12 col-lg-6 float-left">
 				<div class="form-group">
-					<label for="id_category">Categoría</label>
-					<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_category" name="category">
+					<label for="id_category">Categoría <span class="text-danger">*</span></label>
+					<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_category" name="category" required>
 						<option>Selecciona una categoría...</option>
 						<optgroup label="Category">
 							{% for category in categories %}
@@ -47,23 +48,32 @@
 							{% endfor %}
 						</optgroup>
 					</select>
+					<div class="invalid-feedback">
+						Este campo es obligatorio.
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="id_name">Nombre de producto</label>
-					<input type="text" name="name" maxlength="200" id="id_name" class="form-control">
+					<label for="id_name">Nombre de producto <span class="text-danger">*</span></label>
+					<input type="text" name="name" maxlength="200" id="id_name" class="form-control" required>
+					<div class="invalid-feedback">
+						Este campo es obligatorio.
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="id_sku">SKU</label>
-					<input type="text" name="sku" maxlength="20" id="id_sku" class="form-control">
+					<label for="id_sku">SKU <span class="text-danger">*</span></label>
+					<input type="text" name="sku" maxlength="20" id="id_sku" class="form-control" required>
+					<div class="invalid-feedback">
+						Este campo es obligatorio.
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="id_barcode">Código de barras</label>
 					<input type="text" name="barcode" maxlength="20" id="id_barcode" class="form-control">
 				</div>
 				<div class="form-group">
-					<label>Imagen del producto</label>
+					<label>Imagen del producto </label>
 					<div class="custom-file">
-						<input type="file" class="custom-file-input" id="id_image" accept="image/*" name="image">
+						<input type="file" class="custom-file-input" id="id_image" accept="image/*" name="image" required>
 						<label class="custom-file-label" for="id_image" data-browse="Buscar...">Seleccionar imagen</label>
 					</div>
 					<script>

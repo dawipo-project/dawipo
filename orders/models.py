@@ -73,10 +73,7 @@ class Order(models.Model):
 		return f'Order No. {self.id}'
 
 	def get_cost(self):
-		if self.tax:
-			return round((sum(item.get_cost() for item in self.items.all())) - (sum(item.get_tax() for item in self.items.all())), 2)
-		else:
-			return round(sum(item.get_cost() for item in self.items.all()), 2)
+		return round((sum(item.get_cost() for item in self.items.all())) - (sum(item.get_tax() for item in self.items.all())), 2)
 
 	def get_total_tax(self):
 		if self.tax:

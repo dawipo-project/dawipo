@@ -22,7 +22,7 @@
         <h2 class="text-comfortaa">La orden ha sido creada satisfactoriamente</h2>
         <p>Tu orden con el ID No. <span class="text-danger">{{ order.id }}</span> ha sido creada con éxito!</p>
     </div>
-    <div class="col-sm-12 col-lg-6 offset-lg-3 mb-3">
+    <div class="col-sm-12 col-lg-6 offset-lg-3 mb-3 align-items-center text-center">
         <a href="{% url 'orders:get_pdf' order.id %}" class="btn btn-lg btn-outline-primary" target="_blank">
             <i class="uil-file-download-alt"></i>
             Haz clic aquí para descargar la preforma en PDF

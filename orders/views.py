@@ -55,7 +55,7 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
-			# order_created.delay(order.id, request.user.email)
+			order_created.delay(order.id, request.user.email)
 			return render(request, 'orders/created.html', {'categories': categories, 'order': order})
 	else:
 		form = OrderCreateForm()

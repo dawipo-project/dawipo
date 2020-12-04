@@ -74,7 +74,7 @@ def download_order_pdf(request, order_id):
 		weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
 		weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
 	]
-	weasyprint.HTML(string=html).write_pdf(response, stylesheets=stylesheets)
+	weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, stylesheets=stylesheets)
 	return response
 
 @login_required

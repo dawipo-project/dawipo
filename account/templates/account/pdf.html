@@ -1,0 +1,49 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div class="row">
+		<div class="img-logo">
+			<img src="{{ request.user.profile.company.logo.url }}" 
+			alt="{{ request.user.profile.company.name }}" class="img-logo-img">
+		</div>
+		<div class="title">
+			<h3>Órdenes próximas a entrega</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="date">
+			Fecha: {{ today|date:'D, d - F - Y' }}
+		</div>
+	</div>
+	<div class="row">
+		<table>
+			<thead class="head-borders">
+				<tr>
+					<th class="side-borders">ID de Orden</th>
+					<th class="side-borders">Cliente</th>
+					<th class="side-borders">Precio total</th>
+					<th class="side-borders">Fecha de entrega</th>
+					<th class="side-borders">Estado</th>
+				</tr>
+			</thead>
+			<tbody class="all-borders">
+				{% for order in orders %}
+				<tr>
+					<td class="side-borders">{{ order.id }}</td>
+					<td class="side-borders">{{ order.customer.name }}</td>
+					<td class="side-borders align-right">{{ request.user.profile.company.currency }}${{ order.get_total_cost|intcomma }}</td>
+					<td class="side-borders align-right">{{ order.due_date }}</td>
+					<td class="side-borders align-right">{{ order.get_status_display }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

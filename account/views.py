@@ -15,7 +15,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.contrib import messages
-from django.urls import reverse
+from django.urls import reverse_lazy
 # Apps de Dawipo
 from .forms import LoginForm, UserEditForm, ProfileEditForm
 from .models import Profile
@@ -321,7 +321,7 @@ def edit(request):
             user_form.save()
             profile_form.save()
             messages.success(request, '¡Tu perfil ha sido editado exitosamente!')
-            return reverse('dashboard')
+            return reverse_lazy('dashboard')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)

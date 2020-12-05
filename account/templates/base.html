@@ -422,11 +422,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <ul class="messages">
-                    {% for message in messages %}
-                    <p class="text-{{ message.tags }}">{{ message }}</p>
-                    {% endfor %}
-                </ul>
+                {% for message in messages %}
+                <p class="text-{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>

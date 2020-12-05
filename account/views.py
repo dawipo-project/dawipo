@@ -269,11 +269,12 @@ def dashboard(request):
 
 @login_required
 def db_export_pdf(request):
+    today = datetime.date.today()
     closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(
         status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')[:20]
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = f'filename=closest_orders.pdf'
-    html = render_to_string('account/pdf.html', {'orders': closest_orders, 'request': request})
+    html = render_to_string('account/pdf.html', {'orders': closest_orders, 'today': today, 'request': request})
     stylesheets = [
         weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
         weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')

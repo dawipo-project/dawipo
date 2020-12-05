@@ -8,7 +8,7 @@
 <body>
 	<div class="row">
 		<div class="img-logo">
-			<img src="{{ request.user.profile.company.logo.url }}" 
+			<img src="{{ logo_url|safe }}" 
 			alt="{{ request.user.profile.company.name }}" height="120">
 		</div>
 		<div class="title">

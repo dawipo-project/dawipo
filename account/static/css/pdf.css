@@ -156,5 +156,6 @@ td {
 	border: 1px solid black;
 }
 .img-logo {
-	height: 10em;
+	max-height: 10em;
+	margin-left: 3em;
 }

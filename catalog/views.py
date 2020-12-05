@@ -9,6 +9,8 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 # Create your views here.
 @login_required
@@ -40,6 +42,7 @@ def edit(request, id, slug):
 		product_form = ProductEditForm(instance=product, data=request.POST, files=request.FILES)
 		if product_form.is_valid():
 			product_form.save()
+			messages.success(request, f'¡El producto {product.name} ha sido editado exitosamente!')
 			return render(request, 'catalog/product/list.html', {'categories': categories, 'customers': customers, 'products': products})
 		product_form = ProductEditForm()
 		return render(request, 'catalog/product/edit.html', {'product_form': product_form, 'product': product,
@@ -49,10 +52,11 @@ def edit(request, id, slug):
 	return render(request, 'catalog/product/edit.html', {'product_form': product_form, 'product': product,
 		'categories': categories, 'customers': customers})
 
-class CategoryCreate(CreateView, LoginRequiredMixin):
+class CategoryCreate(CreateView, LoginRequiredMixin, SuccessMessageMixin):
 	model = Category
 	fields = ['name']
 	template_name = 'catalog/category/add_category.html'
+	success_message = '¡La categoría ha sido registrada exitosamente!'
 
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company
@@ -81,6 +85,7 @@ def create_product(request):
 			product = form.save(commit=False)
 			product.category = category
 			product.save()
+			messages.success(request, f'¡El producto {product.name} ha sido registrado exitosamente!')
 			return render(request, 'catalog/product/list.html', {
 				'categories': categories,
 				'customers': customers,

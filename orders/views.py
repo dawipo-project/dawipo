@@ -19,6 +19,7 @@ from cart.cart import Cart
 import datetime
 import weasyprint
 from io import BytesIO
+from django.contrib import messages
 
 # Create your views here.
 @login_required
@@ -102,6 +103,7 @@ def order_edit(request, order_id):
 				)
 				order_edited.delay(order.id, new_status)
 			edit_form.save()
+			messages.success(request, f'¡La orden {order.id} ha sido editada exitosamente!')
 			return redirect('orders:order_detail', order.id)
 	else:
 		edit_form = OrderEditForm(instance=order)

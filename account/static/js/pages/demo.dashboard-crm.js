@@ -1,3 +1,7 @@
+$(window).load(function(){
+    $('#messageModal').modal('show');
+});
+
 var colors = ["#fb9334", "#fe6625", "#007a7a", "#003f5a"],
     dataColors = $("#campaign-sent-chart").data("colors");
 dataColors && (colors = dataColors.split(","));

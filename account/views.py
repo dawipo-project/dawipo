@@ -270,7 +270,7 @@ def dashboard(request):
 @login_required
 def db_export_pdf(request):
     closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(
-        status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')[:10]
+        status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')[:20]
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = f'filename=closest_orders.pdf'
     html = render_to_string('account/pdf.html', {'orders': closest_orders, 'request': request})

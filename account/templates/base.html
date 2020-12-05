@@ -413,9 +413,10 @@
 <div class="rightbar-overlay"></div>
 {% if messages %}
 <div class="modal fade" id="messageModal" role="dialog">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
+                <h3>¡Genial!</h3>
                 {% for message in messages %}
                 <p class="text-{{ message.tags }}">{{ message }}</p>
                 {% endfor %}

@@ -50,7 +50,7 @@
 <div class="row">
 	{% for product in products %}
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-		<div class="card">
+		<div class="card h-100">
 			<img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" alt="{{ product.slug }}" class="card-img-top">
 			<div class="card-body">
 				<h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>

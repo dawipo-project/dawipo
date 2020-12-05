@@ -155,7 +155,7 @@ td {
 .all-borders {
 	border: 1px solid black;
 }
-.img-logo {
-	max-height: 10em;
+.img-logo-img {
+	max-width: 90%;
 	margin-left: 3em;
 }

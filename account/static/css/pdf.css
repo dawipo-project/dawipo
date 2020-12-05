@@ -155,3 +155,6 @@ td {
 .all-borders {
 	border: 1px solid black;
 }
+.img-logo {
+	max-height: 4em;
+}

@@ -71,7 +71,7 @@ def download_order_pdf(request, order_id):
 	response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
 	logo_url = request.build_absolute_uri()
 	logo_url += request.user.profile.company.logo.url
-	html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items, 'logo_url': logo_url})
+	html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items, 'logo_url': logo_url}, request=request)
 	stylesheets = [
 		weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
 		weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')

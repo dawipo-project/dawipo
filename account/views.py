@@ -14,6 +14,8 @@ from django.db.models import Count, Q
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.contrib import messages
+from django.urls import reverse
 # Apps de Dawipo
 from .forms import LoginForm, UserEditForm, ProfileEditForm
 from .models import Profile
@@ -318,6 +320,8 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            messages.success(request, '¡Tu perfil ha sido editado exitosamente!')
+            return reverse('dashboard')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)

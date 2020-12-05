@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/icons.css' %}" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/vendor/apexcharts.min.js'%}" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false}'>
     <div class="wrapper">
@@ -412,20 +413,29 @@
 
 <div class="rightbar-overlay"></div>
 {% if messages %}
-<div class="modal fade" id="messageModal" role="dialog">
+<!-- <div class="modal fade" id="messageModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center align-items-center">
                 <h3>¡Genial!</h3>
-                {% for message in messages %}
+                { for message in messages }
                 <p class="text-{{ message.tags }}">{{ message }}</p>
-                {% endfor %}
+                { endfor }
                 <hr>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<script>
+Swal.fire(
+  '¡Genial!',
+  {% for message in messages %}
+  '{{ message }}',
+  '{{ message.tags }}',
+  {% endfor %}
+)
+</script>
 {% endif %}
 <script src="{% static 'js/vendor.js'%}" type="text/javascript"></script>
 <script src="{% static 'js/app.js'%}" type="text/javascript"></script>

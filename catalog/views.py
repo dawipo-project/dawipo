@@ -52,7 +52,7 @@ def edit(request, id, slug):
 	return render(request, 'catalog/product/edit.html', {'product_form': product_form, 'product': product,
 		'categories': categories, 'customers': customers})
 
-class CategoryCreate(CreateView, LoginRequiredMixin, SuccessMessageMixin):
+class CategoryCreate(SuccessMessageMixin, CreateView, LoginRequiredMixin):
 	model = Category
 	fields = ['name']
 	template_name = 'catalog/category/add_category.html'

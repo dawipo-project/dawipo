@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
-class CustomerRegistrationView(CreateView, LoginRequiredMixin, SuccessMessageMixin):
+class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMixin):
 	model = Customer
 	template_name = 'customers/create.html'
 	fields = ['name', 'address', 'city', 'zipcode',

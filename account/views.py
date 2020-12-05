@@ -2,6 +2,8 @@
 import datetime
 # NumPy
 import numpy as np
+#WeasyPrint
+import weasyprint
 # Django
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -9,6 +11,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 # Apps de Dawipo
 from .forms import LoginForm, UserEditForm, ProfileEditForm
 from .models import Profile
@@ -261,6 +266,19 @@ def dashboard(request):
         'confirmed_units': confirmed_units,
         'dispatched_units': dispatched_units
         })
+
+def db_export_pdf(request):
+    closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(
+        status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')[:10]
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'filename=closest_orders.pdf'
+    html = render_to_string('account/pdf.html', {'orders': closest_orders})
+    stylesheets = [
+        weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
+        weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
+    ]
+    weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, stylesheets=stylesheets)
+    return response
 
 def create_cust_dict(customers):
     customer_dict = {}

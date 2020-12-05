@@ -321,7 +321,6 @@ def edit(request):
             user_form.save()
             profile_form.save()
             messages.success(request, '¡Tu perfil ha sido editado exitosamente!')
-            return reverse_lazy(dashboard)
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)

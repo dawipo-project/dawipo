@@ -118,7 +118,7 @@ class UpdateOrderItem(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 	def get_success_url(self):
 		order = Order.objects.get(id=self.object.order.id)
-		return reverse_lazy('orders:order_detail', args=[order.id])
+		return reverse_lazy('orders:order_edit', args=[order.id])
 
 class OrderList(ListView, LoginRequiredMixin):
 	model = Order

@@ -125,7 +125,7 @@
 								<th scope="col"></th>
 							</thead>
 							<tbody>
-								{% for item in order.items %}
+								{% for item in order_items %}
 								{% with product=item.product %}
 								<tr>	
 									<td>{{ product.name|truncatechars:20 }}</td>

@@ -17,6 +17,7 @@ from django.http import HttpResponse
 # Create your views here.
 @login_required
 def export_csv(request):
+	import pdb; pdb.set_trace()
 	categories = Category.objects.filter(company=request.user.profile.company)
 	queryset = Product.objects.filter(category__in=categories)
 	response = HttpResponse(content_type='text/csv')

@@ -17,7 +17,6 @@ from django.http import HttpResponse
 # Create your views here.
 @login_required
 def export_csv(request):
-	import pdb; pdb.set_trace()
 	categories = Category.objects.filter(company=request.user.profile.company)
 	queryset = Product.objects.filter(category__in=categories)
 	response = HttpResponse(content_type='text/csv')
@@ -37,7 +36,8 @@ def product_list(request, category_slug=None):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
 	products = Product.objects.filter(category__in=categories)
-	if category_slug:
+	import pdb; pdb.set_trace()
+	if category_slug is not None:
 		category = get_object_or_404(Category, slug=category_slug)
 		products = products.filter(category=category)
 		return render(request, 'catalog/product/list.html', {'category': category,  

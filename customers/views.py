@@ -17,6 +17,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
 @login_required
 def export_csv(request):
+	import pdb; pdb.set_trace()
 	queryset = Customer.objects.filter(company=request.user.profile.company)
 	response = HttpResponse(content_type='text/csv')
 	response['Content-Disposition'] = 'attachment; filename=clientes.csv'

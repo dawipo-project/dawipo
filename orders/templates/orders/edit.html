@@ -129,8 +129,12 @@
 								<tr>	
 									<td>{{ item.product.name|truncatechars:20 }}</td>
 									<td>{{ item.quantity }}</td>
-									<td>{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
-									<td>{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
+									<td class="text-right align-items-right">{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
+									<td class="text-right align-items-right">{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
+									<td><a href="#" class="text-secondary">
+										<i class="uil-pen"></i>
+										Editar cantidad
+									</a></td>
 								</tr>
 								{% endfor %}
 								<tr>

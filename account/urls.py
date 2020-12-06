@@ -14,4 +14,5 @@ urlpatterns = [
     path('password_change_done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'), 
     path('edit/', views.edit, name='edit'), 
     path('closest_orders/', views.db_export_pdf, name='db_export_pdf'), 
+    path('closest_orders/', views.db_export_excel, name='db_export_excel'), 
 ]

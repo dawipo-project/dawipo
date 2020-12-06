@@ -1,5 +1,6 @@
 # Python
 import datetime
+import csv
 # NumPy
 import numpy as np
 #WeasyPrint
@@ -283,6 +284,19 @@ def db_export_pdf(request):
     ]
     weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response, stylesheets=stylesheets)
     return response
+
+@login_required
+def db_export_excel(request):
+    closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(
+        status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'filename=closest_orders.csv'
+    writer = csv.writer(response)
+    writer.writerow(['Id de Orden', 'Cliente', 'Precio total', 'Fecha de entrega', 'Estado'])
+    for order in closest_orders:
+        writer.writerow([order.id, order.customer.name, order.get_total_cost, order.due_date, order.get_status_display])
+    return response
+
 
 def create_cust_dict(customers):
     customer_dict = {}

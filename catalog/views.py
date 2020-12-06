@@ -36,8 +36,7 @@ def product_list(request, category_slug=None):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
 	products = Product.objects.filter(category__in=categories)
-	import pdb; pdb.set_trace()
-	category = Category.objects.get(slug=category_slug)
+	category = Category.objects.filter(slug=category_slug)[0]
 	if category:
 		products = products.filter(category=category)
 		return render(request, 'catalog/product/list.html', {'category': category,  

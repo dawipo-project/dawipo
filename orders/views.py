@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -109,6 +110,11 @@ def order_edit(request, order_id):
 		edit_form = OrderEditForm(instance=order)
 	return render(request, 'orders/edit.html', {'form': edit_form, 'categories': categories, 
 		'customers': customers, 'order': order, 'items': order_items, 'today': today})
+
+class UpdateOrderItem(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+	model = OrderItem
+	fields = ['quantity']
+	success_message = '¡Los items de la orden han sido actualizados!'
 
 class OrderList(ListView, LoginRequiredMixin):
 	model = Order

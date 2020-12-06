@@ -135,7 +135,7 @@
 									<td>{{ item.quantity }}</td>
 									<td class="text-right align-items-right">{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
 									<td class="text-right align-items-right">{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
-									<td class="text-right align-items-right"><a href="#" class="text-secondary">
+									<td class="text-right align-items-right"><a href="{% url 'orders:order_item_edit' item.id %}" class="text-secondary">
 										<i class="uil-pen"></i>
 										Editar cantidad
 									</a></td>

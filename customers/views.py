@@ -24,8 +24,8 @@ def export_csv(request):
 	writer.writerow(['Nombre', 'Tipo de documento', 'Documento', 'Régimen', 'Persona',
     	'Dirección', 'Ciudad', 'Zona', 'Código Postal', 'Teléfono', 'Celular', 
     	'Nombre del contacto', 'Apellido del contacto', 'Email', 'Código interno', 'Medio de contacto'])
-	import pdb; pdb.set_trace()
 	for item in queryset:
+		import pdb; pdb.set_trace()
 		writer.writerow([item.name, item.document_type.name, item.document, item.regime.name, item.person_type.name, 
 			item.address, item.city, item.zone, item.zipcode, item.phone_number, item.cellphone, item.first_name,
         	item.last_name, item.email, item.email, item.internal_code, item.cust_contact.contact])

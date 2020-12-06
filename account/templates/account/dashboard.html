@@ -344,10 +344,10 @@
         <div class="card-deck">
             <div class="card">
                 <div class="card-body">
-                    <a href="{% url 'db_export_pdf' %}" class="btn btn-sm btn-link float-right mb-3" target="_blank">Exportar PDF
+                    <a href="{% url 'db_export_pdf' %}" class="btn btn-sm btn-link float-right mb-3" target="_blank" tabindex="0" data-toggle="popover" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">Exportar PDF
                         <i class="mdi mdi-download ml-1"></i>
                     </a>
-                    <a href="{% url 'db_export_excel' %}" class="btn btn-sm btn-link float-right mb-3" target="_blank" download="ClosestOrders">Exportar a Excel
+                    <a href="{% url 'db_export_excel' %}" class="btn btn-sm btn-link float-right mb-3" download="ClosestOrders" tabindex="0" data-toggle="popover" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">Exportar a Excel
                         <i class="mdi mdi-download ml-1"></i>
                     </a>
                     <h4 class="header-title mt-2 text-comfortaa">Órdenes próximas a entrega</h4>

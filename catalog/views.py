@@ -21,6 +21,7 @@ def export_csv(request):
 	queryset = Product.objects.filter(category__in=categories)
 	response = HttpResponse(content_type='text/csv')
 	response['Content-Disposition'] = f'filename=productos.csv'
+	import pdb; pdb.set_trace()
 	writer = csv.writer(response)
 	writer.writerow(['Id de Producto', 'Categoría', 'Nombre del producto', 'SKU', 'Código de barras',
     	'Marca', 'Proveedor', 'Color', 'Medidas', 'Descripción', 'Observaciones', 'Precio 1', 'Precio 2',
@@ -29,7 +30,6 @@ def export_csv(request):
 		writer.writerow([item.id, item.category.name, item.name, item.sku, item.barcode, item.brand,
         	item.provider, item.color, item.measures, item.description, item.observations, item.price_1,
         	item.price_2, item.price_3, item.tax, item.fabrication_cost])
-	import pdb; pdb.set_trace()
 	return response
 
 @login_required

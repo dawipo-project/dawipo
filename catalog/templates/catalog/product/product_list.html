@@ -42,7 +42,7 @@
 			</a>
 		</li>
 		<li class="nav-item">
-			<a href="{% url 'catalog:export_csv' products %}" class="btn btn-secondary btn-sm" download="ClosestOrders" tabindex="0" data-toggle="popover" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">
+			<a href="{% if category %}{% url 'catalog:export_csv' category.slug %}{% else %}{% url 'catalog:export_all_csv' %}{% endif %}" class="btn btn-secondary btn-sm" download="ClosestOrders" tabindex="0" data-toggle="popover" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">
 				<i class="uil-file"></i>
 				Exportar a Excel
 			</a>

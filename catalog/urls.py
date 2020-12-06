@@ -13,5 +13,6 @@ urlpatterns = [
 	path('catalog/', views.product_list, name='product_list'),
 	path('catalog/<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
 	path('catalog/<int:id>/<slug:slug>/edit/', views.edit, name='product_edit'),
-	path('catalog/export_csv/', views.export_csv, name='export_csv'),
+	path('catalog/export_csv/', views.export_csv, name='export_all_csv'),
+	path('catalog/<slug:slug>/export_csv/', views.export_csv, name='export_csv'),
 ]

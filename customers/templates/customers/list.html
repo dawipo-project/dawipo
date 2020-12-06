@@ -25,6 +25,12 @@
 				Registrar cliente nuevo
 			</a>
 		</li>
+		<li class="nav-item mt-sm-2 mt-lg-0">
+			<a href="{% url 'customers:export_csv' %}" class="btn btn-success btn-sm" tabindex="0" data-toggle="popover" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">
+				<i class="uil-file"></i>
+				Exportar a Excel
+			</a>
+		</li>
 	</ul>
 </div>
 <div class="row">

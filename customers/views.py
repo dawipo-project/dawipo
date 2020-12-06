@@ -8,12 +8,28 @@ from .models import Customer, DocumentType, Regime, PersonType, CustomerContact
 from catalog.models import Category
 from orders.models import Order
 import csv
+from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
+@login_required
+def export_csv(request):
+	queryset = Customer.objects.filter(company=request.user.profile.company)
+	response = HttpResponse(content_type='text/csv')
+	response['Content-Disposition'] = 'attachment; filename=clientes.csv'
+	writer = csv.writer(response)
+	writer.writerow(['Nombre', 'Tipo de documento', 'Documento', 'Régimen', 'Persona',
+    	'Dirección', 'Ciudad', 'Zona', 'Código Postal', 'Teléfono', 'Celular', 
+    	'Nombre del contacto', 'Apellido del contacto', 'Email', 'Código interno', 'Medio de contacto'])
+	for item in queryset:
+		writer.writerow([item.name, item.document_type.name, item.document, item.regime.name, item.person_type.name, 
+			item.address, item.city, item.zone, item.zipcode, item.phone_number, item.cellphone, item.first_name,
+        	item.last_name, item.email, item.email, item.internal_code, item.cust_contact.contact])
+	return response
+
 class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMixin):
 	model = Customer
 	template_name = 'customers/create.html'

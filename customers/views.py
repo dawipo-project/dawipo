@@ -26,20 +26,20 @@ def export_csv(request):
     	'Nombre del contacto', 'Apellido del contacto', 'Email', 'Código interno', 'Medio de contacto'])
 	for item in queryset:
 		writer.writerow([item.name, 
-			item.document_type.name if item.document_type else 'No tiene', 
-			item.document if item.document else 'No tiene', 
-			item.regime.name if item.regime else 'No tiene', 
-			item.person_type.name if item.person_type else 'No tiene', 
+			item.document_type.name if item.document_type else '', 
+			item.document if item.document else '', 
+			item.regime.name if item.regime else '', 
+			item.person_type.name if item.person_type else '', 
 			item.address, item.city, 
-			item.zone if item.zone else 'No tiene', 
-			item.zipcode if item.zipcode else 'No tiene', 
-			item.phone_number if item.phone_number else 'No tiene', 
-			item.cellphone if item.cellphone else 'No tiene', 
-			item.first_name if item.first_name else 'No tiene',
-        	item.last_name if item.last_name else 'No tiene', 
-        	item.email if item.email else 'No tiene', 
-        	item.internal_code if item.internal_code else 'No tiene', 
-        	item.cust_contact.contact if item.cust_contact else 'No tiene'])
+			item.zone if item.zone else '', 
+			item.zipcode if item.zipcode else '', 
+			item.phone_number if item.phone_number else '', 
+			item.cellphone if item.cellphone else '', 
+			item.first_name if item.first_name else '',
+        	item.last_name if item.last_name else '', 
+        	item.email if item.email else '', 
+        	item.internal_code if item.internal_code else '', 
+        	item.cust_contact.contact if item.cust_contact else ''])
 	return response
 
 class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMixin):

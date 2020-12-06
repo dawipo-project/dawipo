@@ -39,10 +39,16 @@
 				Nueva categoría
 			</a>
 		</li>
-		<li class="nav-item mt-sm-2 mt-lg-0">
+		<li class="nav-item mr-2 mt-sm-2 mt-lg-0">
 			<a href="{% if category %}{% url 'catalog:category_product_list_table' category.slug %}{% else %}{% url 'catalog:product_list_table' %}{% endif %}" class="btn btn-secondary btn-sm">
 				<i class="uil-list-ul"></i>
 				Ver como tabla
+			</a>
+		</li>
+		<li class="nav-item mt-sm-2 mt-lg-0">
+			<a href="{% url 'catalog:export_all_csv' %}" class="btn btn-success btn-sm">
+				<i class="uil-file"></i>
+				Exportar catálogo a Excel
 			</a>
 		</li>
 	</ul>

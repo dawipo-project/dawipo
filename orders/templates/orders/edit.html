@@ -37,20 +37,24 @@
 								<th class="text-secondary">Dirección de cliente:</th>
 								<td>{{ order.customer.address }}</td>
 							</tr>
+							{% if order.customer.zipcode %}
 							<tr>
 								<th class="text-secondary">Código postal:</th>
 								<td>{{ order.customer.zipcode }}</td>
 							</tr>
+							{% endif %}
 							{% if order.customer.first_name %}
 							<tr>
 								<th class="text-secondary">Nombre de contacto:</th>
 								<td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
 							</tr>
 							{% endif %}
+							{% if order.customer.email %}
 							<tr>
 								<th class="text-secondary">Email:</th>
 								<td>{{ order.customer.email }}</td>
 							</tr>
+							{% endif %}
 							<tr>
 								<th class="text-secondary">Ciudad:</th>
 								<td>{{ order.customer.city }}</td>

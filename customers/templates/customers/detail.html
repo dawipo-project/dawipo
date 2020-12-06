@@ -95,57 +95,81 @@
 					<div class="table-responsive">
 						<table class="table table-centered table-nowrap table-sm table-hover mb-0">
 							<tbody>
-                                <tr>
-                                    <th class="text-center">
-                                        <h5 class="text-muted font-14 my-1">ID de Orden</h5>
-                                    </th>
-                                    <th class="text-center">
-                                        <h5 class="text-muted font-14 my-1">Cliente</h5>
-                                    </th>
-                                    <th class="text-center">
-                                        <h5 class="text-muted font-14 my-1">Precio total</h5>
-                                    </th>
-                                    <th class="text-center">
-                                        <h5 class="text-muted font-14 my-1">Fecha de entrega</h5>
-                                    </th>
-                                    <th class="text-center">
-                                        <h5 class="text-muted font-14 my-1">Estado</h5>
-                                    </th>
-                                </tr>
-                                {% for order in orders %}
-                                <tr>
-                                    <td class="text-center">
-                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.id }}</h5>
-                                    </td>
-                                    <td class="text-center">
-                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
-                                    </td>
-                                    <td class="text-right">
-                                        <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost|intcomma }}</h5>
-                                    </td>
-                                    <td class="text-center">
-                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>
-                                    </td>
-                                    <td class="text-center">
-                                        <h4 class="my-1 font-weight-normal">
-                                            {% if order.status == 'delivered' %}
-                                            <div class="badge badge-success">{{ order.get_status_display }}</div>
-                                            {% elif order.status == 'canceled' %}
-                                            <div class="badge badge-danger">{{ order.get_status_display }}</div>
-                                            {% elif order.status == 'pre-order' %}
-                                            <div class="badge badge-primary">{{ order.get_status_display }}</div>
-                                            {% elif order.status == 'confirmed' %}
-                                            <div class="badge badge-secondary">{{ order.get_status_display }}</div>
-                                            {% else %}
-                                            <div class="badge badge-info">{{ order.get_status_display }}</div>
-                                            {% endif %}
-                                        </h4>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
+								<tr>
+									<th class="text-center">
+										<h5 class="text-muted font-14 my-1">ID de Orden</h5>
+									</th>
+									<th class="text-center">
+										<h5 class="text-muted font-14 my-1">Cliente</h5>
+									</th>
+									<th class="text-center">
+										<h5 class="text-muted font-14 my-1">Precio total</h5>
+									</th>
+									<th class="text-center">
+										<h5 class="text-muted font-14 my-1">Fecha de entrega</h5>
+									</th>
+									<th class="text-center">
+										<h5 class="text-muted font-14 my-1">Estado</h5>
+									</th>
+								</tr>
+								{% for order in page_obj %}
+								<tr>
+									<td class="text-center">
+										<h5 class="font-14 my-1 font-weight-normal">{{ order.id }}</h5>
+									</td>
+									<td class="text-center">
+										<h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
+									</td>
+									<td class="text-right">
+										<h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost|intcomma }}</h5>
+									</td>
+									<td class="text-center">
+										<h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>
+									</td>
+									<td class="text-center">
+										<h4 class="my-1 font-weight-normal">
+											{% if order.status == 'delivered' %}
+											<div class="badge badge-success">{{ order.get_status_display }}</div>
+											{% elif order.status == 'canceled' %}
+											<div class="badge badge-danger">{{ order.get_status_display }}</div>
+											{% elif order.status == 'pre-order' %}
+											<div class="badge badge-primary">{{ order.get_status_display }}</div>
+											{% elif order.status == 'confirmed' %}
+											<div class="badge badge-secondary">{{ order.get_status_display }}</div>
+											{% else %}
+											<div class="badge badge-info">{{ order.get_status_display }}</div>
+											{% endif %}
+										</h4>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
 						</table>
 					</div>
+					<hr>
+					<nav aria-label="Page navigation">
+						<ul class="pagination">
+							{% if page_obj.has_previous %}
+							<li class="page-item"><a class="page-link" href="?page=1">
+								<i class="uil-angle-double-left"></i>
+							</a></li>
+							<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+								<i class="uil-angle-left"></i>
+							</a></li>
+							{% endif %}
+							<li class="page-item active">
+								<a href="#" class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a>
+							</li>
+							{% if page_obj.has_next %}
+							<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+								<i class="uil-angle-right"></i>
+							</a></li>
+							<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+								<i class="uil-angle-double-right"></i>
+							</a></li>
+							{% endif %}
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>

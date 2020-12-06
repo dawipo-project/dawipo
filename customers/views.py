@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.list import MultipleObjectMixin
 from .models import Customer, DocumentType, Regime, PersonType, CustomerContact
 from catalog.models import Category
 from orders.models import Order
@@ -53,13 +54,14 @@ class CustomerList(ListView, LoginRequiredMixin):
 		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
 		return context
 
-class CustomerDetail(DetailView, LoginRequiredMixin):
+class CustomerDetail(MultipleObjectMixin, DetailView, LoginRequiredMixin):
 	model = Customer
 	template_name = 'customers/detail.html'
+	paginate_by = 10
 
 	def get_context_data(self, **kwargs):
 		context = super(CustomerDetail, self).get_context_data(**kwargs)
-		context['orders'] = Order.objects.filter(customer=self.object)[:10]
+		context['orders'] = Order.objects.filter(customer=self.object)
 		return context
 
 def import_csv(request):

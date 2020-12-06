@@ -28,28 +28,44 @@
 					<div class="table-responsive">
 						<table class="table table-hover">
 							<tr>
-								<th class="text-secondary">Nombre de empresa:</th>
+								<th class="text-secondary">Nombre de cliente:</th>
 								<td>{{ order.customer.name }}</td>
 							</tr>
 							<tr>
-								<th class="text-secondary">Dirección de empresa:</th>
+								<th class="text-secondary">Dirección de cliente:</th>
 								<td>{{ order.customer.address }}</td>
 							</tr>
+							{% if order.customer.zipcode %}
 							<tr>
 								<th class="text-secondary">Código postal:</th>
 								<td>{{ order.customer.zipcode }}</td>
 							</tr>
+							{% endif %}
+							{% if order.customer.first_name %}
 							<tr>
 								<th class="text-secondary">Nombre de contacto:</th>
 								<td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
 							</tr>
+							{% endif %}
+							{% if order.customer.email %}
 							<tr>
 								<th class="text-secondary">Email:</th>
 								<td>{{ order.customer.email }}</td>
 							</tr>
+							{% endif %}
 							<tr>
 								<th class="text-secondary">Ciudad:</th>
 								<td>{{ order.customer.city }}</td>
+							</tr>
+							{% if order.incoterm %}
+							<tr>
+								<th class="text-secondary">Incoterm:</th>
+								<td>{{ order.incoterm }} - {{ order.delivery_site }}</td>
+							</tr>
+							{% endif %}
+							<tr>
+								<th class="text-secondary">Aplica impuesto:</th>
+								<td>{% if order.tax %}Sí{% else %}No{% endif %}</td>
 							</tr>
 							<tr>
 								<th class="text-secondary">Estado de orden:</th>

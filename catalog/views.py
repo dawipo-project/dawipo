@@ -29,6 +29,7 @@ def export_csv(request):
 		writer.writerow([item.id, item.category.name, item.name, item.sku, item.barcode, item.brand,
         	item.provider, item.color, item.measures, item.description, item.observations, item.price_1,
         	item.price_2, item.price_3, item.tax, item.fabrication_cost])
+	import pdb; pdb.set_trace()
 	return response
 
 @login_required

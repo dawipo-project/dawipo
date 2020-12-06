@@ -60,8 +60,8 @@ class CustomerDetail(MultipleObjectMixin, DetailView, LoginRequiredMixin):
 	paginate_by = 10
 
 	def get_context_data(self, **kwargs):
-		context = super(CustomerDetail, self).get_context_data(**kwargs)
-		context['orders'] = Order.objects.filter(customer=self.object)
+		object_list = Order.objects.filter(customer=self.object)
+		context = super(CustomerDetail, self).get_context_data(object_list=object_list, **kwargs)
 		return context
 
 def import_csv(request):

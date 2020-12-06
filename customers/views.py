@@ -17,7 +17,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
 @login_required
 def export_csv(request):
-	import pdb; pdb.set_trace()
 	queryset = Customer.objects.filter(company=request.user.profile.company)
 	response = HttpResponse(content_type='text/csv')
 	response['Content-Disposition'] = 'attachment; filename=clientes.csv'
@@ -25,6 +24,7 @@ def export_csv(request):
 	writer.writerow(['Nombre', 'Tipo de documento', 'Documento', 'Régimen', 'Persona',
     	'Dirección', 'Ciudad', 'Zona', 'Código Postal', 'Teléfono', 'Celular', 
     	'Nombre del contacto', 'Apellido del contacto', 'Email', 'Código interno', 'Medio de contacto'])
+	import pdb; pdb.set_trace()
 	for item in queryset:
 		writer.writerow([item.name, item.document_type.name, item.document, item.regime.name, item.person_type.name, 
 			item.address, item.city, item.zone, item.zipcode, item.phone_number, item.cellphone, item.first_name,

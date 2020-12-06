@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
@@ -115,6 +115,10 @@ class UpdateOrderItem(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = OrderItem
 	fields = ['quantity']
 	success_message = '¡Los items de la orden han sido actualizados!'
+
+	def get_success_url(self):
+		order = Order.objects.get(id=self.object.order.id)
+		return reverse_lazy('orders:order_detail', args=[order.id])
 
 class OrderList(ListView, LoginRequiredMixin):
 	model = Order

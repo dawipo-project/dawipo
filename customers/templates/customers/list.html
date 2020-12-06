@@ -52,7 +52,7 @@
 						<td>{{ customer.email }}</td>
 						<td class="text-danger">{% if customer.internal_code %}{{ customer.internal_code }}{% else %}No tiene{% endif %}</td>
 						<td class="pt-2">
-							<a href="#" class="btn btn-outline-secondary btn-sm">
+							<a href="{% url 'customers:cust_detail' customer.id %}" class="btn btn-outline-secondary btn-sm">
 								<i class="uil-search-alt"></i>
 								Detalle
 							</a>

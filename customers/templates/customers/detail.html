@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}DAWIPO - Detalle de cliente{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<div class="page-title-box">
+			<div class="page-title-right">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+					<li class="breadcrumb-item">Clientes</li>
+					<li class="breadcrumb-item active">{{ object.name }}</li>
+				</ol>
+			</div>
+			<h4 class="page-title text-comfortaa">
+				Detalle de cliente - {{ object.name }}
+			</h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col">
+					<h3>Información del cliente</h3>
+					<hr>
+					<div class="table-responsive">
+						<table class="table table-sm table-borderless">
+							<tr>
+								<th class="text-secondary">Nombre:</th>
+								<td>{{ object.name }}</td>
+							</tr>
+							{% if object.document %}
+							<tr>
+								<th class="text-secondary">{{ object.document_type }}</th>
+								<td>{{ object.document }}</td>
+							</tr>
+							{% endif %}
+							{% if object.regime %}
+							<tr>
+								<th class="text-secondary">Régimen:</th>
+								<td>{{ object.regime }}</td>
+							</tr>
+							{% endif %}
+							{% if object.person_type %}
+							<tr>
+								<th class="text-secondary">Persona:</th>
+								<td>{{ object.person_type }}</td>
+							</tr>
+							{% endif %}
+							<tr>
+								<th class="text-secondary">Dirección:</th>
+								<td>{{ object.address }}, {% if object.zipcode %}{{ object.zipcode }}{% endif %} {{ object.city }} {% if object.zone %}- Zona {{ object.zone }}{% endif %}</td>
+							</tr>
+							{% if object.phone_number %}
+							<tr>
+								<th class="text-secondary">Teléfono:</th>
+								<td>{{ object.phone_number }}</td>
+							</tr>
+							{% endif %}
+							{% if object.cellphone %}
+							<tr>
+								<th class="text-secondary">Teléfono celular:</th>
+								<td>{{ object.cellphone }}</td>
+							</tr>
+							{% endif %}
+							{% if object.first_name %}
+							<tr>
+								<th class="text-secondary">Nombre del contacto:</th>
+								<td>{{ object.first_name }} {{ object.last_name }}</td>
+							</tr>
+							{% endif %}
+							{% if object.email %}
+							<tr>
+								<th class="text-secondary">Correo electrónico:</th>
+								<td>{{ object.email }}</td>
+							</tr>
+							{% endif %}
+							{% if object.cust_contact %}
+							<tr>
+								<th class="text-secondary">Origen de contacto:</th>
+								<td>{{ object.cust_contact.contact }}</td>
+							</tr>
+							{% endif %}
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<h3>Órdenes realizadas por {{ object.name }}</h3>
+					<hr>
+					<div class="table-responsive">
+						<table class="table table-centered table-nowrap table-sm table-hover mb-0">
+							<tbody>
+                                <tr>
+                                    <th class="text-center">
+                                        <h5 class="text-muted font-14 my-1">ID de Orden</h5>
+                                    </th>
+                                    <th class="text-center">
+                                        <h5 class="text-muted font-14 my-1">Cliente</h5>
+                                    </th>
+                                    <th class="text-center">
+                                        <h5 class="text-muted font-14 my-1">Precio total</h5>
+                                    </th>
+                                    <th class="text-center">
+                                        <h5 class="text-muted font-14 my-1">Fecha de entrega</h5>
+                                    </th>
+                                    <th class="text-center">
+                                        <h5 class="text-muted font-14 my-1">Estado</h5>
+                                    </th>
+                                </tr>
+                                {% for order in orders %}
+                                <tr>
+                                    <td class="text-center">
+                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.id }}</h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
+                                    </td>
+                                    <td class="text-right">
+                                        <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost|intcomma }}</h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <h4 class="my-1 font-weight-normal">
+                                            {% if order.status == 'delivered' %}
+                                            <div class="badge badge-success">{{ order.get_status_display }}</div>
+                                            {% elif order.status == 'canceled' %}
+                                            <div class="badge badge-danger">{{ order.get_status_display }}</div>
+                                            {% elif order.status == 'pre-order' %}
+                                            <div class="badge badge-primary">{{ order.get_status_display }}</div>
+                                            {% elif order.status == 'confirmed' %}
+                                            <div class="badge badge-secondary">{{ order.get_status_display }}</div>
+                                            {% else %}
+                                            <div class="badge badge-info">{{ order.get_status_display }}</div>
+                                            {% endif %}
+                                        </h4>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

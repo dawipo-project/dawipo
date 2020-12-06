@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from .models import Customer, DocumentType, Regime, PersonType, CustomerContact
 from catalog.models import Category
+from orders.models import Order
 import csv
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -49,6 +51,15 @@ class CustomerList(ListView, LoginRequiredMixin):
 		context = super(CustomerList, self).get_context_data(**kwargs)
 		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)
 		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
+		return context
+
+class CustomerDetail(DetailView, LoginRequiredMixin):
+	model = Customer
+	template_name = 'customers/detail.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(CustomerDetail, self).get_context_data(**kwargs)
+		context['orders'] = Order.objects.filter(customer=self.object)[:10]
 		return context
 
 def import_csv(request):

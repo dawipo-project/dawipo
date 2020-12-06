@@ -138,9 +138,6 @@
 									</td>
 									<td>{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
 									<td>{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
-									<td>
-										<a href="{% %}"></a>
-									</td>
 								</tr>
 								{% endwith %}
 								{% endfor %}

@@ -32,6 +32,18 @@ def export_csv(request):
 	return response
 
 @login_required
+def product_list(request, category_slug=None):
+	customers = Customer.objects.filter(company=request.user.profile.company)
+	categories = Category.objects.filter(company=request.user.profile.company)
+	products = Product.objects.filter(category__in=categories)
+	if category_slug is not None:
+		category = get_object_or_404(Category, slug=category_slug)
+		products = products.filter(category=category)
+		return render(request, 'catalog/product/list.html', {'category': category,  
+			'products': products, 'categories': categories, 'customers': customers})
+	return render(request, 'catalog/product/list.html', {'products': products, 'categories': categories, 'customers': customers})
+
+@login_required
 def product_detail(request, id, slug):
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)

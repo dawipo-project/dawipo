@@ -126,9 +126,8 @@
 							</thead>
 							<tbody>
 								{% for item in order_items %}
-								{% with product=item.product %}
 								<tr>	
-									<td>{{ product.name|truncatechars:20 }}</td>
+									<td>{{ item.product.name|truncatechars:20 }}</td>
 									<td>
 										<form method="POST" class="form-inline">
 											{% csrf_token %}
@@ -139,7 +138,6 @@
 									<td>{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
 									<td>{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
 								</tr>
-								{% endwith %}
 								{% endfor %}
 								<tr>
 									<td class="text-secondary">Total</td>

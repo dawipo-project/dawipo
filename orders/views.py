@@ -86,21 +86,10 @@ def order_edit(request, order_id):
 	categories = Category.objects.filter(company=request.user.profile.company)
 	today = datetime.date.today()
 	order = get_object_or_404(Order, id=order_id)
-	order_items = OrderItem.objects.filter(order=order)
+	order_items = OrderItem.objects.filter(order_id=order.id)
 	status = order.status
-	for item in order_items:
-		item_form = ItemUpdateForm(initial={
-			'quantity': item.quantity
-		})
 	if request.method == 'POST':
 		edit_form = OrderEditForm(instance=order, data=request.POST)
-		for item in order_items:
-			item_form = ItemUpdateForm(instance=item, data=request.POST)
-			if item_form.is_valid():
-				item_form.save()
-				messages.success(request, 'Las cantidades han sido actualizadas')
-				return render(request, 'orders/edit.html', {'form': edit_form, 'categories': categories, 
-		'customers': customers, 'order': order, 'items': order_items, 'today': today})
 		if edit_form.is_valid():
 			cd = edit_form.cleaned_data
 			new_status = cd['status']

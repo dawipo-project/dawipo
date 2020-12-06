@@ -17,11 +17,11 @@ from django.http import HttpResponse
 # Create your views here.
 @login_required
 def export_csv(request):
+	import pdb; pdb.set_trace()
 	categories = Category.objects.filter(company=request.user.profile.company)
 	queryset = Product.objects.filter(category__in=categories)
 	response = HttpResponse(content_type='text/csv')
 	response['Content-Disposition'] = f'filename=productos.csv'
-	import pdb; pdb.set_trace()
 	writer = csv.writer(response)
 	writer.writerow(['Id de Producto', 'Categoría', 'Nombre del producto', 'SKU', 'Código de barras',
     	'Marca', 'Proveedor', 'Color', 'Medidas', 'Descripción', 'Observaciones', 'Precio 1', 'Precio 2',

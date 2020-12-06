@@ -33,10 +33,10 @@ def export_csv(request):
 
 @login_required
 def product_list(request, category_slug=None):
+	import pdb; pdb.set_trace()
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
 	products = Product.objects.filter(category__in=categories)
-	import pdb; pdb.set_trace()
 	if category_slug is not None:
 		category = get_object_or_404(Category, slug=category_slug)
 		products = products.filter(category=category)

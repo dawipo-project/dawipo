@@ -35,14 +35,14 @@
 				Agregar categoría
 			</a>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item mr-2">
 			<a href="{% if category %}{{ category.get_absolute_url }}{% else %}{% url 'catalog:product_list' %}{% endif %}" class="btn btn-secondary btn-sm">
 				<i class="uil-table"></i>
 				Ver como catálogo
 			</a>
 		</li>
 		<li class="nav-item">
-			<a href="{% if category %}{% url 'catalog:export_csv' category.slug %}{% else %}{% url 'catalog:export_all_csv' %}{% endif %}" class="btn btn-secondary btn-sm" download="ClosestOrders" tabindex="0" data-toggle="popover" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">
+			<a href="{% if category %}{% url 'catalog:export_csv' category.slug %}{% else %}{% url 'catalog:export_all_csv' %}{% endif %}" class="btn btn-secondary btn-sm" download="Products" tabindex="0" data-toggle="popover" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">
 				<i class="uil-file"></i>
 				Exportar a Excel
 			</a>

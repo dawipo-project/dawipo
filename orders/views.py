@@ -89,7 +89,9 @@ def order_edit(request, order_id):
 	order_items = OrderItem.objects.filter(order_id=order.id)
 	status = order.status
 	for item in order_items:
-		item_form = ItemUpdateForm(instance=item)
+		item_form = ItemUpdateForm(initial={
+			'quantity': item.quantity
+		})
 	if request.method == 'POST':
 		edit_form = OrderEditForm(instance=order, data=request.POST)
 		for item in order_items:

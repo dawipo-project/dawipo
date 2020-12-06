@@ -25,10 +25,21 @@ def export_csv(request):
     	'Dirección', 'Ciudad', 'Zona', 'Código Postal', 'Teléfono', 'Celular', 
     	'Nombre del contacto', 'Apellido del contacto', 'Email', 'Código interno', 'Medio de contacto'])
 	for item in queryset:
-		import pdb; pdb.set_trace()
-		writer.writerow([item.name, item.document_type.name, item.document, item.regime.name, item.person_type.name, 
-			item.address, item.city, item.zone, item.zipcode, item.phone_number, item.cellphone, item.first_name,
-        	item.last_name, item.email, item.email, item.internal_code, item.cust_contact.contact])
+		writer.writerow([item.name, 
+			item.document_type.name if item.document_type else 'No tiene', 
+			item.document if item.document else 'No tiene', 
+			item.regime.name if item.regime else 'No tiene', 
+			item.person_type.name if item.person_type else 'No tiene', 
+			item.address, item.city, 
+			item.zone if item.zone else 'No tiene', 
+			item.zipcode if item.zipcode else 'No tiene', 
+			item.phone_number if item.phone_number else 'No tiene', 
+			item.cellphone if item.cellphone else 'No tiene', 
+			item.first_name if item.first_name else 'No tiene',
+        	item.last_name if item.last_name else 'No tiene', 
+        	item.email if item.email else 'No tiene', 
+        	item.internal_code if item.internal_code else 'No tiene', 
+        	item.cust_contact.contact if item.cust_contact else 'No tiene'])
 	return response
 
 class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMixin):

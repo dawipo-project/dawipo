@@ -94,14 +94,14 @@
 						<div class="form-group">
 							<label for="id_status">Estado de orden</label>
 							<select class="form-control select2" data-toggle="select2" id="id_status" name="status" >
-								<option value="pre-order" {% if order.status == "pre-order" %}selected{% endif %}>Pre-order</option>
-								<option value="confirmed" {% if order.status == "confirmed" %}selected{% endif %}>Confirmed</option>
-								<option value="awaiting-advance-payment" {% if order.status == "awaiting-advance-payment" %}selected{% endif %}>Awaiting advance payment</option>
-								<option value="in-production" {% if order.status == "in-production" %}selected{% endif %}>In Production</option>
-								<option value="scheduled" {% if order.status == "scheduled" %}selected{% endif %}>Scheduled</option>
-								<option value="dispatched" {% if order.status == "dispatched" %}selected{% endif %}>Dispatched</option>
-								<option value="delivered" {% if order.status == "Delivered" %}selected{% endif %}>Delivered</option>
-								<option value="canceled" {% if order.status == "canceled" %}selected{% endif %}>Canceled</option>
+								<option value="pre-order" {% if order.status == "pre-order" %}selected{% endif %}>Pre-orden</option>
+								<option value="confirmed" {% if order.status == "confirmed" %}selected{% endif %}>Confirmada</option>
+								<option value="awaiting-advance-payment" {% if order.status == "awaiting-advance-payment" %}selected{% endif %}>Esperando anticipo</option>
+								<option value="in-production" {% if order.status == "in-production" %}selected{% endif %}>En producción</option>
+								<option value="scheduled" {% if order.status == "scheduled" %}selected{% endif %}>Programada para despacho</option>
+								<option value="dispatched" {% if order.status == "dispatched" %}selected{% endif %}>Despachada</option>
+								<option value="delivered" {% if order.status == "Delivered" %}selected{% endif %}>Entregada</option>
+								<option value="canceled" {% if order.status == "canceled" %}selected{% endif %}>Cancelada</option>
 							</select>
 						</div>
 						<button class="btn btn-block btn-primary" type="submit">
@@ -125,16 +125,10 @@
 								<th scope="col"></th>
 							</thead>
 							<tbody>
-								{% for item in order_items %}
+								{% for item in items %}
 								<tr>	
 									<td>{{ item.product.name|truncatechars:20 }}</td>
-									<td>
-										<form method="POST" class="form-inline">
-											{% csrf_token %}
-											<input type="text" name="quantity" id="id_quantity" class="form-control" value="{{ item.quantity }}">
-											<button class="btn btn-primary" type="submit">Actualizar</button>
-										</form>
-									</td>
+									<td>{{ item.quantity }}</td>
 									<td>{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
 									<td>{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
 								</tr>

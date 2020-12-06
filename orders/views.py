@@ -86,7 +86,7 @@ def order_edit(request, order_id):
 	categories = Category.objects.filter(company=request.user.profile.company)
 	today = datetime.date.today()
 	order = get_object_or_404(Order, id=order_id)
-	order_items = OrderItem.objects.filter(order_id=order.id)
+	order_items = OrderItem.objects.filter(order_id=order_id)
 	status = order.status
 	if request.method == 'POST':
 		edit_form = OrderEditForm(instance=order, data=request.POST)

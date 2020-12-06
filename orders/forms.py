@@ -14,3 +14,8 @@ class OrderEditForm(forms.ModelForm):
 		fields = ['due_date', 'status', 'incoterm', 
 		'delivery_site', 'transport', 'country_of_origin']
 		exclude = ('customer', 'company')
+
+class ItemUpdateForm(forms.Form):
+	quantity = forms.IntegerField(
+		label ='Amount'
+	)

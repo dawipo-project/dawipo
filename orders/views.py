@@ -13,7 +13,7 @@ from catalog.models import Product, Category
 from customers.models import Customer
 from cart.forms import CartAddProductForm
 from .tasks import order_created, order_edited
-from .forms import OrderCreateForm, OrderEditForm
+from .forms import OrderCreateForm, OrderEditForm, ItemUpdateForm
 from .models import OrderItem, Order, OrderChange
 from cart.cart import Cart
 import datetime
@@ -88,8 +88,17 @@ def order_edit(request, order_id):
 	order = get_object_or_404(Order, id=order_id)
 	order_items = OrderItem.objects.filter(order_id=order.id)
 	status = order.status
+	for item in order_items:
+		item_form = ItemUpdateForm(instance=item)
 	if request.method == 'POST':
 		edit_form = OrderEditForm(instance=order, data=request.POST)
+		for item in order_items:
+			item_form = ItemUpdateForm(instance=item, data=request.POST)
+			if item_form.is_valid():
+				item_form.save()
+				messages.success(request, 'Las cantidades han sido actualizadas')
+				return render(request, 'orders/edit.html', {'form': edit_form, 'categories': categories, 
+		'customers': customers, 'order': order, 'items': order_items, 'today': today})
 		if edit_form.is_valid():
 			cd = edit_form.cleaned_data
 			new_status = cd['status']
@@ -109,21 +118,6 @@ def order_edit(request, order_id):
 		edit_form = OrderEditForm(instance=order)
 	return render(request, 'orders/edit.html', {'form': edit_form, 'categories': categories, 
 		'customers': customers, 'order': order, 'items': order_items, 'today': today})
-
-# @login_required
-# def db_export_pdf(request):
-# 	closest_orders = Order.objects.filter(company=request.user.profile.company).exclude(
-#         status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')
-# 	response = HttpResponse(content_type='application/pdf')
-# 	response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
-# 	html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items})
-# 	stylesheets = [
-# 		weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
-# 		weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
-# 	]
-# 	weasyprint.HTML(string=html).write_pdf(response, stylesheets=stylesheets)
-# 	# order_created.delay(order.id, request.user.email)
-# 	return response
 
 class OrderList(ListView, LoginRequiredMixin):
 	model = Order

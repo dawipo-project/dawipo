@@ -27,23 +27,25 @@
 					<h3>Información de la orden</h3>
 					<hr>
 					<div class="table-responsive">
-						<table class="table table-hover">
+						<table class="table table-sm table-hover">
 							<tr>
-								<th class="text-secondary">Nombre de empresa:</th>
+								<th class="text-secondary">Nombre de cliente:</th>
 								<td>{{ order.customer.name }}</td>
 							</tr>
 							<tr>
-								<th class="text-secondary">Dirección de empresa:</th>
+								<th class="text-secondary">Dirección de cliente:</th>
 								<td>{{ order.customer.address }}</td>
 							</tr>
 							<tr>
 								<th class="text-secondary">Código postal:</th>
 								<td>{{ order.customer.zipcode }}</td>
 							</tr>
+							{% if order.customer.first_name %}
 							<tr>
 								<th class="text-secondary">Nombre de contacto:</th>
 								<td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
 							</tr>
+							{% endif %}
 							<tr>
 								<th class="text-secondary">Email:</th>
 								<td>{{ order.customer.email }}</td>
@@ -51,6 +53,16 @@
 							<tr>
 								<th class="text-secondary">Ciudad:</th>
 								<td>{{ order.customer.city }}</td>
+							</tr>
+							{% if order.incoterm %}
+							<tr>
+								<th class="text-secondary">Incoterm:</th>
+								<td>{{ order.incoterm }} - {{ order.delivery_site }}</td>
+							</tr>
+							{% endif %}
+							<tr>
+								<th class="text-secondary">Aplica impuesto:</th>
+								<td>{% if order.tax %}Sí{% else %}No{% endif %}</td>
 							</tr>
 						</table>
 					</div>
@@ -96,6 +108,49 @@
 							Guardar cambios
 						</button>	
 					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<h3>Ítems de la orden</h3>
+					<hr>
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<th scope="col">Nombre del producto</th>
+								<th scope="col">Cantidad</th>
+								<th scope="col">Precio unitario</th>
+								<th scope="col">Precio total</th>
+								<th scope="col"></th>
+							</thead>
+							<tbody>
+								{% for item in order.items %}
+								{% with product=item.product %}
+								<tr>	
+									<td>{{ product.name|truncatechars:20 }}</td>
+									<td>
+										<form method="POST" class="form-inline">
+											{% csrf_token %}
+											<input type="text" name="quantity" id="id_quantity" class="form-control" value="{{ item.quantity }}">
+											<button class="btn btn-primary" type="submit">Actualizar</button>
+										</form>
+									</td>
+									<td>{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
+									<td>{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
+									<td>
+										<a href="{% %}"></a>
+									</td>
+								</tr>
+								{% endwith %}
+								{% endfor %}
+								<tr>
+									<td class="text-secondary">Total</td>
+									<td colspan="2"></td>
+									<td class="text-secondary">{{ request.user.profile.company.currency }}${{ order.get_total_cost|intcomma }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

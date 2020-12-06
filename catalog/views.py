@@ -37,7 +37,7 @@ def product_list(request, category_slug=None):
 	categories = Category.objects.filter(company=request.user.profile.company)
 	products = Product.objects.filter(category__in=categories)
 	if category_slug is not None:
-		category = get_object_or_404(Category, slug=category_slug)
+		category = Category.objects.get(slug=category_slug)
 		products = products.filter(category=category)
 		return render(request, 'catalog/product/list.html', {'category': category,  
 			'products': products, 'categories': categories, 'customers': customers})

@@ -16,12 +16,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 @login_required
-def export_csv(request, category_slug=None):
-	if category_slug:
-		category = Category.objects.get(slug=category_slug)
-		queryset = Product.objects.filter(category=category)
-	else:
-		queryset = Product.objects.filter(category__company=request.user.profile.company)
+def export_csv(request):
+	queryset = Product.objects.filter(category__company=request.user.profile.company)
 	response = HttpResponse(content_type='text/csv')
 	response['Content-Disposition'] = f'filename=closest_orders.csv'
 	writer = csv.writer(response)

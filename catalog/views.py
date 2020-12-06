@@ -11,8 +11,23 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+import csv
 
 # Create your views here.
+@login_required
+def export_csv(request, queryset):
+	response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'filename=closest_orders.csv'
+    writer = csv.writer(response)
+    writer.writerow(['Id de Producto', 'Categoría', 'Nombre del producto', 'SKU', 'Código de barras',
+    	'Marca', 'Proveedor', 'Color', 'Medidas', 'Descripción', 'Observaciones', 'Precio 1', 'Precio 2',
+    	'Precio 3', 'Impuesto (%)', 'Costo de fabricación'])
+    for item in queryset:
+        writer.writerow([item.id, item.category.name, item.name, item.sku, item.barcode, item.brand,
+        	item.provider, item.color, item.measures, item.description, item.observations, item.price_1,
+        	item.price_2, item.price_3, item.tax, item.fabrication_cost])
+    return response
+
 @login_required
 def product_list(request, category_slug=None):
 	customers = Customer.objects.filter(company=request.user.profile.company)

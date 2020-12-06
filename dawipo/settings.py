@@ -151,7 +151,7 @@ CART_SESSION_ID = 'cart'
 EMAIL_HOST = 'mail.dawipo.co'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'no_reply@dawipo.co'
-EMAIL_HOST_PASSWORD = 'd4wipo202006'
+EMAIL_HOST_PASSWORD = 'd4wipo202004'
 EMAIL_USE_TLS = False
 
 # Braintree

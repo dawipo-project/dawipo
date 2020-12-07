@@ -65,8 +65,8 @@
 								<button type="submit" class="btn btn-sm btn-primary ml-1">Cambiar</button>
 							</form>
 						</td>
-						<td>{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
-						<td>{{ request.user.profile.company.currency }}${{ item.total_price|intcomma }}</td>
+						<td class="align-items-right text-right">{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
+						<td class="align-items-right text-right">{{ request.user.profile.company.currency }}${{ item.total_price|intcomma }}</td>
 						<td class="pt-2">
 							<form action="{% url 'cart:cart_remove' product.id %}" method="post">
 								{% csrf_token %}

@@ -28,21 +28,21 @@ def export_csv(request):
     	'Dirección', 'Ciudad', 'Zona', 'Código Postal', 'Teléfono', 'Celular', 
     	'Nombre del contacto', 'Apellido del contacto', 'Email', 'Código interno', 'Medio de contacto'])
 	for item in queryset:
-		writer.writerow([utf8ify_s(item.name), 
-			utf8ify_s(item.document_type.name) if item.document_type else '', 
-			utf8ify_s(item.document) if item.document else '', 
-			utf8ify_s(item.regime.name) if item.regime else '', 
-			utf8ify_s(item.person_type.name) if item.person_type else '', 
-			utf8ify_s(item.address), utf8ify_s(item.city), 
-			utf8ify_s(item.zone) if item.zone else '', 
-			utf8ify_s(item.zipcode) if item.zipcode else '', 
-			utf8ify_s(item.phone_number) if item.phone_number else '', 
-			utf8ify_s(item.cellphone) if item.cellphone else '', 
-			utf8ify_s(item.first_name) if item.first_name else '',
-        	utf8ify_s(item.last_name) if item.last_name else '', 
-        	utf8ify_s(item.email) if item.email else '', 
-        	utf8ify_s(item.internal_code) if item.internal_code else '', 
-        	utf8ify_s(item.cust_contact.contact) if item.cust_contact else ''])
+		writer.writerow([ascii(item.name), 
+			ascii(item.document_type.name) if item.document_type else '', 
+			ascii(item.document) if item.document else '', 
+			ascii(item.regime.name) if item.regime else '', 
+			ascii(item.person_type.name) if item.person_type else '', 
+			ascii(item.address), ascii(item.city), 
+			ascii(item.zone) if item.zone else '', 
+			ascii(item.zipcode) if item.zipcode else '', 
+			ascii(item.phone_number) if item.phone_number else '', 
+			ascii(item.cellphone) if item.cellphone else '', 
+			ascii(item.first_name) if item.first_name else '',
+        	ascii(item.last_name) if item.last_name else '', 
+        	ascii(item.email) if item.email else '', 
+        	ascii(item.internal_code) if item.internal_code else '', 
+        	ascii(item.cust_contact.contact) if item.cust_contact else '',])
 	return response
 
 class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMixin):

@@ -30,20 +30,20 @@ def export_csv(request):
     	'Precio 3', 'Impuesto (%)', 'Costo de fabricación'])
 	for item in queryset:
 		writer.writerow([
-			utf8ify_s(str(item.id)), utf8ify_s(item.category.name), utf8ify_s(item.name), 
-			utf8ify_s(item.sku) if item.sku else '', 
-			utf8ify_s(str(item.barcode)) if item.barcode else '', 
-			utf8ify_s(item.brand) if item.brand else '', 
-			utf8ify_s(item.provider) if item.provider else '', 
-			utf8ify_s(item.color) if item.color else '', 
-			utf8ify_s(item.measures) if item.measures else '', 
-			utf8ify_s(item.description) if item.description else '', 
-			utf8ify_s(item.observations) if item.observations else '', 
-			utf8ify_s(str(item.price_1)), 
-			utf8ify_s(str(item.price_2)) if item.price_2 else '', 
-			utf8ify_s(str(item.price_3)) if item.price_3 else '', 
-			utf8ify_s(str(item.tax)) if item.tax else 0, 
-			utf8ify_s(str(item.fabrication_cost)) if item.fabrication_cost else ''])
+			ascii(str(item.id)), ascii(item.category.name), ascii(item.name), 
+			ascii(item.sku) if item.sku else '', 
+			ascii(str(item.barcode)) if item.barcode else '', 
+			ascii(item.brand) if item.brand else '', 
+			ascii(item.provider) if item.provider else '', 
+			ascii(item.color) if item.color else '', 
+			ascii(item.measures) if item.measures else '', 
+			ascii(item.description) if item.description else '', 
+			ascii(item.observations) if item.observations else '', 
+			ascii(str(item.price_1)), 
+			ascii(str(item.price_2)) if item.price_2 else '', 
+			ascii(str(item.price_3)) if item.price_3 else '', 
+			ascii(str(item.tax)) if item.tax else 0, 
+			ascii(str(item.fabrication_cost)) if item.fabrication_cost else ''])
 	return response
 
 @login_required

@@ -5,14 +5,16 @@ class OrderCreateForm(forms.ModelForm):
 	class Meta:
 		model = Order
 		fields = ['customer', 'due_date', 'incoterm', 
-		'delivery_site', 'transport', 'country_of_origin', 'tax']
+		'delivery_site', 'transport', 'country_of_origin', 
+		'tax', 'shipping']
 		exclude = ('company',)
 
 class OrderEditForm(forms.ModelForm):
 	class Meta:
 		model = Order
 		fields = ['due_date', 'status', 'incoterm', 
-		'delivery_site', 'transport', 'country_of_origin']
+		'delivery_site', 'transport', 
+		'country_of_origin']
 		exclude = ('customer', 'company')
 
 class ItemUpdateForm(forms.Form):

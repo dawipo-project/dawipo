@@ -6,7 +6,7 @@ from .models import Category, Product
 class ProductEditForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'sku', 'image', 'description', 
+        fields = ('category', 'name', 'sku', 'image', 'description', 
         	'observations', 'brand', 'color', 'provider', 
             'price_1', 'price_2', 'price_3', 'barcode', 'measures',
             'fabrication_cost', 'tax', 'available')
@@ -14,8 +14,9 @@ class ProductEditForm(forms.ModelForm):
 class ProductCreateForm(forms.ModelForm):
 	class Meta:
 		model = Product
-		fields = ('name', 'sku', 'image', 'description', 
-        	'observations', 'price_1', 'price_2', 'price_3',
+		fields = ('category', 'name', 'sku', 'image', 'description', 
+            'observations', 'brand', 'color', 'provider', 
+            'price_1', 'price_2', 'price_3', 'barcode', 'measures',
             'fabrication_cost', 'tax', 'available')
 
 class CategoryForm(forms.ModelForm):

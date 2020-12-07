@@ -15,6 +15,9 @@ import csv
 from django.http import HttpResponse
 
 # Create your views here.
+def utf8ify_s(s):
+    return s.encode('utf-8')
+
 @login_required
 def export_csv(request):
 	categories = Category.objects.filter(company=request.user.profile.company)
@@ -26,9 +29,11 @@ def export_csv(request):
     	'Marca', 'Proveedor', 'Color', 'Medidas', 'Descripción', 'Observaciones', 'Precio 1', 'Precio 2',
     	'Precio 3', 'Impuesto (%)', 'Costo de fabricación'])
 	for item in queryset:
-		writer.writerow([item.id, item.category.name, item.name, item.sku, item.barcode, item.brand,
-        	item.provider, item.color, item.measures, item.description, item.observations, item.price_1,
-        	item.price_2, item.price_3, item.tax, item.fabrication_cost])
+		writer.writerow([utf8ify_s(str(item.id)), utf8ify_s(item.category.name), utf8ify_s(item.name), 
+			utf8ify_s(item.sku), utf8ify_s(str(item.barcode)), utf8ify_s(item.brand), utf8ify_s(item.provider), 
+			utf8ify_s(item.color), utf8ify_s(item.measures), utf8ify_s(item.description), utf8ify_s(item.observations), 
+			utf8ify_s(str(item.price_1)), utf8ify_s(str(item.price_2)), utf8ify_s(str(item.price_3)), 
+			utf8ify_s(str(item.tax)), utf8ify_s(str(item.fabrication_cost))])
 	return response
 
 @login_required

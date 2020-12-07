@@ -296,8 +296,12 @@ def db_export_excel(request):
     for order in closest_orders:
         cost = f'${order.get_total_cost():,}'
         cost 
-        writer.writerow([order.id, order.customer.name, cost, order.due_date, order.get_status_display()])
+        writer.writerow([utf8ify_s(str(order.id)), utf8ify_s(order.customer.name), utf8ify_s(cost), 
+            utf8ify_s(order.due_date), utf8ify_s(order.get_status_display())])
     return response
+
+def utf8ify_s(s):
+    return s.encode('utf-8')
 
 
 def create_cust_dict(customers):

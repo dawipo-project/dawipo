@@ -24,26 +24,15 @@ def export_csv(request):
 	queryset = Product.objects.filter(category__in=categories)
 	response = HttpResponse(content_type='text/csv')
 	response['Content-Disposition'] = 'attachment; filename=productos.csv'
+	response.write(u'\ufeff'.encode('utf8'))
 	writer = csv.writer(response)
 	writer.writerow(['Id de Producto', 'Categoría', 'Nombre del producto', 'SKU', 'Código de barras',
     	'Marca', 'Proveedor', 'Color', 'Medidas', 'Descripción', 'Observaciones', 'Precio 1', 'Precio 2',
     	'Precio 3', 'Impuesto (%)', 'Costo de fabricación'])
 	for item in queryset:
-		writer.writerow([
-			ascii(str(item.id)), ascii(item.category.name), ascii(item.name), 
-			ascii(item.sku) if item.sku else '', 
-			ascii(str(item.barcode)) if item.barcode else '', 
-			ascii(item.brand) if item.brand else '', 
-			ascii(item.provider) if item.provider else '', 
-			ascii(item.color) if item.color else '', 
-			ascii(item.measures) if item.measures else '', 
-			ascii(item.description) if item.description else '', 
-			ascii(item.observations) if item.observations else '', 
-			ascii(str(item.price_1)), 
-			ascii(str(item.price_2)) if item.price_2 else '', 
-			ascii(str(item.price_3)) if item.price_3 else '', 
-			ascii(str(item.tax)) if item.tax else 0, 
-			ascii(str(item.fabrication_cost)) if item.fabrication_cost else ''])
+		writer.writerow([item.id, item.category.name, item.name, item.sku, item.barcode, item.brand,
+        	item.provider, item.color, item.measures, item.description, item.observations, item.price_1,
+        	item.price_2, item.price_3, item.tax, item.fabrication_cost])
 	return response
 
 @login_required

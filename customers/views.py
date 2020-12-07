@@ -15,34 +15,32 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
-def utf8ify_s(s):
-    return s.encode('utf-8')
-
 @login_required
 def export_csv(request):
 	queryset = Customer.objects.filter(company=request.user.profile.company)
 	response = HttpResponse(content_type='text/csv')
 	response['Content-Disposition'] = 'attachment; filename=clientes.csv'
+	response.write(u'\ufeff'.encode('utf8'))
 	writer = csv.writer(response)
 	writer.writerow(['Nombre', 'Tipo de documento', 'Documento', 'Régimen', 'Persona',
     	'Dirección', 'Ciudad', 'Zona', 'Código Postal', 'Teléfono', 'Celular', 
     	'Nombre del contacto', 'Apellido del contacto', 'Email', 'Código interno', 'Medio de contacto'])
 	for item in queryset:
-		writer.writerow([ascii(item.name), 
-			ascii(item.document_type.name) if item.document_type else '', 
-			ascii(item.document) if item.document else '', 
-			ascii(item.regime.name) if item.regime else '', 
-			ascii(item.person_type.name) if item.person_type else '', 
-			ascii(item.address), ascii(item.city), 
-			ascii(item.zone) if item.zone else '', 
-			ascii(item.zipcode) if item.zipcode else '', 
-			ascii(item.phone_number) if item.phone_number else '', 
-			ascii(item.cellphone) if item.cellphone else '', 
-			ascii(item.first_name) if item.first_name else '',
-        	ascii(item.last_name) if item.last_name else '', 
-        	ascii(item.email) if item.email else '', 
-        	ascii(item.internal_code) if item.internal_code else '', 
-        	ascii(item.cust_contact.contact) if item.cust_contact else '',])
+		writer.writerow([item.name, 
+			item.document_type.name if item.document_type else '', 
+			item.document if item.document else '', 
+			item.regime.name if item.regime else '', 
+			item.person_type.name if item.person_type else '', 
+			item.address, item.city, 
+			item.zone if item.zone else '', 
+			item.zipcode if item.zipcode else '', 
+			item.phone_number if item.phone_number else '', 
+			item.cellphone if item.cellphone else '', 
+			item.first_name if item.first_name else '',
+        	item.last_name if item.last_name else '', 
+        	item.email if item.email else '', 
+        	item.internal_code if item.internal_code else '', 
+        	item.cust_contact.contact if item.cust_contact else ''])
 	return response
 
 class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMixin):

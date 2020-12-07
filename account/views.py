@@ -291,13 +291,12 @@ def db_export_excel(request):
         status='canceled').exclude(status='pre-order').exclude(status='delivered').order_by('due_date')
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = f'filename=closest_orders.csv'
+    response.write(u'\ufeff'.encode('utf8'))
     writer = csv.writer(response)
     writer.writerow(['Id de Orden', 'Cliente', 'Precio total', 'Fecha de entrega', 'Estado'])
     for order in closest_orders:
         cost = f'${order.get_total_cost():,}'
-        cost 
-        writer.writerow([ascii(str(order.id)), ascii(order.customer.name), ascii(cost), 
-            order.due_date, ascii(order.get_status_display())])
+        writer.writerow([order.id, order.customer.name, cost, order.due_date, order.get_status_display()])
     return response
 
 def utf8ify_s(s):

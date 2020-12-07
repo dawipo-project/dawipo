@@ -53,7 +53,6 @@ class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMix
 
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company
-		import pdb; pdb.set_trace()
 		return super(CustomerRegistrationView, self).form_valid(form)
 
 	def get_success_url(self):

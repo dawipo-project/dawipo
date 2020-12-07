@@ -79,7 +79,7 @@ class Order(models.Model):
 
 	def get_total_tax(self):
 		if self.tax:
-			return round((sum((item.get_cost() / 100) * item.tax for item in self.items.all()), 2) + self.shipping)
+			return round((sum((item.get_cost() / 100) * item.tax for item in self.items.all()) + self.shipping), 2)
 		else:
 			return 0
 

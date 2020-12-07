@@ -61,7 +61,7 @@
 			<div class="card-body">
 				<h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
 				<hr>
-				{% if product.description %}<p>{{ product.description }}</p>{% endif %}
+				{% if product.description|truncatewords:'20' %}<p>{{ product.description }}</p>{% endif %}
 				<h6 class="align-items-right text-right"><span class="text-success">Precio retail:</span> {{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h6>
 				<h6 class="align-items-right text-right"><span class="text-success">Precio mayorista:</span> {% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}{% else %}No tiene{% endif %}</h6>
 				<h6 class="align-items-right text-right"><span class="text-success">Marca:</span> {% if product.brand %}{{ product.brand }}{% else %}No tiene{% endif %}</h6>

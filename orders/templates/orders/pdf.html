@@ -89,7 +89,7 @@
 				<tr>
 					<td class="borderless" colspan="3"></td>
 					<td class="all-borders"><strong>Costo del envío</strong></td>
-					<td class="all-borders align-right">{{ order.shipping|intcomma }}</td>
+					<td class="all-borders align-right">{{ request.user.profile.company.currency }}${{ order.shipping|intcomma }}</td>
 				</tr>
 				<tr>
 					<td class="borderless" colspan="3"></td>

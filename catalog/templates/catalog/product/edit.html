@@ -48,7 +48,7 @@
 				</div>
 				<div class="form-group">
 					<label for="id_barcode">Código de barras</label>
-					<input type="text" name="barcode" maxlength="20" id="id_barcode" class="form-control" value="{{ product.barcode }}">
+					<input type="text" name="barcode" maxlength="20" id="id_barcode" class="form-control" value="{% if product.barcode %}{{ product.barcode }}{% endif %}">
 				</div>
 				<div class="form-group">
 					<label>Imagen del producto</label>
@@ -84,29 +84,29 @@
 				</div>
 				<div class="form-group">
 					<label for="id_tax">Impuesto (%)</label>
-					<input type="text" name="tax" id="id_tax" class="form-control" value="{{ product.tax }}">
+					<input type="text" name="tax" id="id_tax" class="form-control" value="{% if product.tax %}{{ product.tax }}{% else %}0{% endif %}">
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-6 float-left">
 				<div class="form-group">
 					<label for="id_brand">Marca</label>
-					<input type="text" name="brand" maxlength="20" id="id_brand" class="form-control" value="{{ product.brand }}">
+					<input type="text" name="brand" maxlength="20" id="id_brand" class="form-control" value="{% if product.brand %}}{ product.brand }}{% endif %}">
 				</div>
 				<div class="form-group">
 					<label for="id_provider">Proveedor</label>
-					<input type="text" name="provider" maxlength="20" id="id_provider" class="form-control" value="{{ product.provider }}">
+					<input type="text" name="provider" maxlength="20" id="id_provider" class="form-control" value="{% if product.provider %}{{ product.provider }}{% endif %}">
 				</div>
 				<div class="form-group">
 					<label for="id_color">Color</label>
-					<input type="text" name="color" id="id_color" class="form-control" value="{{ product.color }}">
+					<input type="text" name="color" id="id_color" class="form-control" value="{% if product.color %}{{ product.color }}{% endif %}">
 				</div>
 				<div class="form-group">
 					<label for="id_description">Descripción del producto</label>
-					<textarea name="description" id="id_description" cols="30" rows="5" class="form-control">{{ product.description }}</textarea>
+					<textarea name="description" id="id_description" cols="30" rows="5" class="form-control">{% if product.description %}{{ product.description }}{% endif %}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="id_observations">Observaciones</label>
-					<textarea name="observations" id="id_observations" cols="30" rows="5" class="form-control">{{ product.observations }}</textarea>
+					<textarea name="observations" id="id_observations" cols="30" rows="5" class="form-control">{% if product.observations %}{{ product.observations }}{% endif %}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="id_measures">Medidas</label>
@@ -114,7 +114,7 @@
 				</div>
 				<div class="form-group">
 					<label for="id_fabrication_cost">Costo del producto</label>
-					<input type="text" name="fabrication_cost" id="id_fabrication_cost" class="form-control" value="{{ product.fabrication_cost }}">
+					<input type="text" name="fabrication_cost" id="id_fabrication_cost" class="form-control" value="{% if product.fabrication_cost %}{{ product.fabrication_cost }}{% endif %}">
 				</div>
 				<div class="form-group">
 					<div class="custom-control custom-checkbox">

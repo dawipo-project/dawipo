@@ -41,10 +41,9 @@
 				<div class="form-group">
 					<label for="id_category">Categoría <span class="text-danger">*</span></label>
 					<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_category" name="category" required>
-						<option>Selecciona una categoría...</option>
 						<optgroup label="Category">
 							{% for category in categories %}
-							<option value="{{ category.id }}">{{ category.name }}</option>
+							<option value="{{ category.id }}" {% if category==product.category %}selected{% endif %}>{{ category.name }}</option>
 							{% endfor %}
 						</optgroup>
 					</select>

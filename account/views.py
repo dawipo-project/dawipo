@@ -297,7 +297,7 @@ def db_export_excel(request):
         cost = f'${order.get_total_cost():,}'
         cost 
         writer.writerow([utf8ify_s(str(order.id)), utf8ify_s(order.customer.name), utf8ify_s(cost), 
-            utf8ify_s(order.due_date), utf8ify_s(order.get_status_display())])
+            order.due_date, utf8ify_s(order.get_status_display())])
     return response
 
 def utf8ify_s(s):

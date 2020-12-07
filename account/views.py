@@ -294,7 +294,7 @@ def db_export_excel(request):
     writer = csv.writer(response)
     writer.writerow(['Id de Orden', 'Cliente', 'Precio total', 'Fecha de entrega', 'Estado'])
     for order in closest_orders:
-        writer.writerow([order.id, order.customer.name, order.get_total_cost, order.due_date, order.get_status_display])
+        writer.writerow([order.id, order.customer.name, order.get_total_cost(), order.due_date, order.get_status_display()])
     return response
 
 

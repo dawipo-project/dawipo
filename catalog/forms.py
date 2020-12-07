@@ -7,7 +7,8 @@ class ProductEditForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ('name', 'sku', 'image', 'description', 
-        	'observations', 'price_1', 'price_2', 'price_3',
+        	'observations', 'brand', 'color', 'provider', 
+            'price_1', 'price_2', 'price_3', 'barcode', 'measures',
             'fabrication_cost', 'tax', 'available')
 
 class ProductCreateForm(forms.ModelForm):

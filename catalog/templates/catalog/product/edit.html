@@ -110,7 +110,7 @@
 				</div>
 				<div class="form-group">
 					<label for="id_measures">Medidas</label>
-					<input type="text" name="measures" id="id_measures" class="form-control" value="{{ product.measures }}">
+					<input type="text" name="measures" id="id_measures" class="form-control" value="{% if product.measures %}{{ product.measures }}{% endif %}">
 				</div>
 				<div class="form-group">
 					<label for="id_fabrication_cost">Costo del producto</label>

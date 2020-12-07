@@ -62,6 +62,18 @@
                 <div id="revenue-chart" class="apex-charts mt-3" 
                 data-colors="#003f5a,#fe6625"></div>
                 <script>
+                    var date = new Date();
+                    date.setMonth(date.getMonth() + 1);
+                    var months = 12;
+                    var monthNames = ["January", "February", "March", "April", "May", "June",
+                      "July", "August", "September", "October", "November", "December"
+                    ];
+                    var newList = []
+                    for (var i = 0; i < months; i++) {
+                        var m = date.getMonth()
+                        newList.push(monthNames[m])
+                        date.setMonth(date.getMonth() + 1);
+                    }
                     var e = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"],
                     t = $("#revenue-chart").data("colors");
                     t && (e = t.split(","));
@@ -103,7 +115,7 @@
                         },
                         xaxis: { 
                             type: "string", 
-                            categories: {{ months_list|safe }}, 
+                            categories: newList, 
                             tooltip: { 
                                 enabled: !1 
                             }, 

@@ -43,7 +43,7 @@
 					<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_category" name="category" required>
 						<optgroup label="Category">
 							{% for category in categories %}
-							<option value="{{ category.id }}" {% if category==product.category %}selected{% endif %}>{{ category.name }}</option>
+							<option value="{{ category.id }}" {% if category == product.category %}selected{% endif %}>{{ category.name }}</option>
 							{% endfor %}
 						</optgroup>
 					</select>

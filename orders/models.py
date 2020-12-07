@@ -49,9 +49,10 @@ class Order(models.Model):
 		('CIF', 'CIF'),
 	)
 	TRANSPORT_CHOICES = (
-		('air', 'Aire'),
-		('road', 'Carretera'),
-		('ocean', 'Mar'),
+		('air', 'Aéreo'),
+		('road', 'Terrestre'),
+		('ocean', 'Marítimo'),
+		('package', 'Paquetería'),
 	)
 	company = models.ForeignKey(Company, related_name='company_orders', on_delete=models.CASCADE)
 	user = models.ForeignKey(User, related_name='order_author', on_delete=models.CASCADE)

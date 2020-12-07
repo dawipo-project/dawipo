@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}DAWIPO - Generate invoice{% endblock %}
 {% block content %}
 <div class="row">
@@ -97,13 +98,13 @@
 				<tr>
 					<td>{{ item.product.name }}</td>
 					<td>{{ item.quantity }}</td>
-					<td class="text-secondary">{{ request.user.profile.company.currency }}${{ item.total_price }}</td>
+					<td class="text-secondary align-items-right text-right">{{ request.user.profile.company.currency }}${{ item.total_price|intcomma }}</td>
 				</tr>
 				{% endfor %}
 				<tr>
 					<td class="text-success">Total</td>
 					<td></td>
-					<td>{{ request.user.profile.company.currency }}${{ cart.get_total_price }}</td>
+					<td class="align-items-right text-right">{{ request.user.profile.company.currency }}${{ cart.get_total_price|intcomma }}</td>
 				</tr>
 				</tbody>
 			</table>

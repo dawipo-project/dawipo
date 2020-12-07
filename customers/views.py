@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import MultipleObjectMixin
@@ -46,12 +46,14 @@ def export_csv(request):
 class CustomerRegistrationView(SuccessMessageMixin, CreateView, LoginRequiredMixin):
 	model = Customer
 	template_name = 'customers/create.html'
-	fields = ['name', 'address', 'city', 'zipcode',
-	'first_name', 'last_name', 'email']
-	success_message = '¡La categoría ha sido registrada exitosamente!'
+	fields = ['name', 'address', 'document_type', 'document', 'regime', 'city', 'zipcode',
+	'person_type', 'zone', 'phone_number', 'cellphone', 'first_name', 'last_name', 'email',
+	'internal_code', 'cust_contact']
+	success_message = f'¡El cliente ha sido registrado exitosamente!'
 
 	def form_valid(self, form):
 		form.instance.company = self.request.user.profile.company
+		import pdb; pdb.set_trace()
 		return super(CustomerRegistrationView, self).form_valid(form)
 
 	def get_success_url(self):
@@ -91,6 +93,31 @@ class CustomerDetail(MultipleObjectMixin, DetailView, LoginRequiredMixin):
 	def get_context_data(self, **kwargs):
 		object_list = Order.objects.filter(customer=self.object)
 		context = super(CustomerDetail, self).get_context_data(object_list=object_list, **kwargs)
+		return context
+
+class CustomerUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+	model = Customer
+	template_name = 'customers/edit.html'
+	fields = ['name', 'address', 'document_type', 'document', 'regime', 'city', 'zipcode',
+	'person_type', 'zone', 'phone_number', 'cellphone', 'first_name', 'last_name', 'email',
+	'internal_code', 'cust_contact']
+	success_message = f'¡El cliente ha sido editado exitosamente!'
+
+	def form_valid(self, form):
+		form.instance.company = self.request.user.profile.company
+		return super(CustomerRegistrationView, self).form_valid(form)
+
+	def get_success_url(self):
+		return reverse_lazy('customers:customer_list')
+
+	def get_context_data(self, **kwargs):
+		context = super(CustomerRegistrationView, self).get_context_data(**kwargs)
+		context['document_types'] = DocumentType.objects.all()
+		context['regimes'] = Regime.objects.all()
+		context['person_types'] = PersonType.objects.all()
+		context['contacts'] = CustomerContact.objects.filter(company=self.request.user.profile.company)
+		context['customers'] = Customer.objects.filter(company=self.request.user.profile.company)
+		context['categories'] = Category.objects.filter(company=self.request.user.profile.company)
 		return context
 
 def import_csv(request):

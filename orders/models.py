@@ -78,6 +78,8 @@ class Order(models.Model):
 	updated = models.DateTimeField(auto_now=True)
 	status = models.CharField(max_length=25, choices=STATUS_CHOICES, default='pre-order')
 	shipping = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
+	payment_method = models.ForeignKey(PaymentMethod, 
+		related_name='order_payment', on_delete=models.CASCADE, null=True, blank=True)
 
 	class Meta:
 		ordering = ('-created',)

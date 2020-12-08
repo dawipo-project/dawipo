@@ -24,6 +24,17 @@ class OrderStatus(models.Model):
 		self.slug = slugify(self.name)
 		super(OrderStatus, self).save()
 
+class PaymentMethod(models.Model):
+	name = models.CharField(max_length=100, db_index=True)
+
+	class Meta:
+		ordering = ('name',)
+		verbose_name = 'payment method'
+		verbose_name_plural = 'payment methods'
+
+	def __str__(self):
+		return f'Payment by {self.name}'
+
 class Order(models.Model):
 	STATUS_CHOICES = (
 		('pre-order', 'Pre-orden'),

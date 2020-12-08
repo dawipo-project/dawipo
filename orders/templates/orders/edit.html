@@ -76,22 +76,33 @@
 					<h3>Editar orden</h3>
 					<hr>
 					<form method="post">
+						{% if form.errors %}
+						{% for field in form %}
+						{% for error in field.errors %}
+						<div class="alert alert-danger">
+							<strong>{{ error|escape }}</strong>
+						</div>
+						{% endfor %}
+						{% endfor %}
+						{% for error in form.non_field_errors %}
+						<div class="alert alert-danger">
+							<strong>{{ error|escape }}</strong>
+						</div>
+						{% endfor %}
+						{% endif %}
 						{% csrf_token %}
 						<div class="form-group">
-							{% if form.errors %}
-							{% for field in form %}
-							{% for error in field.errors %}
-							<div class="alert alert-danger">
-								<strong>{{ error|escape }}</strong>
-							</div>
-							{% endfor %}
-							{% endfor %}
-							{% for error in form.non_field_errors %}
-							<div class="alert alert-danger">
-								<strong>{{ error|escape }}</strong>
-							</div>
-							{% endfor %}
-							{% endif %}
+							<label for="id_payment_method">Medio de pago</label>
+							<select name="payment_method" id="id_payment_method" class="form-control select2">
+								<option>Selecciona un medio de pago</option>
+								<optgroup label="Medios de pago">
+									{% for payment in payments %}
+									<option value="{{ payment.id }}" {% if payment == order.payment_method.name %}selected{% endif %}>{{ payment.name }}</option>
+									{% endfor %}
+								</optgroup>
+							</select>
+						</div>
+						<div class="form-group">
 							<label>Fecha de entrega</label>
 							<input type="text" class="form-control" id="id_due_date" name="due_date" value='{{ order.due_date | date:"m/d/Y" }}' data-toggle="date-picker" data-single-date-picker="true" data-min-date="{{ today|date:'m/d/Y'}}" data-auto-apply="true" data-locale='{"cancelLabel": "Clear", "daysOfWeek": ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"]}'>
 						</div>

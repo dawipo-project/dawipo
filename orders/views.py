@@ -15,7 +15,7 @@ from customers.models import Customer
 from cart.forms import CartAddProductForm
 from .tasks import order_created, order_edited
 from .forms import OrderCreateForm, OrderEditForm, ItemUpdateForm
-from .models import OrderItem, Order, OrderChange
+from .models import OrderItem, Order, OrderChange, PaymentMethod
 from cart.cart import Cart
 import datetime
 import weasyprint
@@ -40,6 +40,7 @@ def product_list(request, category_slug=None):
 
 @login_required
 def order_create(request):
+	payments = PaymentMethod.objects.filter(company=request.user.profile.company)
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
 	cart = Cart(request)
@@ -62,7 +63,7 @@ def order_create(request):
 	else:
 		form = OrderCreateForm()
 	return render(request, 'orders/create.html', {'cart': cart, 'form': form, 
-		'customers': customers, 'categories': categories})
+		'customers': customers, 'categories': categories, 'payments': payments})
 
 @login_required
 def download_order_pdf(request, order_id):
@@ -83,6 +84,7 @@ def download_order_pdf(request, order_id):
 
 @login_required
 def order_edit(request, order_id):
+	payments = PaymentMethod.objects.filter(company=request.user.profile.company)
 	customers = Customer.objects.filter(company=request.user.profile.company)
 	categories = Category.objects.filter(company=request.user.profile.company)
 	today = datetime.date.today()
@@ -109,7 +111,7 @@ def order_edit(request, order_id):
 	else:
 		edit_form = OrderEditForm(instance=order)
 	return render(request, 'orders/edit.html', {'form': edit_form, 'categories': categories, 
-		'customers': customers, 'order': order, 'items': order_items, 'today': today})
+		'customers': customers, 'order': order, 'items': order_items, 'today': today, 'payments': payments})
 
 class UpdateOrderItem(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = OrderItem

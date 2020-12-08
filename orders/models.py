@@ -25,6 +25,8 @@ class OrderStatus(models.Model):
 		super(OrderStatus, self).save()
 
 class PaymentMethod(models.Model):
+	company = models.ForeignKey(Company, related_name='payment_company', 
+		on_delete=models.CASCADE, blank=True, null=True)
 	name = models.CharField(max_length=100, db_index=True)
 
 	class Meta:

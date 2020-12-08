@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from .models import Order, OrderItem, OrderChange, OrderStatus
+from .models import Order, OrderItem, OrderChange, OrderStatus, PaymentMethod
 
 # Register your models here.
 class OrderItemInline(admin.TabularInline):
@@ -27,3 +27,7 @@ class OrderChangeAdmin(admin.ModelAdmin):
 class OrderStatusAdmin(admin.ModelAdmin):
 	list_display = ['name', 'es_name']
 	prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(PaymentMethod)
+class PaymentMethodAdmin(admin.ModelAdmin):
+	list_display = ['name']

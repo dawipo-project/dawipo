@@ -47,7 +47,7 @@
 			<div class="form-group">
 				<label for="id_document_type">Tipo de documento</label>
 				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_document_type" name="document_type">
-					<option>Selecciona un tipo de documento...</option>
+					<option value="">Selecciona un tipo de documento...</option>
 					<optgroup label="Tipos de documento">
 						{% for type in document_types %}
 						<option value="{{ type.id }}">{{ type.name }}</option>
@@ -90,7 +90,7 @@
 			<div class="form-group">
 				<label for="id_regime">Régimen</label>
 				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_regime" name="regime">
-					<option>Selecciona una opción...</option>
+					<option value="">Selecciona una opción...</option>
 					<optgroup label="Tipos de régimen">
 						{% for regime in regimes %}
 						<option value="{{ regime.id }}">Régimen {{ regime.name }}</option>
@@ -101,7 +101,7 @@
 			<div class="form-group">
 				<label for="id_person_type">Tipo de Persona</label>
 				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_person_type" name="person_type">
-					<option>Selecciona una opción...</option>
+					<option value="">Selecciona una opción...</option>
 					<optgroup label="Tipos de persona">
 						{% for person in person_types %}
 						<option value="{{ person.id }}">Persona {{ person.name }}</option>
@@ -112,7 +112,7 @@
 			<div class="form-group">
 				<label for="id_cust_contact">Origen del contacto</label>
 				<select class="select2 form-control" data-toggle="select2" style="width: 14em;" id="id_cust_contact" name="cust_contact">
-					<option>Selecciona una opción...</option>
+					<option value="">Selecciona una opción...</option>
 					<optgroup label="Contacto">
 						{% for contact in contacts %}
 						<option value="{{ contact.id }}">{{ contact.contact }}</option>

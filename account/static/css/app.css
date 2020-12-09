@@ -459,7 +459,6 @@ pre {
 .container-md,
 .container-lg,
 .container-xl {
-  position: relative;
   width: 100%;
   padding-right: 12px;
   padding-left: 12px;

@@ -302,173 +302,145 @@
                 </button>
             </div>
             <div class="container-fluid">
-                {% if messages %}
-                <div class="toast" style="position: absolute; top: 0; right: 0;">
-                    <div class="toast-header">
-                        <div class="logout-icon m-auto">
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            viewBox="0 0 161.2 161.2" enable-background="new 0 0 161.2 161.2" xml:space="preserve">
-                                <path class="path" fill="none" stroke="#fe6625" stroke-miterlimit="10" d="M425.9,52.1L425.9,52.1c-2.2-2.6-6-2.6-8.3-0.1l-42.7,46.2l-14.3-16.4
-                                c-2.3-2.7-6.2-2.7-8.6-0.1c-1.9,2.1-2,5.6-0.1,7.7l17.6,20.3c0.2,0.3,0.4,0.6,0.6,0.9c1.8,2,4.4,2.5,6.6,1.4c0.7-0.3,1.4-0.8,2-1.5
-                                c0.3-0.3,0.5-0.6,0.7-0.9l46.3-50.1C427.7,57.5,427.7,54.2,425.9,52.1z"/>
-                                <circle class="path" fill="none" stroke="#003f5a" stroke-width="4" stroke-miterlimit="10" cx="80.6" cy="80.6" r="62.1"/>
-                                <polyline class="path" fill="none" stroke="#fe6625" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="113,52.8
-                                74.1,108.4 48.2,86.4 "/>
-
-                                <circle class="spin" fill="none" stroke="#007a7a" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12.2175,12.2175" cx="80.6" cy="80.6" r="73.9"/>
-                            </svg>
-                            <strong class="mr-auto">¡Genial!</strong>
-                            <small>Hace unos segundos</small>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="toast-body">
-                            {% for message in messages %}
-                            <p class="text-{{ message.tags }}">{{ message }}</p>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
                 {% block content %}
                 {% endblock %}
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <script>document.write(new Date().getFullYear())</script> © DAWIPO Project
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-md-right footer-links d-none d-md-block">
-                                <a href="javascript: void(0);">Acerca de</a>
-                                <a href="javascript: void(0);">Soporte</a>
-                            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <script>document.write(new Date().getFullYear())</script> © DAWIPO Project
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-md-block">
+                            <a href="javascript: void(0);">Acerca de</a>
+                            <a href="javascript: void(0);">Soporte</a>
                         </div>
                     </div>
                 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="right-bar">
-
-        <div class="rightbar-title">
-            <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                <i class="dripicons-cross noti-icon"></i>
-            </a>
-            <h5 class="m-0">Configuración</h5>
-        </div>
-
-        <div class="rightbar-content h-100" data-simplebar>
-
-            <div class="p-3">
-                <div class="alert alert-warning" role="alert">
-                    <strong>Personaliza </strong> el esquema de colores, los menús, etc.
-                </div>
-
-                <!-- Settings -->
-                <h5 class="mt-3">Esquema de colores</h5>
-                <hr class="mt-1" />
-
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="color-scheme-mode" value="light"
-                    id="light-mode-check" checked />
-                    <label class="custom-control-label" for="light-mode-check">Modo claro</label>
-                </div>
-
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="color-scheme-mode" value="dark"
-                    id="dark-mode-check" />
-                    <label class="custom-control-label" for="dark-mode-check">Modo oscuro</label>
-                </div>
-
-                <!-- Width -->
-                <h5 class="mt-4">Ancho</h5>
-                <hr class="mt-1" />
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="width" value="fluid" id="fluid-check" checked />
-                    <label class="custom-control-label" for="fluid-check">Fluído (Ocupa toda la pantalla)</label>
-                </div>
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="width" value="boxed" id="boxed-check" />
-                    <label class="custom-control-label" for="boxed-check">Contenido (Ocupa parte de la pantalla)</label>
-                </div>
-
-                <!-- Left Sidebar-->
-                <h5 class="mt-4">Barra lateral</h5>
-                <hr class="mt-1" />
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="theme" value="default" id="default-check"
-                    checked />
-                    <label class="custom-control-label" for="default-check">Predeterminada</label>
-                </div>
-
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="theme" value="light" id="light-check" />
-                    <label class="custom-control-label" for="light-check">Clara</label>
-                </div>
-
-                <div class="custom-control custom-switch mb-3">
-                    <input type="radio" class="custom-control-input" name="theme" value="dark" id="dark-check" />
-                    <label class="custom-control-label" for="dark-check">Oscura</label>
-                </div>
-
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="compact" value="fixed" id="fixed-check"
-                    checked />
-                    <label class="custom-control-label" for="fixed-check">Fija</label>
-                </div>
-
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="compact" value="condensed"
-                    id="condensed-check" />
-                    <label class="custom-control-label" for="condensed-check">Compacta</label>
-                </div>
-
-                <div class="custom-control custom-switch mb-1">
-                    <input type="radio" class="custom-control-input" name="compact" value="scrollable"
-                    id="scrollable-check" />
-                    <label class="custom-control-label" for="scrollable-check">Con scroll</label>
-                </div>
-
-                <button class="btn btn-primary btn-block mt-4" id="resetBtn">Restablecer</button>
-            </div> <!-- end padding-->
-
-        </div>
-    </div>
-
-    <div class="rightbar-overlay"></div>
-    <!-- { if messages %}
-    <div class="modal fade" id="messageModal" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center align-items-center">
-                    <div class="logout-icon m-auto">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 161.2 161.2" enable-background="new 0 0 161.2 161.2" xml:space="preserve">
-                        <path class="path" fill="none" stroke="#fe6625" stroke-miterlimit="10" d="M425.9,52.1L425.9,52.1c-2.2-2.6-6-2.6-8.3-0.1l-42.7,46.2l-14.3-16.4
-                        c-2.3-2.7-6.2-2.7-8.6-0.1c-1.9,2.1-2,5.6-0.1,7.7l17.6,20.3c0.2,0.3,0.4,0.6,0.6,0.9c1.8,2,4.4,2.5,6.6,1.4c0.7-0.3,1.4-0.8,2-1.5
-                        c0.3-0.3,0.5-0.6,0.7-0.9l46.3-50.1C427.7,57.5,427.7,54.2,425.9,52.1z"/>
-                        <circle class="path" fill="none" stroke="#003f5a" stroke-width="4" stroke-miterlimit="10" cx="80.6" cy="80.6" r="62.1"/>
-                        <polyline class="path" fill="none" stroke="#fe6625" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="113,52.8
-                        74.1,108.4 48.2,86.4 "/>
-
-                        <circle class="spin" fill="none" stroke="#007a7a" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12.2175,12.2175" cx="80.6" cy="80.6" r="73.9"/>
-                        </svg>
-                    </div> 
-                    <h3>¡Genial!</h3>
-                    { for message in messages %}
-                    <p class="text-{{ message.tags }}">{{ message }}</p>
-                    { endfor %}
-                    <hr>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                </div>
             </div>
+        </footer>
+    </div>
+</div>
+<div class="right-bar">
+
+    <div class="rightbar-title">
+        <a href="javascript:void(0);" class="right-bar-toggle float-right">
+            <i class="dripicons-cross noti-icon"></i>
+        </a>
+        <h5 class="m-0">Configuración</h5>
+    </div>
+
+    <div class="rightbar-content h-100" data-simplebar>
+
+        <div class="p-3">
+            <div class="alert alert-warning" role="alert">
+                <strong>Personaliza </strong> el esquema de colores, los menús, etc.
+            </div>
+
+            <!-- Settings -->
+            <h5 class="mt-3">Esquema de colores</h5>
+            <hr class="mt-1" />
+
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="color-scheme-mode" value="light"
+                id="light-mode-check" checked />
+                <label class="custom-control-label" for="light-mode-check">Modo claro</label>
+            </div>
+
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="color-scheme-mode" value="dark"
+                id="dark-mode-check" />
+                <label class="custom-control-label" for="dark-mode-check">Modo oscuro</label>
+            </div>
+
+            <!-- Width -->
+            <h5 class="mt-4">Ancho</h5>
+            <hr class="mt-1" />
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="width" value="fluid" id="fluid-check" checked />
+                <label class="custom-control-label" for="fluid-check">Fluído (Ocupa toda la pantalla)</label>
+            </div>
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="width" value="boxed" id="boxed-check" />
+                <label class="custom-control-label" for="boxed-check">Contenido (Ocupa parte de la pantalla)</label>
+            </div>
+
+            <!-- Left Sidebar-->
+            <h5 class="mt-4">Barra lateral</h5>
+            <hr class="mt-1" />
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="theme" value="default" id="default-check"
+                checked />
+                <label class="custom-control-label" for="default-check">Predeterminada</label>
+            </div>
+
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="theme" value="light" id="light-check" />
+                <label class="custom-control-label" for="light-check">Clara</label>
+            </div>
+
+            <div class="custom-control custom-switch mb-3">
+                <input type="radio" class="custom-control-input" name="theme" value="dark" id="dark-check" />
+                <label class="custom-control-label" for="dark-check">Oscura</label>
+            </div>
+
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="compact" value="fixed" id="fixed-check"
+                checked />
+                <label class="custom-control-label" for="fixed-check">Fija</label>
+            </div>
+
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="compact" value="condensed"
+                id="condensed-check" />
+                <label class="custom-control-label" for="condensed-check">Compacta</label>
+            </div>
+
+            <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="compact" value="scrollable"
+                id="scrollable-check" />
+                <label class="custom-control-label" for="scrollable-check">Con scroll</label>
+            </div>
+
+            <button class="btn btn-primary btn-block mt-4" id="resetBtn">Restablecer</button>
+        </div> <!-- end padding-->
+
+    </div>
+</div>
+
+<div class="rightbar-overlay"></div>
+{% if messages %}
+<div class="modal fade" id="messageModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center align-items-center">
+                <div class="logout-icon m-auto">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 161.2 161.2" enable-background="new 0 0 161.2 161.2" xml:space="preserve">
+                    <path class="path" fill="none" stroke="#fe6625" stroke-miterlimit="10" d="M425.9,52.1L425.9,52.1c-2.2-2.6-6-2.6-8.3-0.1l-42.7,46.2l-14.3-16.4
+                    c-2.3-2.7-6.2-2.7-8.6-0.1c-1.9,2.1-2,5.6-0.1,7.7l17.6,20.3c0.2,0.3,0.4,0.6,0.6,0.9c1.8,2,4.4,2.5,6.6,1.4c0.7-0.3,1.4-0.8,2-1.5
+                    c0.3-0.3,0.5-0.6,0.7-0.9l46.3-50.1C427.7,57.5,427.7,54.2,425.9,52.1z"/>
+                    <circle class="path" fill="none" stroke="#003f5a" stroke-width="4" stroke-miterlimit="10" cx="80.6" cy="80.6" r="62.1"/>
+                    <polyline class="path" fill="none" stroke="#fe6625" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="113,52.8
+                    74.1,108.4 48.2,86.4 "/>
+
+                    <circle class="spin" fill="none" stroke="#007a7a" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12.2175,12.2175" cx="80.6" cy="80.6" r="73.9"/>
+                </svg>
+            </div> 
+            <h3>¡Genial!</h3>
+            {% for message in messages %}
+            <p class="text-{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+            <hr>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
     </div>
-    { endif %}
- --><script src="{% static 'js/vendor.js'%}" type="text/javascript"></script>
+</div>
+</div>
+{% endif %}
+<script src="{% static 'js/vendor.js'%}" type="text/javascript"></script>
 <script src="{% static 'js/app.js'%}" type="text/javascript"></script>
 <script src="{% static 'js/pages/messages.js'%}" type="text/javascript"></script>
 <script src="{% static 'js/jquery-jvectormap-1.2.2.min.js'%}" type="text/javascript"></script>

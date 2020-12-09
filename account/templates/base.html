@@ -302,8 +302,6 @@
                 </button>
             </div>
             <div class="container-fluid">
-                {% block content %}
-                {% endblock %}
                 {% if messages %}
                 <div class="toast" style="position: absolute; top: 0; right: 0;">
                     <div class="toast-header">
@@ -332,6 +330,8 @@
                     </div>
                 </div>
                 {% endif %}
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
         <footer class="footer">

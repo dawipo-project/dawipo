@@ -2,6 +2,8 @@ from django import forms
 from .models import Order
 
 class OrderCreateForm(forms.ModelForm):
+	shipping = forms.DecimalField(decimal_places=2, localize=True)
+
 	class Meta:
 		model = Order
 		fields = ['payment_method', 'customer', 'due_date', 'incoterm', 

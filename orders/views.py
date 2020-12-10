@@ -61,7 +61,7 @@ def order_create(request):
 			today = order.created
 			items = OrderItem.objects.filter(order_id=order.id)
 			logo_url = request.build_absolute_uri()
-			logo_url += request.user.company.logo.url
+			logo_url += request.user.profile.company.logo.url
 			html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items, 'logo_url': logo_url}, request=request)
 			stylesheets = [
 				weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 

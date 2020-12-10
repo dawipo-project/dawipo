@@ -116,6 +116,14 @@
 									<a href="{% url 'orders:order_edit' order.id %}" class="btn btn-block btn-warning">Editar esta orden</a>	
 								</td>
 							</tr>
+							<tr>
+								<td colspan="3">
+									<a href="{% url 'orders:get_pdf' order.id %}" class="btn btn-block btn-secondary">
+										<i class="uil-file"></i>
+										Descargar PDF
+									</a>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

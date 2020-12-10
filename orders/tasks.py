@@ -7,7 +7,7 @@ from django.conf import settings
 from io import BytesIO
 
 @task
-def order_created(order_id, email, out, base_url, logo_url, company_name, currency):
+def order_created(order_id, email, base_url, logo_url, company_name, currency):
 	order = Order.objects.get(id=order_id)
 	today = order.created
 	items = OrderItem.objects.filter(order_id=order.id)

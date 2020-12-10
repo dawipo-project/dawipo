@@ -55,7 +55,7 @@
 					{% csrf_token %}
 					<div class="form-group">
 						<label for="id_price">Precio</label>
-						<select name="price" data-toggle="select2" id="id_price" class="form-control select2" required>
+						<select name="price" id="id_price" class="form-control select2" data-toggle="select2" required>
 							<option value="{{ product.price_1 }}" selected>Precio retail: ${{ product.price_1|intcomma }}</option>
 							{% if product.price_2 %}
 							<option value="{{ product.price_2 }}">Precio mayorista: ${{ product.price_2|intcomma }}</option>

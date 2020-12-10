@@ -41,8 +41,8 @@
 </div>
 <div class="row">
 	{% for product in products %}
-	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-		<div class="card h-100">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
+		<div class="card w-100">
 			<img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" alt="{{ product.slug }}" class="card-img-top">
 			<div class="card-body">
 				<h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
@@ -50,11 +50,21 @@
 				<p class="card-text">
 					{{ product.description|truncatewords:20 }}
 				</p>
-				<h6 class="align-items-right text-right"><span class="text-success">Precio retail:</span> {{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h6>
-				<h6 class="align-items-right text-right"><span class="text-success">Precio mayorista:</span> {% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}{% else %}No tiene{% endif %}</h6>
 				<hr>
 				<form action="{% url 'cart:cart_add' product.id %}" method="post">
 					{% csrf_token %}
+					<div class="form-group">
+						<label for="id_price">Precio</label>
+						<select name="price" data-toggle="select2" id="id_price" class="form-control select2" required>
+							<option value="{{ product.price_1 }}" selected>Precio retail: ${{ product.price_1|intcomma }}</option>
+							{% if product.price_2 %}
+							<option value="{{ product.price_2 }}">Precio mayorista: ${{ product.price_2|intcomma }}</option>
+							{% endif %}
+							{% if product.price_3 %}
+							<option value="{{ product.price_3 }}">Otro precio: ${{ product.price_3|intcomma }}</option>
+							{% endif %}
+						</select>
+					</div>
 					<div class="form-group">
 						<label for="id_quantity"></label>
 						<input data-toggle="touchspin" type="number" value="1" data-bts-max="100000" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">

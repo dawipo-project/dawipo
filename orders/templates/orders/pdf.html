@@ -83,8 +83,8 @@
 					<td class="all-borders align-right">{{ request.user.profile.company.currency }}${{ order.get_cost|intcomma }}</td>
 				</tr>
 				<tr>
-					<td class="borderless" style="white-space: nowrap;"><strong>Incoterm:</strong></td>
-					<td class="borderless">{{ order.get_incoterm_display }} - {{ order.delivery_site }}</td>
+					<td class="borderless" style="white-space: nowrap;"><strong>{% if order.incoterm %}Incoterm:{% else %}Lugar de entrega{% endif %}</strong></td>
+					<td class="borderless">{% if order.incoterm %}{{ order.get_incoterm_display }} - {% endif %}{{ order.delivery_site }}</td>
 					<td class="borderless"></td>
 					<td class="all-borders"><strong>Impuestos</strong></td>
 					<td class="all-borders align-right">{{ request.user.profile.company.currency }}${{ order.get_total_tax|intcomma }}</td>

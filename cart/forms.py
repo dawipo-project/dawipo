@@ -1,6 +1,7 @@
 from django import forms
 
 class CartAddProductForm(forms.Form):
+	price = forms.DecimalField()
 	quantity = forms.IntegerField(
 		label ='Amount'
 	)

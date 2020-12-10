@@ -118,6 +118,7 @@ h6, .h6 {
 	float: left;
 	margin: 0.5em;
 	padding: 1.5em;
+	display: table;
 }
 .valid {
 	width: 50%;

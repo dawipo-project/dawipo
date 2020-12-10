@@ -63,7 +63,6 @@ def edit(request, id, slug):
 	product = get_object_or_404(Product, id=id, slug=slug)
 	if request.method == 'POST':
 		product_form = ProductEditForm(instance=product, data=request.POST, files=request.FILES)
-		import pdb; pdb.set_trace()
 		if product_form.is_valid():
 			product_form.save()
 			messages.success(request, f'¡El producto {product.name} ha sido editado exitosamente!')

@@ -112,7 +112,7 @@ h6, .h6 {
 	float: right;
 	text-align: right;
 	margin-top: 3em;
-	margin-right: 2em;
+	padding-right: 3em;
 }
 .row {
 	width: 100%;

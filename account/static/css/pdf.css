@@ -13,7 +13,7 @@ body {
 	color: #6c757d;
 	text-align: left;
 	background-color: #fafbfe;
-	padding: 5px;
+	padding: 1em 2em;
 }
 @page {
     size: Letter;

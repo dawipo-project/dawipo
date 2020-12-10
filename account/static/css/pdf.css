@@ -13,7 +13,7 @@ body {
 	color: #6c757d;
 	text-align: left;
 	background-color: #fafbfe;
-	padding: 1em 2em;
+	padding: 1.5em 2.5em;
 }
 @page {
     size: Letter;
@@ -118,7 +118,6 @@ h6, .h6 {
 	float: left;
 	margin: 0.5em;
 	padding: 1.5em;
-	display: table;
 }
 .valid {
 	width: 50%;

@@ -124,7 +124,7 @@ h6, .h6 {
 	float: left;
 }
 .date {
-	width: 50;
+	width: 50%;
 	text-align: right;
 	float: left;
 }
@@ -163,4 +163,7 @@ td {
 .img-logo-img {
 	max-width: 90%;
 	margin-left: 3em;
+}
+.text-red {
+	color: #fa5c7c;
 }

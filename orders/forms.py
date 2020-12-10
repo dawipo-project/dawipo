@@ -2,6 +2,7 @@ from django import forms
 from .models import Order
 
 class OrderCreateForm(forms.ModelForm):
+	due_date = forms.DateField(localize=True)
 	shipping = forms.DecimalField(decimal_places=2, localize=True)
 
 	class Meta:

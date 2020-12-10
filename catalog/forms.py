@@ -4,11 +4,11 @@ from .models import Category, Product
 
 # Formulario de autenticación de usuarios
 class ProductEditForm(forms.ModelForm):
-    price_1 = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    price_2 = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    price_3 = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    fabrication_cost = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    tax = forms.DecimalField(decimal_places=2, localize=True, blank=True)
+    price_1 = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    price_2 = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    price_3 = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    fabrication_cost = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    tax = forms.DecimalField(decimal_places=2, localize=True, required=False)
 
     class Meta:
         model = Product
@@ -18,11 +18,11 @@ class ProductEditForm(forms.ModelForm):
         'fabrication_cost', 'tax', 'available')
 
 class ProductCreateForm(forms.ModelForm):
-    price_1 = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    price_2 = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    price_3 = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    fabrication_cost = forms.DecimalField(decimal_places=2, localize=True, blank=True)
-    tax = forms.DecimalField(decimal_places=2, localize=True, blank=True)
+    price_1 = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    price_2 = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    price_3 = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    fabrication_cost = forms.DecimalField(decimal_places=2, localize=True, required=False)
+    tax = forms.DecimalField(decimal_places=2, localize=True, required=False)
 
     class Meta:
         model = Product

@@ -16,6 +16,7 @@ class OrderEditForm(forms.ModelForm):
 		exclude = ('customer', 'company')
 
 class ItemUpdateForm(forms.Form):
+	price = forms.DecimalField(decimal_places=2, localize=True)
 	quantity = forms.IntegerField(
 		label ='Amount'
 	)

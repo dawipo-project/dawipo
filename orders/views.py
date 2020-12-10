@@ -58,7 +58,7 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
-			order_created.delay(order.id, request.user.email)
+			order_created.delay(order.id, request.user.email, request)
 			return render(request, 'orders/created.html', {'categories': categories, 'order': order})
 	else:
 		form = OrderCreateForm()
@@ -67,8 +67,8 @@ def order_create(request):
 
 @login_required
 def download_order_pdf(request, order_id):
-	today = datetime.date.today()
 	order = get_object_or_404(Order, id=order_id)
+	today = order.created
 	items = OrderItem.objects.filter(order_id=order_id)
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = f'filename=order_{order.id}.pdf'

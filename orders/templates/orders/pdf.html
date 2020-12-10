@@ -46,6 +46,7 @@
 						{% if order.customer.document %}
 						<strong>{{ order.customer.document_type.name}}:</strong> {{ order.customer.document }}<br>
 						{% endif %}
+						<strong>Estado de la orden:</strong> {{ order.get_status_display }}
 					</td>
 				</tr>
 			</tbody>

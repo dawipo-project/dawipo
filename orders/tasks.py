@@ -11,7 +11,7 @@ def order_created(order_id, email, out, base_url, logo_url, company_name, curren
 	order = Order.objects.get(id=order_id)
 	today = order.created
 	items = OrderItem.objects.filter(order_id=order.id)
-	html = render_to_string('orders/pdf.html', {
+	html = render_to_string('orders/mail_pdf.html', {
 		'order': order, 'today': today, 'items': items, 
 		'logo_url': logo_url, 'company_name': company_name, 'currency': currency})
 	stylesheets = [

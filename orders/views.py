@@ -58,7 +58,10 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
-			order_created.delay(order.id, request.user.email, request)
+			url = request.build_absolute_uri()
+			request_json = request.__dict__
+			logo_url = url + request.user.profile.company.logo.url
+			order_created.delay(order.id, request.user.email, url, logo_url, request=request_json)
 			return render(request, 'orders/created.html', {'categories': categories, 'order': order})
 	else:
 		form = OrderCreateForm()

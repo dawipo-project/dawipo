@@ -52,7 +52,7 @@
 		<table>
 			<thead class="head-borders">
 				<tr>
-					<th class="side-borders">Referencia</th>
+					<th class="side-borders" style="white-space: nowrap;">Referencia</th>
 					<th class="side-borders">Producto</th>
 					<th class="side-borders">Precio Unitario</th>
 					<th class="side-borders">Cantidad</th>
@@ -62,7 +62,7 @@
 			<tbody class="">
 				{% for item in items %}
 				<tr>
-					<td class="side-borders">{{ item.product.id }}</td>
+					<td class="side-borders" style="white-space: nowrap;">{{ item.product.id }}</td>
 					<td class="side-borders">{{ item.product.name }}</td>
 					<td class="side-borders align-right">{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
 					<td class="side-borders align-right">{{ item.quantity }}</td>
@@ -73,14 +73,14 @@
 					<td colspan="5"></td>
 				</tr>
 				<tr>
-					<td class="borderless"><strong>Fecha de entrega:</strong></td>
+					<td class="borderless" style="white-space: nowrap;"><strong>Fecha de entrega:</strong></td>
 					<td class="borderless">{{ order.due_date|date:'d/m/Y' }}</td>
 					<td class="borderless"></td>
 					<td class="all-borders"><strong>Subtotal</strong></td>
 					<td class="all-borders align-right">{{ request.user.profile.company.currency }}${{ order.get_cost|intcomma }}</td>
 				</tr>
 				<tr>
-					<td class="borderless"><strong>Incoterm:</strong></td>
+					<td class="borderless" style="white-space: nowrap;"><strong>Incoterm:</strong></td>
 					<td class="borderless">{{ order.get_incoterm_display }} - {{ order.delivery_site }}</td>
 					<td class="borderless"></td>
 					<td class="all-borders"><strong>Impuestos</strong></td>

@@ -13,9 +13,9 @@ class ProductEditForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ('category', 'name', 'sku', 'image', 'description', 
-        	'observations', 'brand', 'color', 'provider', 
-            'price_1', 'price_2', 'price_3', 'barcode', 'measures',
-            'fabrication_cost', 'tax', 'available')
+        'observations', 'brand', 'color', 'provider', 
+        'price_1', 'price_2', 'price_3', 'barcode', 'measures',
+        'fabrication_cost', 'tax', 'available')
 
 class ProductCreateForm(forms.ModelForm):
     price_1 = forms.DecimalField(decimal_places=2, localize=True, blank=True)
@@ -25,13 +25,13 @@ class ProductCreateForm(forms.ModelForm):
     tax = forms.DecimalField(decimal_places=2, localize=True, blank=True)
 
     class Meta:
-		model = Product
-		fields = ('category', 'name', 'sku', 'image', 'description', 
-            'observations', 'brand', 'color', 'provider', 
-            'price_1', 'price_2', 'price_3', 'barcode', 'measures',
-            'fabrication_cost', 'tax', 'available')
+        model = Product
+        fields = ('category', 'name', 'sku', 'image', 'description', 
+        'observations', 'brand', 'color', 'provider', 
+        'price_1', 'price_2', 'price_3', 'barcode', 'measures',
+        'fabrication_cost', 'tax', 'available')
 
 class CategoryForm(forms.ModelForm):
-	class Meta:
-		model = Category
-		exclude = ('company',)
+    class Meta:
+        model = Category
+        exclude = ('company',)

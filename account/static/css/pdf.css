@@ -108,11 +108,10 @@ h6, .h6 {
 	float: left;
 }
 .title {
-	width: 70%;
-	float: right;
+	width: 60%;
+	float: left;
 	text-align: right;
 	margin-top: 3em;
-	padding-right: 3em;
 }
 .row {
 	width: 100%;

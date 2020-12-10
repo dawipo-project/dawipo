@@ -7,17 +7,8 @@ from django.conf import settings
 from io import BytesIO
 
 @task
-def order_created(order_id, email, url, logo_url, request):
+def order_created(order_id, email, out):
 	order = Order.objects.get(id=order_id)
-	today = order.created
-	items = OrderItem.objects.filter(order_id=order_id)
-	html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items, 'logo_url': logo_url}, request=request)
-	stylesheets = [
-		weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
-		weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
-	]
-	out = BytesIO()
-	weasyprint.HTML(string=html, base_url=url).write_pdf(out, stylesheets=stylesheets)
 	subject = f'Order No. {order.id}'
 	message = f'Dear {order.customer.first_name} {order.customer.last_name},\n\nA pre-order has been placed in our system for {order.customer.name}, which you requested.\nYour order id is {order.id}. You may find the corresponding document attached to this message.'
 	email = EmailMessage(subject, message, 'no_reply@dawipo.co', [order.customer.email, email])

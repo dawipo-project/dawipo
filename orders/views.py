@@ -59,10 +59,18 @@ def order_create(request):
 					tax=item['tax'],
 					quantity=item['quantity'])
 			cart.clear()
-			url = request.build_absolute_uri()
-			request_json = request.__dict__
-			logo_url = url + request.user.profile.company.logo.url
-			order_created.delay(order.id, request.user.email, url, logo_url, request=request_json)
+			today = order.created
+			items = OrderItem.objects.filter(order_id=order.id)
+			logo_url = request.build_absolute_uri()
+			logo_url += request.user.company.logo.url
+			html = render_to_string('orders/pdf.html', {'order': order, 'today': today, 'items': items, 'logo_url': logo_url}, request=request)
+			stylesheets = [
+				weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css'), 
+				weasyprint.CSS('https://fonts.googleapis.com/css2?family=Lato&display=swap')
+			]
+			out = BytesIO()
+			weasyprint.HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(out, stylesheets=stylesheets)
+			order_created.delay(order.id, request.user.email, out)
 			return render(request, 'orders/created.html', {'categories': categories, 'order': order})
 	else:
 		form = OrderCreateForm()

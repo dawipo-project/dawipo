@@ -97,7 +97,7 @@
 								<option value="">Selecciona un medio de pago</option>
 								<optgroup label="Medios de pago">
 									{% for payment in payments %}
-									<option value="{{ payment.id }}" {% if payment == order.payment_method.name %}selected{% endif %}>{{ payment.name }}</option>
+									<option value="{{ payment.id }}" {% if payment == order.payment_method %}selected{% endif %}>{{ payment.name }}</option>
 									{% endfor %}
 								</optgroup>
 							</select>

@@ -99,7 +99,6 @@ def order_edit(request, order_id):
 	status = order.status
 	if request.method == 'POST':
 		edit_form = OrderEditForm(instance=order, data=request.POST)
-		import pdb; pdb.set_trace()
 		if edit_form.is_valid():
 			cd = edit_form.cleaned_data
 			new_status = cd['status']

@@ -16,7 +16,6 @@ class OrderCreateForm(forms.ModelForm):
 class OrderEditForm(forms.ModelForm):
 	due_date = forms.DateField(localize=True)
 	shipping = forms.DecimalField(decimal_places=2, localize=True)
-	payment_method = forms.ModelChoiceField(queryset=None)
 
 	class Meta:
 		model = Order

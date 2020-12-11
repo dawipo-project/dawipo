@@ -14,9 +14,6 @@ class OrderCreateForm(forms.ModelForm):
 		exclude = ('company',)
 
 class OrderEditForm(forms.ModelForm):
-	due_date = forms.DateField(localize=True)
-	shipping = forms.DecimalField(decimal_places=2, localize=True)
-
 	class Meta:
 		model = Order
 		fields = ['payment_method', 'due_date', 'status', 'incoterm', 

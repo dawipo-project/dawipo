@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class OrderStatus(models.Model):
-	name = models.CharField(max_length=50, db_index=True)
+	name = models.CharField(max_length=50, db_index=True)  # noqa: W191
 	es_name = models.CharField(max_length=50, null=True, blank=True)
 	slug = models.SlugField(max_length=50, db_index=True)
 
@@ -80,6 +80,7 @@ class Order(models.Model):
 	updated = models.DateTimeField(auto_now=True)
 	status = models.CharField(max_length=25, choices=STATUS_CHOICES, default='pre-order')
 	shipping = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
+	observations = models.TextField(null=True, blank=True)
 	payment_method = models.ForeignKey(PaymentMethod, 
 		related_name='order_payment', on_delete=models.CASCADE, null=True, blank=True)
 

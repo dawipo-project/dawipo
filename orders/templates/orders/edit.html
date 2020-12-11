@@ -121,9 +121,7 @@
 						</div>
 						<div class="form-group">
 							<label for="id_observations">Observaciones y comentarios:</label>
-							<textarea name="observations" id="id_observations" cols="30" rows="10" class="form-control">
-								{% if order.observations %}{{ order.observations }}{% endif %}
-							</textarea>
+							<textarea name="observations" id="id_observations" cols="30" rows="10" class="form-control">{% if order.observations %}{{ order.observations }}{% endif %}</textarea>
 						</div>
 						<button class="btn btn-block btn-primary" type="submit">
 							<i class="uil-save"></i>

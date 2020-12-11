@@ -94,7 +94,7 @@
 						<div class="form-group">
 							<label for="id_payment_method">Medio de pago</label>
 							<select name="payment_method" id="id_payment_method" class="form-control select2" data-toggle="select2">
-								<option>Selecciona un medio de pago</option>
+								<option value="">Selecciona un medio de pago</option>
 								<optgroup label="Medios de pago">
 									{% for payment in payments %}
 									<option value="{{ payment.id }}" {% if payment == order.payment_method.name %}selected{% endif %}>{{ payment.name }}</option>

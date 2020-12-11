@@ -84,6 +84,11 @@
 									{% endif %}
 								</td>
 							</tr>
+							{% if order.observations %}
+							<tr>
+								<td colspan="2">{{ order.observations }}</td>
+							</tr>
+							{% endif %}
 						</table>
 					</div>
 				</div>

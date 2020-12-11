@@ -1,6 +1,6 @@
 from django import forms
 from .models import Order
-from company.models import company
+from company.models import Company
 
 class OrderCreateForm(forms.ModelForm):
 	due_date = forms.DateField(localize=True)

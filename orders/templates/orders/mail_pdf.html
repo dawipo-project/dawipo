@@ -31,22 +31,68 @@
 		<table class="table-header">
 			<tbody>
 				<tr>
+					<td><strong>Cotización para:</strong></td>
 					<td>
 						<h5>{{ order.customer.name }}</h5><br>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>A nombre de:</strong></td>
+					<td>
 						{% if order.customer.first_name %}
 						{{ order.customer.first_name }} {{ order.customer.last_name }}<br>
+						{% else %}
+						{{ order.customer.name }}
 						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Dirección:</strong></td>
+					<td>
 						{% if order.customer.address %}
 						{{ order.customer.address }}<br>
 						{{ order.customer.zipcode }} {{ order.customer.city }}<br>
+						{% else %}
+						No tiene
 						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Teléfonos:</strong></td>
+					<td>
 						{% if order.customer.phone_number %}
 						{{ order.customer.phone_number }}<br>
 						{% endif %}
-						{% if order.customer.document %}
-						<strong>{{ order.customer.document_type.name}}:</strong> {{ order.customer.document }}<br>
+						{% if order.customer.cellphone %}
+						{{ order.customer.cellphone }}
 						{% endif %}
-						<strong>Estado de la orden:</strong> {{ order.get_status_display }}
+						{% if not order.customer.phone_number and not order.customer.cellphone %}
+						No tiene
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{% if order.customer.document_type %}
+						<strong>{{ order.customer.document_type.name}}:</strong>
+						{% else %}
+						<strong>Documento:</strong>
+						{% endif %}
+					</td>
+					<td>
+						{% if order.customer.document %}
+						{{ order.customer.document }}
+						{% else %}
+						No tiene
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Estado de la orden:</strong>
+					</td>
+					<td>
+						{{ order.get_status_display }}
 					</td>
 				</tr>
 			</tbody>

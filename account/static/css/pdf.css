@@ -170,3 +170,6 @@ td {
 .text-red {
 	color: #fa5c7c;
 }
+.border-bottom {
+	border-bottom: 1px solid black;
+}

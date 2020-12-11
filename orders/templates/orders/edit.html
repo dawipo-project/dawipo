@@ -119,6 +119,10 @@
 								<option value="canceled" {% if order.status == "canceled" %}selected{% endif %}>Cancelada</option>
 							</select>
 						</div>
+						<div class="form-group">
+							<label for="id_observations">Observaciones y comentarios:</label>
+							<textarea name="observations" id="id_observations" cols="30" rows="10" class="form-control"></textarea>
+						</div>
 						<button class="btn btn-block btn-primary" type="submit">
 							<i class="uil-save"></i>
 							Guardar cambios

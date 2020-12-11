@@ -335,18 +335,22 @@
                     <div class="chart-widget-list">
                         <div class="table-responsive">
                             <table class="table table-sm">
-                                <tr>
-                                    <th>Producto</th>
-                                    <th class="text-right">Valor total</th>
-                                </tr>
-                                {% for key, value in products_dict.items %}
-                                <tr>
-                                    <td>{{ key }}</td>
-                                    <td class="text-right">
-                                        ${{ value|intcomma }}
-                                    </td>
-                                </tr>
-                                {% endfor %}
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th class="text-right">Valor total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for key, value in products_dict.items %}
+                                    <tr>
+                                        <td>{{ key }}</td>
+                                        <td class="text-right">
+                                            ${{ value|intcomma }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
                             </table>
                         </div>
                     </div>

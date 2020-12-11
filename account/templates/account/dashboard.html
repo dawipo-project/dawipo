@@ -292,7 +292,7 @@
                             <a href="javascript:void(0);" class="dropdown-item">Exportar reporte</a>
                         </div>
                     </div> -->
-                    <h4 class="header-title text-comfortaa">Productos más vendidos</h4>
+                    <h4 class="header-title text-comfortaa">Productos más vendidos (Unidades)</h4>
 
                     <div id="average-sales" class="apex-charts mb-4 mt-4"
                     data-colors="#003f5a,#fb9334,#007a7a,#fe6625"></div>
@@ -335,6 +335,10 @@
                     <div class="chart-widget-list">
                         <div class="table-responsive">
                             <table class="table table-sm">
+                                <tr>
+                                    <td>Producto</td>
+                                    <td class="text-right">Valor total</td>
+                                </tr>
                                 {% for key, value in products_dict.items %}
                                 <tr>
                                     <td>{{ key }}</td>

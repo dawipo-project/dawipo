@@ -376,37 +376,37 @@
                         <table class="table table-centered table-nowrap table-sm table-striped mb-0">
                             <tbody>
                                 <tr>
-                                    <th class="text-center">
+                                    <th class="">
                                         <h5 class="text-muted font-14 my-1">ID de Orden</h5>
                                     </th>
-                                    <th class="text-center">
+                                    <th class="">
                                         <h5 class="text-muted font-14 my-1">Cliente</h5>
                                     </th>
-                                    <th class="text-center">
+                                    <th class="">
                                         <h5 class="text-muted font-14 my-1">Precio total</h5>
                                     </th>
-                                    <th class="text-center">
+                                    <th class="">
                                         <h5 class="text-muted font-14 my-1">Fecha de entrega</h5>
                                     </th>
-                                    <th class="text-center">
+                                    <th class="">
                                         <h5 class="text-muted font-14 my-1">Estado</h5>
                                     </th>
                                 </tr>
                                 {% for order in closest_orders %}
                                 <tr>
-                                    <td class="text-center">
+                                    <td class="">
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.id }}</h5>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="">
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.customer.name }}</h5>
                                     </td>
                                     <td class="text-right">
                                         <h5 class="font-14 my-1 font-weight-normal">${{ order.get_total_cost|intcomma }}</h5>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="">
                                         <h5 class="font-14 my-1 font-weight-normal">{{ order.due_date }}</h5>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="">
                                         <h4 class="my-1 font-weight-normal">
                                             {% if order.status == 'delivered' %}
                                             <div class="badge badge-success">{{ order.get_status_display }}</div>

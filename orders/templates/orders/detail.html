@@ -123,7 +123,7 @@
 							</tr>
 							<tr>
 								<td colspan="3">
-									<a href="{% url 'orders:get_pdf' order.id %}" class="btn btn-block btn-secondary" target="_blank">
+									<a href="{% url 'orders:get_pdf' order.id %}" class="btn btn-block btn-secondary" target="_blank" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="¡Archivo descargado!" data-content="El archivo ha sido descargado exitosamente.">
 										<i class="uil-file"></i>
 										Descargar PDF
 									</a>

@@ -4287,15 +4287,15 @@ input[type="button"].btn-block {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5);
             box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5); }
 
-.badge-preorder {
+.badge-pre-order {
   color: #fff;
   background-color: #043a5c;
 }
-a.badge-preorder:hover, a.badge-preorder:focus {
+a.badge-pre-order:hover, a.badge-pre-order:focus {
   color: #fff;
   background-color: #076aa8;
 }
-a.badge-preorder:focus, a.badge-preorder.focus {
+a.badge-pre-order:focus, a.badge-pre-order.focus {
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5);

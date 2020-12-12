@@ -128,17 +128,7 @@
 									</td>
 									<td class="text-center">
 										<h4 class="my-1 font-weight-normal">
-											{% if order.status == 'delivered' %}
-											<div class="badge badge-success">{{ order.get_status_display }}</div>
-											{% elif order.status == 'canceled' %}
-											<div class="badge badge-danger">{{ order.get_status_display }}</div>
-											{% elif order.status == 'pre-order' %}
-											<div class="badge badge-primary">{{ order.get_status_display }}</div>
-											{% elif order.status == 'confirmed' %}
-											<div class="badge badge-secondary">{{ order.get_status_display }}</div>
-											{% else %}
-											<div class="badge badge-info">{{ order.get_status_display }}</div>
-											{% endif %}
+											<div class="badge badge-{{ order.status }}">{{ order.get_status_display }}</div>
 										</h4>
 									</td>
 								</tr>

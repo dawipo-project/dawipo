@@ -4287,6 +4287,118 @@ input[type="button"].btn-block {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5);
             box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5); }
 
+.badge-preorder {
+  color: #fff;
+  background-color: #043a5c;
+}
+a.badge-preorder:hover, a.badge-preorder:focus {
+  color: #fff;
+  background-color: #076aa8;
+}
+a.badge-preorder:focus, a.badge-preorder.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(114, 124, 245, 0.5);
+}
+
+.badge-confirmed {
+  color: #fff;
+  background-color: #993955;
+}
+a.badge-confirmed:hover, a.badge-confirmed:focus {
+  color: #fff;
+  background-color: #b04038;
+}
+a.badge-confirmed:focus, a.badge-confirmed.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(153, 57, 85, 0.6);
+  box-shadow: 0 0 0 0.2rem rgba(153, 57, 85, 0.6);
+}
+
+.badge-awaiting-advance-payment {
+  color: #fff;
+  background-color: #007a7b;
+}
+a.badge-awaiting-advance-payment:hover, a.badge-awaiting-advance-payment:focus {
+  color: #fff;
+  background-color: #07916a;
+}
+a.badge-awaiting-advance-payment:focus, a.badge-awaiting-advance-payment.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 122, 123, 0.48);
+  box-shadow: 0 0 0 0.2rem rgba(0, 122, 123, 0.48);
+}
+
+.badge-in-production {
+  color: #fff;
+  background-color: #fe6937;
+}
+a.badge-in-production:hover, a.badge-in-production:focus {
+  color: #fff;
+  background-color: #e87427;
+}
+a.badge-in-production:focus, a.badge-in-production.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(254, 105, 55, 1);
+  box-shadow: 0 0 0 0.2rem rgba(254, 105, 55, 1);
+}
+
+.badge-scheduled {
+  color: #fff;
+  background-color: #019162;
+}
+a.badge-scheduled:hover, a.badge-scheduled:focus {
+  color: #fff;
+  background-color: #07a8a0;
+}
+a.badge-scheduled:focus, a.badge-scheduled.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(1, 145, 98, 0.57);
+  box-shadow: 0 0 0 0.2rem rgba(1, 145, 98, 0.57);
+}
+
+.badge-dispatched {
+  color: #fff;
+  background-color: #e38919;
+}
+a.badge-dispatched:hover, a.badge-dispatched:focus {
+  color: #fff;
+  background-color: #fa6e0f;
+}
+a.badge-dispatched:focus, a.badge-dispatched.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(227, 137, 25, 0.89);
+  box-shadow: 0 0 0 0.2rem rgba(227, 137, 25, 0.89);
+}
+
+.badge-delivered {
+  color: #fff;
+  background-color: #7fb800;
+}
+a.badge-delivered:hover, a.badge-delivered:focus {
+  color: #fff;
+  background-color: #4ccf0a;
+}
+a.badge-delivered:focus, a.badge-delivered.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(127, 184, 0, 0.72);
+  box-shadow: 0 0 0 0.2rem rgba(127, 184, 0, 0.72);
+}
+
+.badge-canceled {
+  color: #fff;
+  background-color: #fdca40;
+}
+a.badge-canceled:hover, a.badge-canceled:focus {
+  color: #fff;
+  background-color: #e6c72e;
+}
+a.badge-canceled:focus, a.badge-canceled.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(253, 202, 64, 0.99);
+  box-shadow: 0 0 0 0.2rem rgba(253, 202, 64, 0.99);
+}
+
 .badge-secondary {
   color: #fff;
   background-color: #007a7b; }

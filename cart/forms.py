@@ -1,7 +1,7 @@
 from django import forms
 
 class CartAddProductForm(forms.Form):
-	price = forms.DecimalField(decimal_places=2, localize=True)
+	price = forms.DecimalField(decimal_places=2, localize=True, required=False)
 	quantity = forms.IntegerField(
 		label ='Amount'
 	)

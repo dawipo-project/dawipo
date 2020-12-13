@@ -62,6 +62,7 @@
 								<input data-toggle="touchspin" data-bts-max="100000" type="number" value="{{ item.quantity }}" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">
 								{{ item.update_quantity_form.override }}
 								{% csrf_token %}
+								<input type="hidden" name="price" value="{{ item.price }}">
 								<button type="submit" class="btn btn-sm btn-primary ml-1">Cambiar</button>
 							</form>
 						</td>

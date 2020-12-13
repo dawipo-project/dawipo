@@ -34,7 +34,8 @@ def product_list(request, category_slug=None):
 	for item in cart:
 		item['update_quantity_form'] = CartAddProductForm(initial={
 			'quantity': item['quantity'],
-			'override': True
+			'override': True,
+			'price': item['price']
 			})
 	if category_slug:
 		# Filtro por categorías

@@ -108,7 +108,7 @@
                         <li class="notification-list d-none d-sm-block">
                             {% with total_items=cart|length %}
                             {% if total_items > 0 %}
-                            <a href="{% url 'cart:cart_detail' %}">
+                            <a href="{% url 'orders:orders_product_list' %}">
                                 <h4>
                                     <div class="badge badge-danger mr-3" data-toggle="tooltip" data-placement="top" data-html="true" title="<b>Haz clic aquí para continuar creando tu orden</b>" style="margin-top: 1.2em;">
                                         Tienes una orden pendiente con {{ total_items }} item{{ total_items|pluralize }}

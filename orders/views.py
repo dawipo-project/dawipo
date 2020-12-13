@@ -10,17 +10,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.contrib import messages
 from catalog.models import Product, Category
 from customers.models import Customer
+from cart.cart import Cart
 from cart.forms import CartAddProductForm
 from .tasks import order_created, order_edited
 from .forms import OrderCreateForm, OrderEditForm, ItemUpdateForm
 from .models import OrderItem, Order, OrderChange, PaymentMethod
-from cart.cart import Cart
 import datetime
 import weasyprint
 from io import BytesIO
-from django.contrib import messages
 
 # Create your views here.
 @login_required
@@ -30,13 +30,20 @@ def product_list(request, category_slug=None):
 	# agregar productos no disponibles a las ordenes
 	products = Product.objects.filter(available=True, category__in=categories)
 	cart_form = CartAddProductForm()
+	cart = Cart(request)
+	for item in cart:
+		item['update_quantity_form'] = CartAddProductForm(initial={
+			'quantity': item['quantity'],
+			'override': True
+			})
 	if category_slug:
 		# Filtro por categorías
 		category = get_object_or_404(Category, slug=category_slug)
 		products = products.filter(category=category)
 	return render(request, 'orders/list.html', {'categories': categories,  
 		'products': products,
-		'cart_product_form': cart_form})
+		'cart_product_form': cart_form,
+		'cart': cart})
 
 @login_required
 def order_create(request):

@@ -22,10 +22,10 @@
 <div class="row">
 	<ul class="nav ml-2 mb-2 nav-fill">
 		<li class="nav-item mr-2">
-			<a href="{% url 'cart:cart_detail' %}" class="btn btn-primary">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">
 				<i class="uil uil-shopping-cart-alt"></i>
 				Ver contenido de la orden
-			</a>
+			</button>
 		</li>
 		<li class="nav-item flex-fill" style="width: 14em">
 			<select class="form-control form-control-sm select2" data-toggle="select2" style="width: 14em" onchange="location = this.value;">
@@ -79,5 +79,79 @@
 		</div>
 	</div>
 	{% endfor %}
+</div>
+<!-- Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-comfortaa" id="cartModalLabel">Contenido de la orden</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12 col-lg-12">
+						<div class="table-responsive">
+							<table class="table table-hover table-nowrap">
+								<thead>
+									<th scope="col">Nombre del producto</th>
+									<th scope="col">Cantidad</th>
+									<th scope="col">Precio unitario</th>
+									<th scope="col">Precio total</th>
+									<th scope="col"></th>
+								</thead>
+								<tbody>
+									{% for item in cart %}
+									{% with product=item.product %}
+									<tr>	
+										<td>{{ product.name|truncatechars:20 }}</td>
+										<td class="pt-1">
+											<form action="{% url 'cart:cart_add' product.id %}" method="post" class="form-inline">
+												<input data-toggle="touchspin" data-bts-max="100000" type="number" value="{{ item.quantity }}" required id="id_quantity" name="quantity" data-bts-button-down-class="btn btn-danger" data-bts-button-up-class="btn btn-primary">
+												{{ item.update_quantity_form.override }}
+												{% csrf_token %}
+												<button type="submit" class="btn btn-sm btn-primary ml-1">Cambiar</button>
+											</form>
+										</td>
+										<td class="align-items-right text-right">{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
+										<td class="align-items-right text-right">{{ request.user.profile.company.currency }}${{ item.total_price|intcomma }}</td>
+										<td class="pt-2">
+											<form action="{% url 'cart:cart_remove' product.id %}" method="post">
+												{% csrf_token %}
+												<button type="submit" class="btn btn-sm btn-danger">
+													<i class="uil-trash-alt"></i> Eliminar
+												</button>
+											</form>
+										</td>
+									</tr>
+									{% endwith %}
+									{% endfor %}
+									<tr>
+										<td class="text-secondary">Total</td>
+										<td colspan="2"></td>
+										<td class="text-secondary align-items-right text-right">{{ request.user.profile.company.currency }}${{ cart.get_total_price|intcomma }}</td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="{% url 'orders:order_create' %}" class="btn btn-primary btn-sm">
+					<i class="uil uil-file-check-alt"></i>
+					Generar cotización
+				</a>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				<a href="{% url 'cart:cart_clear' %}" class="btn btn-danger btn-sm">
+					<i class="uil-trash-alt"></i>
+					Vaciar orden
+				</a>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}

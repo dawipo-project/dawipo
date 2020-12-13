@@ -82,7 +82,7 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title text-comfortaa" id="cartModalLabel">Contenido de la orden</h5>
@@ -141,15 +141,15 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a href="{% url 'orders:order_create' %}" class="btn btn-primary btn-sm">
+				<a href="{% url 'orders:order_create' %}" class="btn btn-primary">
 					<i class="uil uil-file-check-alt"></i>
 					Generar cotización
 				</a>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<a href="{% url 'cart:cart_clear' %}" class="btn btn-danger btn-sm">
+				<a href="{% url 'cart:cart_clear' %}" class="btn btn-danger">
 					<i class="uil-trash-alt"></i>
 					Vaciar orden
 				</a>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 			</div>
 		</div>
 	</div>

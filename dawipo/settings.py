@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'd(8ef2%*m=i7mxck@v68@$(9rf-wo=yj)ulw3(_a2uj7+@v@u-'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['dawipo.com', 'localhost']
 

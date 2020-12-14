@@ -148,7 +148,7 @@
 				<tr>
 					<td class="borderless" colspan="3"></td>
 					<td class="all-borders"><strong>Descuento ({{ order.discount|floatformat:0 }}%)</strong></td>
-					<td class="all-borders align-right text-red">-{{ request.user.profile.company.currency }}%{{ order.get_total_discount|intcomma }}</td>
+					<td class="all-borders align-right text-red">-{{ request.user.profile.company.currency }}${{ order.get_total_discount|intcomma }}</td>
 				</tr>
 				{% endif %}
 				<tr>

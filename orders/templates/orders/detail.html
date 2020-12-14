@@ -101,6 +101,13 @@
 								<td class="text-secondary text-right align-items-right">{{ request.user.profile.company.currency }}${{ item.get_cost|intcomma }}</td>
 							</tr>
 							{% endfor %}
+							{% if order.discount %}
+							<tr>
+								<td class="text-success">Descuento</td>
+								<td></td>
+								<td class="text-right align-items-right">{{ order.discount|floatformat:0}}%</td>
+							</tr>
+							{% endif %}
 							<tr>
 								<td class="text-success">Total</td>
 								<td></td>

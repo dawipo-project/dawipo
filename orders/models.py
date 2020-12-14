@@ -101,7 +101,7 @@ class Order(models.Model):
 			return 0
 
 	def get_total_cost(self):
-		return round(((self.get_cost() + self.get_total_tax() + self.shipping) * (self.discount / 100)), 2)
+		return round(((self.get_cost() + self.get_total_tax()) * (self.discount / 100) + self.shipping), 2)
 
 class OrderChange(models.Model):
 	order = models.ForeignKey(Order, related_name='order_order_changes', on_delete=models.CASCADE)

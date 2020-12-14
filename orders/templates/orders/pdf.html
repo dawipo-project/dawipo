@@ -144,6 +144,13 @@
 					<td class="all-borders"><strong>Impuestos</strong></td>
 					<td class="all-borders align-right">{{ request.user.profile.company.currency }}${{ order.get_total_tax|intcomma }}</td>
 				</tr>
+				{% if order.discount %}
+				<tr>
+					<td class="borderless" colspan="3"></td>
+					<td class="all-borders"><strong>Descuento</strong></td>
+					<td class="all-borders">{{ order.discount|floatformat:0 }}%</td>
+				</tr>
+				{% endif %}
 				<tr>
 					<td class="borderless" colspan="3"></td>
 					<td class="all-borders"><strong>Costo del envío</strong></td>

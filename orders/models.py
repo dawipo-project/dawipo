@@ -104,7 +104,7 @@ class Order(models.Model):
 		if self.discount:
 			return round(((self.get_cost() + self.get_total_tax()) * (self.discount / 100) + self.shipping), 2)
 		else:
-			return round(((self.get_cost() + self.get_total_tax()), 2))
+			return round((self.get_cost() + self.get_total_tax()), 2)
 
 class OrderChange(models.Model):
 	order = models.ForeignKey(Order, related_name='order_order_changes', on_delete=models.CASCADE)

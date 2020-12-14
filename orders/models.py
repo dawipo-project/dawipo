@@ -101,7 +101,10 @@ class Order(models.Model):
 			return 0
 
 	def get_total_discount(self):
-		return round((self.get_cost() + self.get_total_tax()) * (self.get_total_discount() * 100), 2)
+		if self.discount > 0:
+			return round((self.get_cost() + self.get_total_tax()) * (self.get_total_discount() / 100), 2)
+		else:
+			return 0
 
 	def get_total_cost(self):
 		return round((((self.get_cost() + self.get_total_tax()) - self.get_total_discount()) + self.shipping), 2)

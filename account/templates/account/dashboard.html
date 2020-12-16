@@ -126,7 +126,7 @@
                         yaxis: {
                             labels: {
                                 formatter: function (e) {
-                                    return "{{ request.user.profile.company.currency }}$" + e.toLocaleString('en-US', {maximumFractionDigits:2});
+                                    return "{{ request.user.profile.company.currency }}$" + e.toLocaleString();
                                 },
                                 offsetX: -15,
                             },

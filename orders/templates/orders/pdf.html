@@ -122,7 +122,7 @@
 				<tr>
 					<td class="side-borders" style="white-space: nowrap;">{{ item.product.id }}</td>
 					<td class="side-borders">{{ item.product.name }}</td>
-					<td class="side-borders align-right">{{ request.user.profile.company.currency }}${{ item.price|intcomma }}</td>
+					<td class="side-borders align-right">{{ request.user.profile.company.currency }}${{ item.get_price|intcomma }}</td>
 					<td class="side-borders align-right">{{ item.quantity }}</td>
 					<td class="side-borders align-right">{{ request.user.profile.company.currency }}${{ item.get_taxed_cost|intcomma }}</td>
 				</tr>

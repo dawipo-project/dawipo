@@ -126,7 +126,8 @@
                         yaxis: {
                             labels: {
                                 formatter: function (e) {
-                                    return "{{ request.user.profile.company.currency }}$" + e;
+                                    return "{{ request.user.profile.company.currency }}$" + e.toString().replace(
+                                        /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
                                 },
                                 offsetX: -15,
                             },

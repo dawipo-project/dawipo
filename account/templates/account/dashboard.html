@@ -90,8 +90,7 @@
                             } 
                         },
                         dataLabels: { 
-                            enabled: true,
-                            colors: ['#000000']
+                            enabled: !1,
                         },
                         stroke: { 
                             curve: "smooth", 
@@ -117,12 +116,14 @@
                         xaxis: { 
                             type: "string", 
                             categories: newList, 
+                            colors: ['#000000'],
                             tooltip: { 
                                 enabled: !1 
                             }, 
                             axisBorder: { 
                                 show: !1 
-                            } 
+                            },
+
                         },
                         yaxis: {
                             labels: {
@@ -130,6 +131,7 @@
                                     return "{{ request.user.profile.company.currency }}$" + e.toLocaleString();
                                 },
                                 offsetX: -15,
+                                colors: ['#000000']
                             },
                         },
                     };

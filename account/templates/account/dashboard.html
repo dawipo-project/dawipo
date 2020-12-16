@@ -115,8 +115,10 @@
                         },
                         xaxis: { 
                             type: "string", 
-                            categories: newList, 
-                            colors: ['#000000'],
+                            categories: newList,
+                            style : {
+                                colors: ['#000000']
+                            }, 
                             tooltip: { 
                                 enabled: !1 
                             }, 
@@ -130,7 +132,9 @@
                                 formatter: function (e) {
                                     return "{{ request.user.profile.company.currency }}$" + e.toLocaleString();
                                 },
-                                offsetX: -15,
+                                offsetX: -15, 
+                            },
+                            style : {
                                 colors: ['#000000']
                             },
                         },

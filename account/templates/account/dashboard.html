@@ -99,11 +99,11 @@
                         series: [
                         { 
                             name: "Año en curso", 
-                            data: [{% for value in year_orders %}{{ value }}{% if not forloop.last %}, {% endif %}{% endfor %}]
+                            data: {{ year_orders|safe }}
                         },
                         { 
                             name: "Año anterior", 
-                            data: [{% for value in last_year_orders %}{{ value }}{% if not forloop.last %}, {% endif %}{% endfor %}]
+                            data: {{ last_year_orders|safe }}
                         },
                         ],
                         colors: e,

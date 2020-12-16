@@ -126,7 +126,7 @@
                         yaxis: {
                             labels: {
                                 formatter: function (e) {
-                                    return e + " órdenes";
+                                    return "{{ request.user.profile.company.currency }}$" + e;
                                 },
                                 offsetX: -15,
                             },

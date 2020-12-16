@@ -145,7 +145,7 @@ class OrderItem(models.Model):
 			return self.price
 
 	def get_cost(self):
-		return round(self.price * self.quantity, 2)
+		return round(self.get_price() * self.quantity, 2)
 
 
 	def get_tax(self):

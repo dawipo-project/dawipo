@@ -317,7 +317,7 @@ def get_orders_per_month(order_changes, month_list):
     for i in range(len(month_list)):
         for item in order_changes:
             if item.date.strftime('%b') == month_list[i]:
-                changes_list[i] += float(item.order.get_total_cost())
+                changes_list[i] += round(float(item.order.get_total_cost()), 2)
     orders_dict = dict(zip(month_list, changes_list))
     return orders_dict
 

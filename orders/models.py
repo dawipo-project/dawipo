@@ -126,7 +126,7 @@ class OrderItem(models.Model):
 	order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
 	product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
 	price = models.DecimalField(max_digits=20, decimal_places=2)
-	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, default=0.0)
+	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, default=1)
 	quantity = models.PositiveIntegerField(default=1)
 
 	def __str__(self):

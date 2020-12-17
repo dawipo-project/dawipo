@@ -79,11 +79,11 @@ class Order(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	status = models.CharField(max_length=25, choices=STATUS_CHOICES, default='pre-order')
-	shipping = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=1)
+	shipping = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0.0)
 	observations = models.TextField(null=True, blank=True)
 	payment_method = models.ForeignKey(PaymentMethod, 
 		related_name='order_payment', on_delete=models.CASCADE, null=True, blank=True)
-	discount = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True, default=1)
+	discount = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True, default=0.0)
 
 	class Meta:
 		ordering = ('-created',)
@@ -126,7 +126,7 @@ class OrderItem(models.Model):
 	order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
 	product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
 	price = models.DecimalField(max_digits=20, decimal_places=2)
-	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, default=1)
+	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, default=0.0)
 	quantity = models.PositiveIntegerField(default=1)
 
 	def __str__(self):

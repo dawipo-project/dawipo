@@ -36,6 +36,7 @@
 			</div>
 			{% endfor %}
 			{% endif %}
+			{{ form.as_p }}
 			{% csrf_token %}
 			<div class="form-group">
 				<label for="id_payment_method">Medio de pago</label>

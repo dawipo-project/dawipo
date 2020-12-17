@@ -43,7 +43,7 @@
 					<option value="">Selecciona un medio de pago</option>
 					<optgroup label="Medios de pago">
 						{% for payment in payments %}
-						<option value="{{ payment.id }}">{{ payment.name }}</option>
+						<option value="{{ payment }}">{{ payment.name }}</option>
 						{% endfor %}
 					</optgroup>
 				</select>

@@ -21,6 +21,7 @@ from .models import OrderItem, Order, OrderChange, PaymentMethod
 import datetime
 import weasyprint
 from io import BytesIO
+from decimal import Decimal
 
 # Create your views here.
 @login_required
@@ -58,6 +59,10 @@ def order_create(request):
 			order = form.save(commit=False)
 			order.user = request.user
 			order.company = request.user.profile.company
+			if order.discount is None:
+				order.discount = Decimal(0)
+			if order.shipping is None:
+				order.shipping = Decimal(0)
 			order.save()
 			for item in cart:
 				OrderItem.objects.create(order=order,

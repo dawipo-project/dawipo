@@ -36,11 +36,11 @@ class Product(models.Model):
 	image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
 	observations = models.TextField(blank=True, null=True)
-	price_1 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0.0) # Separador de miles
-	price_2 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0.0) # Separador de miles
-	price_3 = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0.0) # Separador de miles
-	tax = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=0.0)
-	fabrication_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0.0)
+	price_1 = models.DecimalField(max_digits=10, decimal_places=2, blank=True, default=0.0) # Separador de miles
+	price_2 = models.DecimalField(max_digits=10, decimal_places=2, blank=True, default=0.0) # Separador de miles
+	price_3 = models.DecimalField(max_digits=10, decimal_places=2, blank=True, default=0.0) # Separador de miles
+	tax = models.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0.0)
+	fabrication_cost = models.DecimalField(max_digits=10, decimal_places=2, blank=True, default=0.0)
 	available = models.BooleanField(default=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)

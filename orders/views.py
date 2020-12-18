@@ -59,10 +59,12 @@ def order_create(request):
 			order = form.save(commit=False)
 			order.user = request.user
 			order.company = request.user.profile.company
+			import pdb; pdb.set_trace()
 			if order.discount is None:
 				order.discount = Decimal(0)
 			if order.shipping is None:
 				order.shipping = Decimal(0)
+			pdb.set_trace()
 			order.save()
 			for item in cart:
 				if item['tax'] is None:

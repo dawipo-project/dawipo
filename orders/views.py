@@ -65,10 +65,14 @@ def order_create(request):
 				order.shipping = Decimal(0)
 			order.save()
 			for item in cart:
+				if item['tax'] is None:
+					tax = Decimal(0)
+				else:
+					tax = item['tax']
 				OrderItem.objects.create(order=order,
 					product=item['product'],
 					price=item['price'],
-					tax=item['tax'],
+					tax=tax,
 					quantity=item['quantity'])
 			cart.clear()
 			logo_url = request.scheme + '://' + request.get_host()

@@ -13,7 +13,7 @@ class Cart(object):
 	def add(self, product, price, quantity=1, override_quantity=False):
 		product_id = str(product.id)
 		if product_id not in self.cart:
-			self.cart[product_id] = {'quantity': 0, 'price': str(price), 'tax': str(product.tax)}
+			self.cart[product_id] = {'quantity': 0, 'price': price, 'tax': product.tax}
 		if override_quantity:
 			self.cart[product_id]['quantity'] = quantity
 		else:
@@ -36,7 +36,7 @@ class Cart(object):
 		for product in products:
 			cart[str(product.id)]['product'] = product
 		for item in cart.values():
-			item['price'] = Decimal(item['price'])
+			item['price'] = item['price']
 			item['total_tax'] = item['tax'] * item['quantity']
 			item['total_price'] = item['price'] * item['quantity']
 			yield item
@@ -45,10 +45,10 @@ class Cart(object):
 		return sum(item['quantity'] for item in self.cart.values())
 
 	def get_total_price(self):
-		return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+		return sum(item['price'] * item['quantity'] for item in self.cart.values())
 
 	def get_total_tax(self):
-		return sum(Decimal(item['tax']) * item['quantity'] for item in self.cart.values())
+		return sum(item['tax'] * item['quantity'] for item in self.cart.values())
 
 	def clear(self):
 		del self.session[settings.CART_SESSION_ID]

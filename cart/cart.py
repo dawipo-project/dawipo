@@ -45,6 +45,7 @@ class Cart(object):
 		return sum(item['quantity'] for item in self.cart.values())
 
 	def get_total_price(self):
+		import pdb; pdb.set_trace()
 		return sum(item['price'] * item['quantity'] for item in self.cart.values())
 
 	def get_total_tax(self):

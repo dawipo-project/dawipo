@@ -37,7 +37,10 @@ class Cart(object):
 			cart[str(product.id)]['product'] = product
 		for item in cart.values():
 			item['price'] = float(item['price'])
-			item['total_tax'] = float(item['tax']) * float(item['quantity'])
+			if item['tax']:
+				item['total_tax'] = float(item['tax']) * float(item['quantity'])
+			else:
+				item['total_tax'] = 0
 			item['total_price'] = item['price'] * item['quantity']
 			yield item
 

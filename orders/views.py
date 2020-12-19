@@ -82,8 +82,9 @@ def order_create(request):
 			order_created.delay(
 				order.id, request.user.email, base_url=request.build_absolute_uri(), 
 				logo_url=logo_url, company_name=company_name, currency=currency)
+			items = OrderItem.objects.filter(order_id=order.id)
 			messages.success(request, f'¡La orden {order.id} ha sido creada exitosamente!')
-			return render(request, 'orders/detail.html', {'categories': categories, 'order': order})
+			return render(request, 'orders/detail.html', {'categories': categories, 'order': order, 'items': items})
 	else:
 		form = OrderCreateForm()
 	return render(request, 'orders/create.html', {'cart': cart, 'form': form, 

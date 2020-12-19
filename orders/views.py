@@ -69,11 +69,7 @@ def order_create(request):
 					tax = 0
 				else:
 					tax = item['tax']
-				OrderItem.objects.create(order=order,
-					product=item['product'],
-					price=item['price'],
-					tax=tax,
-					quantity=item['quantity'])
+				OrderItem.objects.create(order=order, product=item['product'], price=item['price'], tax=tax, quantity=item['quantity'])
 			cart.clear()
 			logo_url = request.scheme + '://' + request.get_host()
 			logo_url += request.user.profile.company.logo.url

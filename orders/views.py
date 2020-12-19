@@ -66,12 +66,15 @@ def order_create(request):
 			order.save()
 			for item in cart:
 				if item['tax'] is None:
-					item['tax'] = 0
+					tax = 0
 				else:
-					item['tax'] = float(item['tax'])
+					tax = item['tax']
 				import pdb; pdb.set_trace()
-				OrderItem.objects.create(order=order, product=item['product'], price=item['price'], 
-					tax=item['tax'], quantity=item['quantity'])
+				OrderItem.objects.create(order=order,
+					product=item['product'],
+					price=item['price'],
+					tax=tax,
+					quantity=item['quantity'])
 			cart.clear()
 			logo_url = request.scheme + '://' + request.get_host()
 			logo_url += request.user.profile.company.logo.url

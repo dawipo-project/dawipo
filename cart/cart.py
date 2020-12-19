@@ -13,7 +13,7 @@ class Cart(object):
 	def add(self, product, price, quantity=1, override_quantity=False):
 		product_id = str(product.id)
 		if product_id not in self.cart:
-			self.cart[product_id] = {'quantity': 0, 'price': str(price), 'tax': str(product.tax)}
+			self.cart[product_id] = {'quantity': 0, 'price': price, 'tax': product.tax}
 		if override_quantity:
 			self.cart[product_id]['quantity'] = quantity
 		else:
@@ -37,7 +37,7 @@ class Cart(object):
 			cart[str(product.id)]['product'] = product
 		for item in cart.values():
 			item['price'] = float(item['price'])
-			item['total_tax'] = float(item['tax']) * item['quantity']
+			item['total_tax'] = item['tax'] * item['quantity']
 			item['total_price'] = item['price'] * item['quantity']
 			yield item
 

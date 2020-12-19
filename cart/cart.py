@@ -36,6 +36,7 @@ class Cart(object):
 		for product in products:
 			cart[str(product.id)]['product'] = product
 		for item in cart.values():
+			item['tax'] = float(item['tax'])
 			import pdb; pdb.set_trace()
 			item['price'] = float(item['price'])
 			item['total_tax'] = item['tax'] * item['quantity']

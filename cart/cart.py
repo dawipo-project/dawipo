@@ -36,19 +36,19 @@ class Cart(object):
 		for product in products:
 			cart[str(product.id)]['product'] = product
 		for item in cart.values():
-			item['price'] = Decimal(item['price'])
-			item['total_tax'] = item['tax'] * item['quantity']
-			item['total_price'] = item['price'] * item['quantity']
+			item['price'] = float(item['price'])
+			item['total_tax'] = float(item['tax']) * item['quantity']
+			item['total_price'] = float(item['price']) * item['quantity']
 			yield item
 
 	def __len__(self):
 		return sum(item['quantity'] for item in self.cart.values())
 
 	def get_total_price(self):
-		return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+		return sum(float(item['price']) * item['quantity'] for item in self.cart.values())
 
 	def get_total_tax(self):
-		return sum(Decimal(item['tax']) * item['quantity'] for item in self.cart.values())
+		return sum(float(item['tax']) * item['quantity'] for item in self.cart.values())
 
 	def clear(self):
 		del self.session[settings.CART_SESSION_ID]

@@ -39,27 +39,15 @@ class PaymentMethod(models.Model):
 
 class Order(models.Model):
 	STATUS_CHOICES = (
-		('pre-order', 'Pre-orden'),
-		('confirmed', 'Confirmada'),
-		('awaiting-advance-payment', 'Esperando anticipo'),
-		('in-production', 'En Producción'),
-		('scheduled', 'Programada para despacho'),
-		('dispatched', 'Despachada'),
-		('delivered', 'Entregada'),
-		('canceled', 'Cancelada'),
+		('pre-order', 'Pre-orden'), ('confirmed', 'Confirmada'),
+		('awaiting-advance-payment', 'Esperando anticipo'), ('in-production', 'En Producción'),
+		('scheduled', 'Programada para despacho'), ('dispatched', 'Despachada'),
+		('delivered', 'Entregada'), ('canceled', 'Cancelada'),
 	)
 	INCOTERM_CHOICES = (
-		('EXW', 'EXW'),
-		('FCA', 'FCA'),
-		('CPT', 'CPT'),
-		('CIP', 'CIP'),
-		('DAP', 'DAP'),
-		('DPU', 'DPU'),
-		('DDP', 'DDP'),
-		('FAS', 'FAS'),
-		('FOB', 'FOB'),
-		('CFR', 'CFR'),
-		('CIF', 'CIF'),
+		('EXW', 'EXW'), ('FCA', 'FCA'), ('CPT', 'CPT'), ('CIP', 'CIP'),
+		('DAP', 'DAP'), ('DPU', 'DPU'), ('DDP', 'DDP'), ('FAS', 'FAS'),
+		('FOB', 'FOB'), ('CFR', 'CFR'), ('CIF', 'CIF'),
 	)
 	TRANSPORT_CHOICES = (
 		('air', 'Aéreo'),

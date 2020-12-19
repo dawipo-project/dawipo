@@ -86,7 +86,7 @@ def order_create(request):
 			messages.success(request, f'¡La orden {order.id} ha sido creada exitosamente!')
 			return render(request, 'orders/detail.html', {'categories': categories, 'order': order, 'items': items})
 	else:
-		form = OrderCreateForm()
+		form = OrderCreateForm() 
 	return render(request, 'orders/create.html', {'cart': cart, 'form': form, 
 		'customers': customers, 'categories': categories, 'payments': payments})
 

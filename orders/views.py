@@ -69,7 +69,6 @@ def order_create(request):
 					tax = 0
 				else:
 					tax = item['tax']
-				import pdb; pdb.set_trace()
 				OrderItem.objects.create(order=order,
 					product=item['product'],
 					price=item['price'],

@@ -68,7 +68,7 @@ def order_create(request):
 				if item['tax'] is None:
 					tax = 0
 				else:
-					tax = item['tax']
+					tax = float(item['tax'])
 				import pdb; pdb.set_trace()
 				OrderItem.objects.create(order=order, product=item['product'], price=item['price'], tax=tax, quantity=item['quantity'])
 			cart.clear()

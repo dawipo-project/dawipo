@@ -107,7 +107,13 @@ class Order(models.Model):
 			return 0
 
 	def get_total_cost(self):
-		return round((((self.get_cost() + self.get_total_tax()) - self.get_total_discount()) + self.shipping), 2)
+		if self.shipping and self.shipping is not 0 and self.tax:
+			return round((((self.get_cost() + self.get_total_tax()) - self.get_total_discount()) + self.shipping), 2)
+		elif not self.shipping and self.tax:
+			return round(((self.get_cost() + self.get_total_tax()) - self.get_total_discount()), 2)
+		elif not self.shipping and not self.tax:
+			return round(self.get_cost() - self.get_total_discount(), 2)
+
 
 class OrderChange(models.Model):
 	order = models.ForeignKey(Order, related_name='order_order_changes', on_delete=models.CASCADE)

@@ -30,19 +30,33 @@
 		<h5>
 			<a href="{{ product.category.get_absolute_url }}" class="text-primary">{{ product.category.name }}</a>
 		</h5>
-		<div class="col-sm-12 col-md-6 float-left text-center">
+		<div class="col-sm-12 float-left text-center">
 			<h4><span class="text-secondary">Precio retail: </span>{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}</h4>
 		</div>
-		<div class="col-sm-12 col-md-6 float-left text-center">
-			<h4><span class="text-secondary">Precio mayorista: </span>{% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_1|intcomma }}{% else %}No tiene{% endif %}</h4>
+		<div class="col-sm-12 float-left text-center">
+			<h4><span class="text-secondary">Precio mayorista: </span>{% if product.price_2 %}{{ request.user.profile.company.currency }}${{ product.price_2|intcomma }}{% else %}No tiene{% endif %}</h4>
 		</div>
-		
+		<div class="col-sm-12 float-left text-center">
+			<h4><span class="text-secondary">Otro precio: </span>{% if product.price_3 %}{{ request.user.profile.company.currency }}${{ product.price_3|intcomma }}{% else %}No tiene{% endif %}</h4>
+		</div>
 		{% if product.available %}
 		<h5>Disponible: <span class="text-success">Sí</span></h5>
 		{% else %}
 		<h5>Disponible: <span class="text-danger">No</span></h5>
 		{% endif %}
+		{% if product.sku %}
+		<h4 class="text-primary">SKU:</h4>
+		<p>{{ product.sku }}</p>
+		{% endif %}
+		{% if product.barcode %}
+		<h4 class="text-primary">Códico de barras:</h4>
+		<p>{{ product.barcode }}</p>
+		{% endif %}
 		<h4 class="text-primary">Descripción:</h4>
+		<p><span class="text-secondary">Color: </span>{% if product.color %}{{ product.color }}{% else %}No tiene{% endif%}</p>
+		<p><span class="text-secondary">Medidas: </span>{% if product.measures %}{{ product.measures }}{% else %}No tiene{% endif%}</p>
+		<p><span class="text-secondary">Impuesto: </span>{% if product.tax %}{{ product.tax }}%{% else %}No tiene{% endif%}</p>
+		<p><span class="text-secondary">Costo de fabricación: </span>{% if product.fabrication_cost %}{{ product.fabrication_cost }}{% else %}N/A{% endif%}</p>
 		<p>{{ product.description|linebreaks }}</p>
 		<h4 class="text-primary">Observaciones:</h4>
 		{{ product.observations|linebreaks }}

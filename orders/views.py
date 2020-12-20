@@ -64,12 +64,11 @@ def order_create(request):
 			if order.shipping is None:
 				order.shipping = 0
 			order.save()
-			import pdb; pdb.set_trace()
 			for item in cart:
-				if item['tax'] is None:
+				if item['tax'] == 'None':
 					tax = 0
 				else:
-					tax = item['tax']
+					tax = float(item['tax'])
 				OrderItem.objects.create(order=order,
 					product=item['product'],
 					price=item['price'],

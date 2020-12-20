@@ -57,11 +57,11 @@ class Product(models.Model):
 		super(Product, self).save()
 
 	@property
-    def get_image_url(self):
-        if self.image and hasattr(self.image, 'url'):
-            return self.image.url
-        else:
-            return 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+	def get_image_url(self):
+		if self.image and hasattr(self.image, 'url'):
+			return self.image.url
+		else:
+			return 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 
 	def __str__(self):
 		return self.name

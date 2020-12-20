@@ -64,6 +64,7 @@ def order_create(request):
 			if order.shipping is None:
 				order.shipping = 0
 			order.save()
+			import pdb; pdb.set_trace()
 			for item in cart:
 				if item['tax'] is None:
 					tax = 0

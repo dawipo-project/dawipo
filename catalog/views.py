@@ -103,6 +103,7 @@ def create_product(request):
 		category_name = request.POST['category']
 		category = Category.objects.get(id=category_name)
 		form = ProductCreateForm(data=request.POST, files=request.FILES)
+		import pdb; pdb.set_trace()
 		if form.is_valid():
 			cd = form.cleaned_data
 			product = form.save(commit=False)

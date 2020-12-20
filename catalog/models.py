@@ -28,7 +28,7 @@ class Product(models.Model):
 	name = models.CharField(max_length=200, db_index=True)
 	slug = models.SlugField(max_length=200, db_index=True)
 	sku = models.CharField(max_length=20, db_index=True, blank=True, null=True)
-	barcode = models.IntegerField(null=True, blank=True)
+	barcode = models.BigIntegerField(null=True, blank=True)
 	brand = models.CharField(max_length=50, null =True, blank=True)
 	provider = models.CharField(max_length=50, null=True, blank=True)
 	color = models.CharField(max_length=50, null=True, blank=True)
